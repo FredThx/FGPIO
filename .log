@@ -1,0 +1,14 @@
+2015-07-17 04:45:36,554 - ERROR -   File "<stdin>", line 1, in <module>
+
+2015-07-17 04:45:36,555 - ERROR - <type 'exceptions.NameError'> - name 'f_tread' is not defined
+2015-07-17 04:45:49,242 - INFO - f_thread f started.
+2015-07-17 04:45:49,250 - ERROR -   File "FGPIO/f_thread.py", line 40, in run
+    self.fonction(*self.args, **self.kwargs)
+  File "<stdin>", line 2, in f
+
+2015-07-17 04:45:49,251 - ERROR - <type 'exceptions.ZeroDivisionError'> - integer division or modulo by zero
+2015-07-17 04:45:53,450 - ERROR - 
+2015-07-17 04:45:53,451 - ERROR - <type 'exceptions.KeyboardInterrupt'> - 
+2015-07-17 04:47:57,675 - ERROR -   File "<stdin>", line 1, in <module>
+
+2015-07-17 04:47:57,677 - ERROR - <type 'exceptions.TypeError'> - exceptions must be old-style classes or derived from BaseException, not NoneType
