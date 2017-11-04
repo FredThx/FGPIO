@@ -18,6 +18,7 @@ FGPIO/hcsr501_io.py
 FGPIO/hrlv_max_sonar_io.py
 FGPIO/i2c_device_io.py
 FGPIO/i2c_ext_io.py
+FGPIO/i2c_grove_gesture_io.py
 FGPIO/i2c_io.py
 FGPIO/ir_detect_io.py
 FGPIO/lcd_12864.py
@@ -47,9 +48,10 @@ FGPIO/rotary_encoder_io.py
 FGPIO/rpiduino_io.py
 FGPIO/sen0018_io.py
 FGPIO/servo_motor_io.py
+FGPIO/stepper_io.py
 FGPIO/test_dht11.py
+FGPIO/test_gg.py
 FGPIO/test_gyro.py
-FGPIO/test_servo.py
 FGPIO.egg-info/PKG-INFO
 FGPIO.egg-info/SOURCES.txt
 FGPIO.egg-info/dependency_links.txt

@@ -56,6 +56,11 @@ class i2c_device:
 		self.bus.smbus.write_block_data(self.addr, cmd, data)
 		time.sleep(0.0001)
 	
+	def write_word_data(self, cmd, data):
+		'''Write a word 
+		'''
+		self.bus.smbus.write_word_data(self.addr, cmd, data)
+		time.sleep(0.0001)
 	
 	def read(self):
 		''' Read a single byte. False if IOError
@@ -83,8 +88,13 @@ class i2c_device:
 		except IOError:
 			return False
 	
-
-		
+	def read_i2c_block_data(self, cmd, len):
+		''' Read i2c datas
+		'''
+		try:
+			return self.bus.smbus.read_i2c_block_data(self.addr, cmd, len)
+		except IOError:
+			return False
 
 class i2c_bus():
 	"""Bus i2c"""

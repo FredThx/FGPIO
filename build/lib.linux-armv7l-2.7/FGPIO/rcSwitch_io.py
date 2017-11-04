@@ -14,7 +14,7 @@
 #################################### 
 
 import time
-from rpiduino_io import *
+from FGPIO.rpiduino_io import *
 
 class rcSwitch_io(device_io):
 	""" Un emetteur 433 Mhz qui pilote des prises radiocommandée RF.

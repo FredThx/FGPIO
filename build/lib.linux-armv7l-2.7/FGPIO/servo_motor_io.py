@@ -3,9 +3,7 @@
 
 ####################################
 '''
-# LED branchée sur un rpi_duino_io
-# 
-#    C'est vraiment pour faire jolie cette classe!!!
+# Servor moteur
 #
 # AUTEUR : FredThx
 #

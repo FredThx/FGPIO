@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: FGPIO
-Version: 0.6.4
+Version: 0.6.6
 Summary: A package for managing E/S of Raspberry pi or PCduino. Gestion des E/S d'un Raspberry PI ou d'un pcduino
 Home-page: UNKNOWN
 Author: FredThx
@@ -46,6 +46,7 @@ Description: FGPIO Lib  - A package for managing E/S of Raspberry pi or PCduino
         	 -     rain_sensor        with     rain_sensor_io
         	 -     Digital IR motion sensor 
         	                          with     ir_detect_io
+        	-	Grove gesture		  with 		i2c_grove_gesture_io
         	 
         
         All input component can be use with thread (see examples)

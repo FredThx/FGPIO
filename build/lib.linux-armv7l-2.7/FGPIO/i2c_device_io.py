@@ -36,7 +36,7 @@ class i2c_device_io(device_io):
 		"""
 		if bus==None:
 			if pc==None:
-				raise rpiduino_io_error('Lcd_i2c_io Error : bus ou pc requis.')
+				raise rpiduino_io_error('i2c_device_io Error : bus ou pc requis.')
 			else:
 				if isinstance(pc, rpi_io):
 					if pc.revision == 1:

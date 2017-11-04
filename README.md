@@ -38,6 +38,7 @@ This package allows to manage the following components with a Raspberry PI or pc
 	 -     rain_sensor        with     rain_sensor_io
 	 -     Digital IR motion sensor 
 	                          with     ir_detect_io
+	-	Grove gesture		  with 		i2c_grove_gesture_io
 	 
 
 All input component can be use with thread (see examples)
