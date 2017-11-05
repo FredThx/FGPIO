@@ -321,12 +321,18 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 						[0x7E,0x01])
 
 	
-	def __init__(self, bus=None, addr=0x73, pc = None, thread = False, on_changed = None, pause = 0.1, timeout = 10):
-		"""Initialisation
+	def __init__(self, bus=None, addr=0x73, pc = None, reaction_time = 0.5, entry_time = 0.5, quit_time = 1, thread = False, on_changed = None, pause = 0.1, timeout = 10):
+		'''Initialisation
 			- bus				:		n° du bus (defaut 1 pour RPi et 2 pour pcduino (mais il faut préciser pc))
 			- addr				:		adresse i2c de l'écran ( pour detecter : i2cdetect -y no_bus)
 			- pc				:		rpiduino_io
-		"""
+			- reaction_time		:		You can adjust the reaction time according to the actual circumstance (default : 0.5s) NOT USED
+			- entry_time		:		When you want to recognize the Forward/Backward gestures, your gestures' reaction time must less than GES_ENTRY_TIME(default 0.5s)
+			- quit_time			:		Time after reconition  (default : 1s)
+		'''
+		self.GES_REACTION_TIME = reaction_time
+		self.GES_ENTRY_TIME = entry_time
+		self.GES_QUIT_TIME = quit_time
 		i2c_device_io.__init__(self, bus, addr, pc)
 		self.init()
 		digital_input_device_io.__init__(self, thread, on_changed, pause, timeout)
@@ -382,10 +388,21 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 			ANTI_CLOCKWISE	= 128
 			WAVE			= 256
 		'''
-		data1=self.paj7620ReadReg(self.PAJ7620_ADDR_GES_PS_DET_FLAG_0,1)[0]
-		data2=self.paj7620ReadReg(self.PAJ7620_ADDR_GES_PS_DET_FLAG_1, 1)[0]
-		return data1+256*data2
-		
+		data=self.paj7620ReadReg(self.PAJ7620_ADDR_GES_PS_DET_FLAG_0,1)[0]
+		data += 256*self.paj7620ReadReg(self.PAJ7620_ADDR_GES_PS_DET_FLAG_1,1)[0]
+		if data>0 and data < self.GES_FORWARD_FLAG:
+			time.sleep(self.GES_ENTRY_TIME)
+			data2 = self.paj7620ReadReg(self.PAJ7620_ADDR_GES_PS_DET_FLAG_0,1)[0]
+			if data2!=0:
+				data = data2
+		if data:
+			try:
+				logging.info("Geste detect : %s"%(self.texte(data)))
+			except KeyError:
+				logging.error("Unexpected Geste detect : %s"%(data))
+			time.sleep(self.GES_QUIT_TIME)
+		return data
+	
 	def print_gesture(self):
 		'''Print de textual gesture (and return the geste)
 		'''
@@ -395,7 +412,7 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 		return geste
 	
 	def texte(self, geste):
-		'''Return the texte of the geste
+		'''Return the texte of the geste number
 		'''
 		return self.TEXTES[geste]
 
@@ -412,13 +429,12 @@ if __name__ == '__main__':
 	geste = 0
 	while geste <> capteur.WAVE:
 		geste = capteur.print_gesture()
-		time.sleep(0.1)
 	print("lancement du Thread.")
 	def MyFunction():
 		if capteur.th_readed():
 			print(capteur.texte(capteur.th_readed()))
 	
-	capteur = i2c_grove_gesture_io(pc=pc, thread = True, on_changed = MyFunction)
+	capteur.add_thread(MyFunction)
 	
 	
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C

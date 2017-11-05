@@ -50,7 +50,6 @@ FGPIO/sen0018_io.py
 FGPIO/servo_motor_io.py
 FGPIO/stepper_io.py
 FGPIO/test_dht11.py
-FGPIO/test_gg.py
 FGPIO/test_gyro.py
 FGPIO.egg-info/PKG-INFO
 FGPIO.egg-info/SOURCES.txt
