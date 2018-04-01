@@ -34,15 +34,14 @@ class mcp3201_hspi_io(analog_pin_io, hard_spi_client):
 	'''
 	Classe pour convertisseur analogique/numérique MCP3201
 	'''
-	def __init__(self, bus=0, device=0, vref = 3.3, **kwargs):
+	def __init__(self, bus=0, device=0, vref = 3.3):
 		'''
 		Initialisation
 			bus		:	spi bus (0|1)
 			device	:	no spi client (0 : CS = CE0 = GPIO08 | 1 : CS = CE1 = GPIO07)
 			Vref	:	ref voltage
 		'''
-		hard_spi_client.__init__(self, bus, device,**kwargs)
-		analog_pin_io.__init__(self,**kwargs)
+		hard_spi_client.__init__(self, bus, device)
 		self.vref = vref
 	
 	def get(self):
