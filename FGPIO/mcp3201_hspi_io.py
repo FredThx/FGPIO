@@ -71,6 +71,16 @@ if __name__ == '__main__':
 	import time
 	pc = rpiduino_io()
 	mcp3201 = mcp3201_hspi_io()
-	while True:
-		print 'Voltage : %.2f Volts' % mcp3201.get_voltage()
-		time.sleep(0.5)
+	#Utilisation simple
+	print 'Voltage : %.2f Volts' % mcp3201.get_voltage()
+	#Utilisation avec thread
+	def on_changed(value):
+		print("Voltage : %s"%(value)
+	mcp3201.add_thread(on_changed)
+	
+	try: #Ca permet de pouvoir planter le thread avec un CTRL-C
+		while True:
+			pass
+	except KeyboardInterrupt:
+		c.stop()	
+	
