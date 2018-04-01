@@ -42,6 +42,7 @@ class mcp3201_hspi_io(analog_pin_io, hard_spi_client):
 			Vref	:	ref voltage
 		'''
 		hard_spi_client.__init__(self, bus, device)
+		analog_pin_io.__init__(self)
 		self.vref = vref
 	
 	def get(self):
@@ -49,7 +50,7 @@ class mcp3201_hspi_io(analog_pin_io, hard_spi_client):
 		Get the raw value of the input chanel
 		'''
 		#TODO : read all the bytes, check if null bit = 0, check if reverse data is correct...
-		result = self.ship.xfer2(0,0) # read the two first bytes
+		result = self.xfer2(0,0) # read the two first bytes
 		# result : 
 		#	[???,???,000,B11,B10,B09,B08,B07],[B06,B05,B04,B03,B02,B01,B00,B01]
 		# => mask unused bits
@@ -59,7 +60,7 @@ class mcp3201_hspi_io(analog_pin_io, hard_spi_client):
 	def get_voltage(self):
 		''' get the voltage on the input chanel
 		'''
-		return self.get() * self.ship.vref / 4096.
+		return self.get() * self.vref / 4096.
 	
 #########################################################
 #                                                       #
@@ -69,13 +70,13 @@ class mcp3201_hspi_io(analog_pin_io, hard_spi_client):
 
 if __name__ == '__main__':
 	import time
-	pc = rpiduino_io()
+	#pc = rpiduino_io()
 	mcp3201 = mcp3201_hspi_io()
 	#Utilisation simple
 	print 'Voltage : %.2f Volts' % mcp3201.get_voltage()
 	#Utilisation avec thread
 	def on_changed(value):
-		print("Voltage : %s"%(value)
+		print("Voltage : %s"%(value))
 	mcp3201.add_thread(on_changed)
 	
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C

@@ -147,7 +147,7 @@ class digital_input_device_io(input_device_io):
 class analog_input_device_io(input_device_io):
 	''' Capteur analogique
 	'''
-	def __init__(self, seuil, thread = False, on_changed = None, discard = None , pause = 0.1, timeout = 10):
+	def __init__(self, seuil=0.1, thread = False, on_changed = None, discard = None , pause = 0.1, timeout = 10):
 		'''Initialisation du composant
 				- seuil 		:	seuil de detection en % (1=100%)
 									soit un tuple (seuil_bas, seuil_haut)

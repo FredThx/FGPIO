@@ -70,6 +70,8 @@ class prise:
 # Exemple		
 
 if __name__ == '__main__':
+	from rpiduino_io import *
+	
 	pc = rpiduino_io()
 	rcSwitch = rcSwitch_io(*pc.logical_pins(2))
 	A = prise(rcSwitch,'00010', '10000')

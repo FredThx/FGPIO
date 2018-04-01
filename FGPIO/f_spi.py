@@ -31,6 +31,7 @@
 
 import spidev
 import time
+import logging
 
 class spi_client():
 	'''A spi client
@@ -51,8 +52,11 @@ class hard_spi_client(spi_client, spidev.SpiDev):
 		'''
 		assert bus in [0,1], "wrong spi bus %s, must be 0 (SPI0) or 1 (SPI1)."%(bus)
 		assert device in [0,1], "wrong spi device %s, must be 0 (CE0) or 1 (CE1)."%(device)
-		spidev.SpiDev.__init__(self)
-		self.open(bus, device)
+		try:
+			spidev.SpiDev.__init__(self)
+			self.open(bus, device)
+		except IOError:
+			logging.error('Error openning spi bus %s'%(bus))
 
 class soft_spi_client(spi_client):
 	'''A spi software-pyhton client

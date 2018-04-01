@@ -69,7 +69,7 @@ class analog_pin_io(pin_io, analog_input_device_io):
 	'''Port analogique PRi ou Pcduino
 	'''
 	def __init__(self):
-		pass
+		analog_input_device_io.__init__(self)
 	
 	def read(self): 
 		''' For using the inheritance of analog_input_device_io
