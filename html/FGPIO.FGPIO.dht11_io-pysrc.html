@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>FGPIO.FGPIO.dht11_io</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;FGPIO ::
+        <a href="FGPIO.FGPIO-module.html">Package&nbsp;FGPIO</a> ::
+        Module&nbsp;dht11_io
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="FGPIO.FGPIO.dht11_io-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="FGPIO.FGPIO.dht11_io-module.html">Module FGPIO.FGPIO.dht11_io</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding:utf-8 -*</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">'''</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">DHT11 temperature and humidity sensor</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring"> </tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">        wiring :        pin 1   :       3.3V (or 5V)</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">                                pin 2   :       data : a digital pin</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">                                pin 3   :       n/ab</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">                                pin 4   :       0V</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">                                </tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">        Note :  Can only be used on RPi.</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">                        pcduino GPIO usage is too slow</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">                                </tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring"> AUTHOR : FredThx</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring"> Project : rpiduino_io</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">'''</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">logging</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module FGPIO.FGPIO.rpiduino_io=FGPIO.FGPIO.rpiduino_io-module.html,Class FGPIO.FGPIO.rpiduino_io.rpiduino_io=FGPIO.FGPIO.rpiduino_io.rpiduino_io-class.html"><a title="FGPIO.FGPIO.rpiduino_io
+FGPIO.FGPIO.rpiduino_io.rpiduino_io" class="py-name" href="#" onclick="return doclink('link-0', 'rpiduino_io', 'link-0');">rpiduino_io</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment">#TODO : rendre le _read() implantable</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="dht11_io"></a><div id="dht11_io-def"><a name="L26"></a><tt class="py-lineno"> 26</tt> <a class="py-toggle" href="#" id="dht11_io-toggle" onclick="return toggle('dht11_io');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="FGPIO.FGPIO.dht11_io.dht11_io-class.html">dht11_io</a><tt class="py-op">(</tt><tt class="py-base-class">multi_digital_input_device_io</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="dht11_io-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="dht11_io-expanded"><a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-docstring">''' a DHT11 temperature and humiditu sensor</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt id="link-1" class="py-name" targets="Variable FGPIO.FGPIO.dht11_io.dht11_io.wake_up_delay=FGPIO.FGPIO.dht11_io.dht11_io-class.html#wake_up_delay"><a title="FGPIO.FGPIO.dht11_io.dht11_io.wake_up_delay" class="py-name" href="#" onclick="return doclink('link-1', 'wake_up_delay', 'link-1');">wake_up_delay</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0.014</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">         </tt>
+<a name="dht11_io.__init__"></a><div id="dht11_io.__init__-def"><a name="L31"></a><tt class="py-lineno"> 31</tt> <a class="py-toggle" href="#" id="dht11_io.__init__-toggle" onclick="return toggle('dht11_io.__init__');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.dht11_io.dht11_io-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">pin_data</tt><tt class="py-op">,</tt> <tt class="py-param">timeout_read</tt> <tt class="py-op">=</tt> <tt class="py-number">4</tt><tt class="py-op">,</tt> <tt class="py-param">thread</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-param">on_changed</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">discard</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">pause</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-param">timeout</tt> <tt class="py-op">=</tt> <tt class="py-number">30</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="dht11_io.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="dht11_io.__init__-expanded"><a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">                <tt class="py-docstring">'''Initialisation</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">                                - pin_data              :       digital_pin_io</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">                                - timeout_read  :       timeout for reading sensor</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">                                - thread                :       (facultatif) True si utilisation thread</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">                                - on_changed    :       fonction ou string executable</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">                                                                        qui sera lanc&#233;e quand la valeur du capteur change</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">                                - discard               :       ecart en dessous duquel une valeur est consid&#233;r&#233;e comme inchang&#233;e</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">                                                                                a tuple of values in the same order than mesures</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">                                                                                or a dict ex {'T': discard_for_T, 'RH': discard_for_RH}</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">                                - pause                 :       pause entre chaque lecture du composant</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">                                - timeout               :       dur&#233;e apr&#232;s laquelle une valeur lue est obsol&#232;te</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">                <tt class="py-keyword">assert</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">pin_data</tt><tt class="py-op">,</tt> <tt id="link-2" class="py-name" targets="Class FGPIO.FGPIO.pin_io.digital_rpi_pin_io=FGPIO.FGPIO.pin_io.digital_rpi_pin_io-class.html"><a title="FGPIO.FGPIO.pin_io.digital_rpi_pin_io" class="py-name" href="#" onclick="return doclink('link-2', 'digital_rpi_pin_io', 'link-2');">digital_rpi_pin_io</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">"pin_data must be a digital_rpi_pin_io."</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pin_data</tt> <tt class="py-op">=</tt> <tt class="py-name">pin_data</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nbdatas</tt> <tt class="py-op">=</tt> <tt class="py-number">5000</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout_read</tt> <tt class="py-op">=</tt> <tt class="py-name">timeout_read</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">                <tt class="py-comment"># Initialize the nbdatas needed</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nbdatas</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nbdatas</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Method FGPIO.FGPIO.dht11_io.dht11_io._read_raw()=FGPIO.FGPIO.dht11_io.dht11_io-class.html#_read_raw"><a title="FGPIO.FGPIO.dht11_io.dht11_io._read_raw" class="py-name" href="#" onclick="return doclink('link-3', '_read_raw', 'link-3');">_read_raw</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-number">1.2</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">                <tt class="py-comment"># Test si discard est un Dico</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">discard</tt><tt class="py-op">,</tt> <tt class="py-name">dict</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">                        <tt class="py-keyword">for</tt> <tt class="py-name">cle</tt> <tt class="py-keyword">in</tt> <tt class="py-name">discard</tt><tt class="py-op">:</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">                                <tt class="py-keyword">assert</tt> <tt class="py-name">cle</tt> <tt class="py-keyword">in</tt> <tt class="py-op">(</tt><tt class="py-string">'T'</tt><tt class="py-op">,</tt> <tt class="py-string">'RH'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">'discard error : bad key'</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">                <tt id="link-4" class="py-name" targets="Class FGPIO.FGPIO.device_io.multi_digital_input_device_io=FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html"><a title="FGPIO.FGPIO.device_io.multi_digital_input_device_io" class="py-name" href="#" onclick="return doclink('link-4', 'multi_digital_input_device_io', 'link-4');">multi_digital_input_device_io</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method FGPIO.FGPIO.SCT013_v_io.SCT013_v_io.__init__()=FGPIO.FGPIO.SCT013_v_io.SCT013_v_io-class.html#__init__,Method FGPIO.FGPIO.UltraSonic_io.UltraSonic.__init__()=FGPIO.FGPIO.UltraSonic_io.UltraSonic-class.html#__init__,Method FGPIO.FGPIO.bt_io.bt_io.__init__()=FGPIO.FGPIO.bt_io.bt_io-class.html#__init__,Method FGPIO.FGPIO.buzz_io.pwm_buzz_io.__init__()=FGPIO.FGPIO.buzz_io.pwm_buzz_io-class.html#__init__,Method FGPIO.FGPIO.device_io.analog_input_device_io.__init__()=FGPIO.FGPIO.device_io.analog_input_device_io-class.html#__init__,Method FGPIO.FGPIO.device_io.digital_input_device_io.__init__()=FGPIO.FGPIO.device_io.digital_input_device_io-class.html#__init__,Method FGPIO.FGPIO.device_io.input_device_io.__init__()=FGPIO.FGPIO.device_io.input_device_io-class.html#__init__,Method FGPIO.FGPIO.device_io.multi_digital_input_device_io.__init__()=FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html#__init__,Method FGPIO.FGPIO.dht11_io.dht11Error.__init__()=FGPIO.FGPIO.dht11_io.dht11Error-class.html#__init__,Method FGPIO.FGPIO.dht11_io.dht11_io.__init__()=FGPIO.FGPIO.dht11_io.dht11_io-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_cmd.__init__()=FGPIO.FGPIO.f_menu.f_cmd-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_interface.__init__()=FGPIO.FGPIO.f_menu.f_interface-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_item.__init__()=FGPIO.FGPIO.f_menu.f_item-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_menu.__init__()=FGPIO.FGPIO.f_menu.f_menu-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_menu_dynamic.__init__()=FGPIO.FGPIO.f_menu.f_menu_dynamic-class.html#__init__,Method FGPIO.FGPIO.f_spi.hard_spi_client.__init__()=FGPIO.FGPIO.f_spi.hard_spi_client-class.html#__init__,Method FGPIO.FGPIO.f_spi.soft_spi_client.__init__()=FGPIO.FGPIO.f_spi.soft_spi_client-class.html#__init__,Method FGPIO.FGPIO.f_spi.spi_client.__init__()=FGPIO.FGPIO.f_spi.spi_client-class.html#__init__,Method FGPIO.FGPIO.f_thread.f_thread.__init__()=FGPIO.FGPIO.f_thread.f_thread-class.html#__init__,Method FGPIO.FGPIO.font_io.font_io.__init__()=FGPIO.FGPIO.font_io.font_io-class.html#__init__,Method FGPIO.FGPIO.gaz_sensor_io.analog_gaz_sensor_MQ7_io.__init__()=FGPIO.FGPIO.gaz_sensor_io.analog_gaz_sensor_MQ7_io-class.html#__init__,Method FGPIO.FGPIO.gaz_sensor_io.digital_gaz_sensor_MQ7_io.__init__()=FGPIO.FGPIO.gaz_sensor_io.digital_gaz_sensor_MQ7_io-class.html#__init__,Method FGPIO.FGPIO.gaz_sensor_io.gaz_sensor_MQ7.__init__()=FGPIO.FGPIO.gaz_sensor_io.gaz_sensor_MQ7-class.html#__init__,Method FGPIO.FGPIO.hcsr501_io.hcsr501_io.__init__()=FGPIO.FGPIO.hcsr501_io.hcsr501_io-class.html#__init__,Method FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_analog_io.__init__()=FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_analog_io-class.html#__init__,Method FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_pwo_io.__init__()=FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_pwo_io-class.html#__init__,Method FGPIO.FGPIO.i2c_device_io.i2c_device_io.__init__()=FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#__init__,Method FGPIO.FGPIO.i2c_ext_io.i2c_ext_io.__init__()=FGPIO.FGPIO.i2c_ext_io.i2c_ext_io-class.html#__init__,Method FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io.__init__()=FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io-class.html#__init__,Method FGPIO.FGPIO.i2c_io.i2c_bus.__init__()=FGPIO.FGPIO.i2c_io.i2c_bus-class.html#__init__,Method FGPIO.FGPIO.i2c_io.i2c_device.__init__()=FGPIO.FGPIO.i2c_io.i2c_device-class.html#__init__,Method FGPIO.FGPIO.i2c_io.i2c_error.__init__()=FGPIO.FGPIO.i2c_io.i2c_error-class.html#__init__,Method FGPIO.FGPIO.ir_detect_io.ir_detect_io.__init__()=FGPIO.FGPIO.ir_detect_io.ir_detect_io-class.html#__init__,Method FGPIO.FGPIO.lcd_12864.lcd_12864_io.__init__()=FGPIO.FGPIO.lcd_12864.lcd_12864_io-class.html#__init__,Method FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io.__init__()=FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io-class.html#__init__,Method FGPIO.FGPIO.lcd_i2c_io.lcd_i2c_io.__init__()=FGPIO.FGPIO.lcd_i2c_io.lcd_i2c_io-class.html#__init__,Method FGPIO.FGPIO.lcd_io.lcd_io.__init__()=FGPIO.FGPIO.lcd_io.lcd_io-class.html#__init__,Method FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io.__init__()=FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io-class.html#__init__,Method FGPIO.FGPIO.lum_capteur_io.lum_capteur_io.__init__()=FGPIO.FGPIO.lum_capteur_io.lum_capteur_io-class.html#__init__,Method FGPIO.FGPIO.max7219_io.max7219_io.__init__()=FGPIO.FGPIO.max7219_io.max7219_io-class.html#__init__,Method FGPIO.FGPIO.mcp23017_io.mcp23017_io.__init__()=FGPIO.FGPIO.mcp23017_io.mcp23017_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_hspi_io.mcp3004_hspi_io.__init__()=FGPIO.FGPIO.mcp300x_hspi_io.mcp3004_hspi_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_hspi_io.mcp3008_hspi_io.__init__()=FGPIO.FGPIO.mcp300x_hspi_io.mcp3008_hspi_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_io.__init__()=FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_pin.__init__()=FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_pin-class.html#__init__,Method FGPIO.FGPIO.mcp300x_io.mcp3004_io.__init__()=FGPIO.FGPIO.mcp300x_io.mcp3004_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_io.mcp3008_io.__init__()=FGPIO.FGPIO.mcp300x_io.mcp3008_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_io.mcp300x_io.__init__()=FGPIO.FGPIO.mcp300x_io.mcp300x_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_io.mcp300x_pin.__init__()=FGPIO.FGPIO.mcp300x_io.mcp300x_pin-class.html#__init__,Method FGPIO.FGPIO.mcp3201_hspi_io.mcp3201_hspi_io.__init__()=FGPIO.FGPIO.mcp3201_hspi_io.mcp3201_hspi_io-class.html#__init__,Method FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.__init__()=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#__init__,Method FGPIO.FGPIO.nrf24l01_io.nrf24l01_io.__init__()=FGPIO.FGPIO.nrf24l01_io.nrf24l01_io-class.html#__init__,Method FGPIO.FGPIO.on_off_output_device_io.on_off_output_device_io.__init__()=FGPIO.FGPIO.on_off_output_device_io.on_off_output_device_io-class.html#__init__,Method FGPIO.FGPIO.pca9555_io.pca9555_io.__init__()=FGPIO.FGPIO.pca9555_io.pca9555_io-class.html#__init__,Method FGPIO.FGPIO.pin_ext_io.pin_ext_io.__init__()=FGPIO.FGPIO.pin_ext_io.pin_ext_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.analog_pin_io.__init__()=FGPIO.FGPIO.pin_io.analog_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.analog_puino_pin_io.__init__()=FGPIO.FGPIO.pin_io.analog_puino_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.digital_pin_io.__init__()=FGPIO.FGPIO.pin_io.digital_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.digital_puino_pin_io.__init__()=FGPIO.FGPIO.pin_io.digital_puino_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.digital_rpi_pin_io.__init__()=FGPIO.FGPIO.pin_io.digital_rpi_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.duino_pin_io.__init__()=FGPIO.FGPIO.pin_io.duino_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.high_analog_puino_pin_io.__init__()=FGPIO.FGPIO.pin_io.high_analog_puino_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.pin_io.__init__()=FGPIO.FGPIO.pin_io.pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.rpiduino_io_error.__init__()=FGPIO.FGPIO.pin_io.rpiduino_io_error-class.html#__init__,Method FGPIO.FGPIO.pin_io.small_analog_puino_pin_io.__init__()=FGPIO.FGPIO.pin_io.small_analog_puino_pin_io-class.html#__init__,Method FGPIO.FGPIO.qrd1114_io.qrd1114_analog_io.__init__()=FGPIO.FGPIO.qrd1114_io.qrd1114_analog_io-class.html#__init__,Method FGPIO.FGPIO.qrd1114_io.qrd1114_digital_io.__init__()=FGPIO.FGPIO.qrd1114_io.qrd1114_digital_io-class.html#__init__,Method FGPIO.FGPIO.qrd1114_io.qrd1114_io.__init__()=FGPIO.FGPIO.qrd1114_io.qrd1114_io-class.html#__init__,Method FGPIO.FGPIO.rain_sensor_io.rain_sensor_digital_io.__init__()=FGPIO.FGPIO.rain_sensor_io.rain_sensor_digital_io-class.html#__init__,Method FGPIO.FGPIO.rf_recept_io.rf_recept_io.__init__()=FGPIO.FGPIO.rf_recept_io.rf_recept_io-class.html#__init__,Method FGPIO.FGPIO.rf_recept_io.temperature_rf_recept_io.__init__()=FGPIO.FGPIO.rf_recept_io.temperature_rf_recept_io-class.html#__init__,Method FGPIO.FGPIO.rotary_encoder_io.bt_pseudo_rotatif_io.__init__()=FGPIO.FGPIO.rotary_encoder_io.bt_pseudo_rotatif_io-class.html#__init__,Method FGPIO.FGPIO.rotary_encoder_io.bt_rot_io.__init__()=FGPIO.FGPIO.rotary_encoder_io.bt_rot_io-class.html#__init__,Method FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io.__init__()=FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io-class.html#__init__,Method FGPIO.FGPIO.rpiduino_io.pcduino_io.__init__()=FGPIO.FGPIO.rpiduino_io.pcduino_io-class.html#__init__,Method FGPIO.FGPIO.rpiduino_io.rpi_io.__init__()=FGPIO.FGPIO.rpiduino_io.rpi_io-class.html#__init__,Method FGPIO.FGPIO.rpiduino_io.rpiduino_io.__init__()=FGPIO.FGPIO.rpiduino_io.rpiduino_io-class.html#__init__,Method FGPIO.FGPIO.sen0018_io.sen0018_io.__init__()=FGPIO.FGPIO.sen0018_io.sen0018_io-class.html#__init__,Method FGPIO.FGPIO.servo_motor_io.S1123_servo_motor.__init__()=FGPIO.FGPIO.servo_motor_io.S1123_servo_motor-class.html#__init__,Method FGPIO.FGPIO.servo_motor_io.servo_motor.__init__()=FGPIO.FGPIO.servo_motor_io.servo_motor-class.html#__init__,Method FGPIO.FGPIO.stepper_io.stepper_io.__init__()=FGPIO.FGPIO.stepper_io.stepper_io-class.html#__init__,Method FGPIO.FGPIO.test.vehicule.__init__()=FGPIO.FGPIO.test.vehicule-class.html#__init__,Method FGPIO.FGPIO.test.voiture.__init__()=FGPIO.FGPIO.test.voiture-class.html#__init__"><a title="FGPIO.FGPIO.SCT013_v_io.SCT013_v_io.__init__
+FGPIO.FGPIO.UltraSonic_io.UltraSonic.__init__
+FGPIO.FGPIO.bt_io.bt_io.__init__
+FGPIO.FGPIO.buzz_io.pwm_buzz_io.__init__
+FGPIO.FGPIO.device_io.analog_input_device_io.__init__
+FGPIO.FGPIO.device_io.digital_input_device_io.__init__
+FGPIO.FGPIO.device_io.input_device_io.__init__
+FGPIO.FGPIO.device_io.multi_digital_input_device_io.__init__
+FGPIO.FGPIO.dht11_io.dht11Error.__init__
+FGPIO.FGPIO.dht11_io.dht11_io.__init__
+FGPIO.FGPIO.f_menu.f_cmd.__init__
+FGPIO.FGPIO.f_menu.f_interface.__init__
+FGPIO.FGPIO.f_menu.f_item.__init__
+FGPIO.FGPIO.f_menu.f_menu.__init__
+FGPIO.FGPIO.f_menu.f_menu_dynamic.__init__
+FGPIO.FGPIO.f_spi.hard_spi_client.__init__
+FGPIO.FGPIO.f_spi.soft_spi_client.__init__
+FGPIO.FGPIO.f_spi.spi_client.__init__
+FGPIO.FGPIO.f_thread.f_thread.__init__
+FGPIO.FGPIO.font_io.font_io.__init__
+FGPIO.FGPIO.gaz_sensor_io.analog_gaz_sensor_MQ7_io.__init__
+FGPIO.FGPIO.gaz_sensor_io.digital_gaz_sensor_MQ7_io.__init__
+FGPIO.FGPIO.gaz_sensor_io.gaz_sensor_MQ7.__init__
+FGPIO.FGPIO.hcsr501_io.hcsr501_io.__init__
+FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_analog_io.__init__
+FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_pwo_io.__init__
+FGPIO.FGPIO.i2c_device_io.i2c_device_io.__init__
+FGPIO.FGPIO.i2c_ext_io.i2c_ext_io.__init__
+FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io.__init__
+FGPIO.FGPIO.i2c_io.i2c_bus.__init__
+FGPIO.FGPIO.i2c_io.i2c_device.__init__
+FGPIO.FGPIO.i2c_io.i2c_error.__init__
+FGPIO.FGPIO.ir_detect_io.ir_detect_io.__init__
+FGPIO.FGPIO.lcd_12864.lcd_12864_io.__init__
+FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io.__init__
+FGPIO.FGPIO.lcd_i2c_io.lcd_i2c_io.__init__
+FGPIO.FGPIO.lcd_io.lcd_io.__init__
+FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io.__init__
+FGPIO.FGPIO.lum_capteur_io.lum_capteur_io.__init__
+FGPIO.FGPIO.max7219_io.max7219_io.__init__
+FGPIO.FGPIO.mcp23017_io.mcp23017_io.__init__
+FGPIO.FGPIO.mcp300x_hspi_io.mcp3004_hspi_io.__init__
+FGPIO.FGPIO.mcp300x_hspi_io.mcp3008_hspi_io.__init__
+FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_io.__init__
+FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_pin.__init__
+FGPIO.FGPIO.mcp300x_io.mcp3004_io.__init__
+FGPIO.FGPIO.mcp300x_io.mcp3008_io.__init__
+FGPIO.FGPIO.mcp300x_io.mcp300x_io.__init__
+FGPIO.FGPIO.mcp300x_io.mcp300x_pin.__init__
+FGPIO.FGPIO.mcp3201_hspi_io.mcp3201_hspi_io.__init__
+FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.__init__
+FGPIO.FGPIO.nrf24l01_io.nrf24l01_io.__init__
+FGPIO.FGPIO.on_off_output_device_io.on_off_output_device_io.__init__
+FGPIO.FGPIO.pca9555_io.pca9555_io.__init__
+FGPIO.FGPIO.pin_ext_io.pin_ext_io.__init__
+FGPIO.FGPIO.pin_io.analog_pin_io.__init__
+FGPIO.FGPIO.pin_io.analog_puino_pin_io.__init__
+FGPIO.FGPIO.pin_io.digital_pin_io.__init__
+FGPIO.FGPIO.pin_io.digital_puino_pin_io.__init__
+FGPIO.FGPIO.pin_io.digital_rpi_pin_io.__init__
+FGPIO.FGPIO.pin_io.duino_pin_io.__init__
+FGPIO.FGPIO.pin_io.high_analog_puino_pin_io.__init__
+FGPIO.FGPIO.pin_io.pin_io.__init__
+FGPIO.FGPIO.pin_io.rpiduino_io_error.__init__
+FGPIO.FGPIO.pin_io.small_analog_puino_pin_io.__init__
+FGPIO.FGPIO.qrd1114_io.qrd1114_analog_io.__init__
+FGPIO.FGPIO.qrd1114_io.qrd1114_digital_io.__init__
+FGPIO.FGPIO.qrd1114_io.qrd1114_io.__init__
+FGPIO.FGPIO.rain_sensor_io.rain_sensor_digital_io.__init__
+FGPIO.FGPIO.rf_recept_io.rf_recept_io.__init__
+FGPIO.FGPIO.rf_recept_io.temperature_rf_recept_io.__init__
+FGPIO.FGPIO.rotary_encoder_io.bt_pseudo_rotatif_io.__init__
+FGPIO.FGPIO.rotary_encoder_io.bt_rot_io.__init__
+FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io.__init__
+FGPIO.FGPIO.rpiduino_io.pcduino_io.__init__
+FGPIO.FGPIO.rpiduino_io.rpi_io.__init__
+FGPIO.FGPIO.rpiduino_io.rpiduino_io.__init__
+FGPIO.FGPIO.sen0018_io.sen0018_io.__init__
+FGPIO.FGPIO.servo_motor_io.S1123_servo_motor.__init__
+FGPIO.FGPIO.servo_motor_io.servo_motor.__init__
+FGPIO.FGPIO.stepper_io.stepper_io.__init__
+FGPIO.FGPIO.test.vehicule.__init__
+FGPIO.FGPIO.test.voiture.__init__" class="py-name" href="#" onclick="return doclink('link-5', '__init__', 'link-5');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-string">'T'</tt><tt class="py-op">,</tt> <tt class="py-string">'RH'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">thread</tt><tt class="py-op">,</tt> <tt class="py-name">on_changed</tt><tt class="py-op">,</tt> <tt class="py-name">discard</tt><tt class="py-op">,</tt> <tt class="py-name">pause</tt><tt class="py-op">,</tt> <tt class="py-name">timeout</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">info</tt><tt class="py-op">(</tt><tt class="py-string">"dht11_io id created on pin %s."</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pin_data</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">         </tt>
+<a name="dht11_io._read_raw"></a><div id="dht11_io._read_raw-def"><a name="L57"></a><tt class="py-lineno"> 57</tt> <a class="py-toggle" href="#" id="dht11_io._read_raw-toggle" onclick="return toggle('dht11_io._read_raw');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.dht11_io.dht11_io-class.html#_read_raw">_read_raw</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="dht11_io._read_raw-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="dht11_io._read_raw-expanded"><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">                <tt class="py-name">datas</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">                <tt class="py-name">bcm_no_pin</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pin_data</tt><tt class="py-op">.</tt><tt class="py-name">bcm_id</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">                 </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">                <tt class="py-comment"># Wake up the device</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pin_data</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method FGPIO.FGPIO.pin_ext_io.pin_ext_io.setmode()=FGPIO.FGPIO.pin_ext_io.pin_ext_io-class.html#setmode,Method FGPIO.FGPIO.pin_io.digital_puino_pin_io.setmode()=FGPIO.FGPIO.pin_io.digital_puino_pin_io-class.html#setmode,Method FGPIO.FGPIO.pin_io.digital_rpi_pin_io.setmode()=FGPIO.FGPIO.pin_io.digital_rpi_pin_io-class.html#setmode"><a title="FGPIO.FGPIO.pin_ext_io.pin_ext_io.setmode
+FGPIO.FGPIO.pin_io.digital_puino_pin_io.setmode
+FGPIO.FGPIO.pin_io.digital_rpi_pin_io.setmode" class="py-name" href="#" onclick="return doclink('link-6', 'setmode', 'link-6');">setmode</a></tt><tt class="py-op">(</tt><tt id="link-7" class="py-name" targets="Variable FGPIO.FGPIO.SCT013_v_io.OUTPUT=FGPIO.FGPIO.SCT013_v_io-module.html#OUTPUT,Variable FGPIO.FGPIO.UltraSonic_io.OUTPUT=FGPIO.FGPIO.UltraSonic_io-module.html#OUTPUT,Variable FGPIO.FGPIO.bt_io.OUTPUT=FGPIO.FGPIO.bt_io-module.html#OUTPUT,Variable FGPIO.FGPIO.buzz_io.OUTPUT=FGPIO.FGPIO.buzz_io-module.html#OUTPUT,Variable FGPIO.FGPIO.dht11_io.OUTPUT=FGPIO.FGPIO.dht11_io-module.html#OUTPUT,Variable FGPIO.FGPIO.gaz_sensor_io.OUTPUT=FGPIO.FGPIO.gaz_sensor_io-module.html#OUTPUT,Variable FGPIO.FGPIO.hcsr501_io.OUTPUT=FGPIO.FGPIO.hcsr501_io-module.html#OUTPUT,Variable FGPIO.FGPIO.hrlv_max_sonar_io.OUTPUT=FGPIO.FGPIO.hrlv_max_sonar_io-module.html#OUTPUT,Variable FGPIO.FGPIO.i2c_device_io.OUTPUT=FGPIO.FGPIO.i2c_device_io-module.html#OUTPUT,Variable FGPIO.FGPIO.i2c_ext_io.OUTPUT=FGPIO.FGPIO.i2c_ext_io-module.html#OUTPUT,Variable FGPIO.FGPIO.i2c_grove_gesture_io.OUTPUT=FGPIO.FGPIO.i2c_grove_gesture_io-module.html#OUTPUT,Variable FGPIO.FGPIO.ir_detect_io.OUTPUT=FGPIO.FGPIO.ir_detect_io-module.html#OUTPUT,Variable FGPIO.FGPIO.lcd_12864.OUTPUT=FGPIO.FGPIO.lcd_12864-module.html#OUTPUT,Variable FGPIO.FGPIO.lcd_12864_hspi.OUTPUT=FGPIO.FGPIO.lcd_12864_hspi-module.html#OUTPUT,Variable FGPIO.FGPIO.lcd_i2c_io.OUTPUT=FGPIO.FGPIO.lcd_i2c_io-module.html#OUTPUT,Variable FGPIO.FGPIO.lcd_io.OUTPUT=FGPIO.FGPIO.lcd_io-module.html#OUTPUT,Variable FGPIO.FGPIO.lcd_lpt_io.OUTPUT=FGPIO.FGPIO.lcd_lpt_io-module.html#OUTPUT,Variable FGPIO.FGPIO.led_io.OUTPUT=FGPIO.FGPIO.led_io-module.html#OUTPUT,Variable FGPIO.FGPIO.lum_capteur_io.OUTPUT=FGPIO.FGPIO.lum_capteur_io-module.html#OUTPUT,Variable FGPIO.FGPIO.max7219_io.OUTPUT=FGPIO.FGPIO.max7219_io-module.html#OUTPUT,Variable FGPIO.FGPIO.mcp23017_io.OUTPUT=FGPIO.FGPIO.mcp23017_io-module.html#OUTPUT,Variable FGPIO.FGPIO.mcp300x_hspi_io.OUTPUT=FGPIO.FGPIO.mcp300x_hspi_io-module.html#OUTPUT,Variable FGPIO.FGPIO.mcp300x_io.OUTPUT=FGPIO.FGPIO.mcp300x_io-module.html#OUTPUT,Variable FGPIO.FGPIO.mcp3201_hspi_io.OUTPUT=FGPIO.FGPIO.mcp3201_hspi_io-module.html#OUTPUT,Variable FGPIO.FGPIO.mpu_6050_io.OUTPUT=FGPIO.FGPIO.mpu_6050_io-module.html#OUTPUT,Variable FGPIO.FGPIO.on_off_output_device_io.OUTPUT=FGPIO.FGPIO.on_off_output_device_io-module.html#OUTPUT,Variable FGPIO.FGPIO.pca9555_io.OUTPUT=FGPIO.FGPIO.pca9555_io-module.html#OUTPUT,Variable FGPIO.FGPIO.pin_ext_io.OUTPUT=FGPIO.FGPIO.pin_ext_io-module.html#OUTPUT,Variable FGPIO.FGPIO.pin_io.OUTPUT=FGPIO.FGPIO.pin_io-module.html#OUTPUT,Variable FGPIO.FGPIO.qrd1114_io.OUTPUT=FGPIO.FGPIO.qrd1114_io-module.html#OUTPUT,Variable FGPIO.FGPIO.rain_sensor_io.OUTPUT=FGPIO.FGPIO.rain_sensor_io-module.html#OUTPUT,Variable FGPIO.FGPIO.relay_io.OUTPUT=FGPIO.FGPIO.relay_io-module.html#OUTPUT,Variable FGPIO.FGPIO.rf_recept_io.OUTPUT=FGPIO.FGPIO.rf_recept_io-module.html#OUTPUT,Variable FGPIO.FGPIO.rotary_encoder_io.OUTPUT=FGPIO.FGPIO.rotary_encoder_io-module.html#OUTPUT,Variable FGPIO.FGPIO.rpiduino_io.OUTPUT=FGPIO.FGPIO.rpiduino_io-module.html#OUTPUT,Variable FGPIO.FGPIO.sen0018_io.OUTPUT=FGPIO.FGPIO.sen0018_io-module.html#OUTPUT,Variable FGPIO.FGPIO.servo_motor_io.OUTPUT=FGPIO.FGPIO.servo_motor_io-module.html#OUTPUT,Variable FGPIO.FGPIO.stepper_io.OUTPUT=FGPIO.FGPIO.stepper_io-module.html#OUTPUT"><a title="FGPIO.FGPIO.SCT013_v_io.OUTPUT
+FGPIO.FGPIO.UltraSonic_io.OUTPUT
+FGPIO.FGPIO.bt_io.OUTPUT
+FGPIO.FGPIO.buzz_io.OUTPUT
+FGPIO.FGPIO.dht11_io.OUTPUT
+FGPIO.FGPIO.gaz_sensor_io.OUTPUT
+FGPIO.FGPIO.hcsr501_io.OUTPUT
+FGPIO.FGPIO.hrlv_max_sonar_io.OUTPUT
+FGPIO.FGPIO.i2c_device_io.OUTPUT
+FGPIO.FGPIO.i2c_ext_io.OUTPUT
+FGPIO.FGPIO.i2c_grove_gesture_io.OUTPUT
+FGPIO.FGPIO.ir_detect_io.OUTPUT
+FGPIO.FGPIO.lcd_12864.OUTPUT
+FGPIO.FGPIO.lcd_12864_hspi.OUTPUT
+FGPIO.FGPIO.lcd_i2c_io.OUTPUT
+FGPIO.FGPIO.lcd_io.OUTPUT
+FGPIO.FGPIO.lcd_lpt_io.OUTPUT
+FGPIO.FGPIO.led_io.OUTPUT
+FGPIO.FGPIO.lum_capteur_io.OUTPUT
+FGPIO.FGPIO.max7219_io.OUTPUT
+FGPIO.FGPIO.mcp23017_io.OUTPUT
+FGPIO.FGPIO.mcp300x_hspi_io.OUTPUT
+FGPIO.FGPIO.mcp300x_io.OUTPUT
+FGPIO.FGPIO.mcp3201_hspi_io.OUTPUT
+FGPIO.FGPIO.mpu_6050_io.OUTPUT
+FGPIO.FGPIO.on_off_output_device_io.OUTPUT
+FGPIO.FGPIO.pca9555_io.OUTPUT
+FGPIO.FGPIO.pin_ext_io.OUTPUT
+FGPIO.FGPIO.pin_io.OUTPUT
+FGPIO.FGPIO.qrd1114_io.OUTPUT
+FGPIO.FGPIO.rain_sensor_io.OUTPUT
+FGPIO.FGPIO.relay_io.OUTPUT
+FGPIO.FGPIO.rf_recept_io.OUTPUT
+FGPIO.FGPIO.rotary_encoder_io.OUTPUT
+FGPIO.FGPIO.rpiduino_io.OUTPUT
+FGPIO.FGPIO.sen0018_io.OUTPUT
+FGPIO.FGPIO.servo_motor_io.OUTPUT
+FGPIO.FGPIO.stepper_io.OUTPUT" class="py-name" href="#" onclick="return doclink('link-7', 'OUTPUT', 'link-7');">OUTPUT</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">                <tt class="py-name">RPi</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Variable FGPIO.FGPIO.mcp23017_io.mcp23017_io.GPIO=FGPIO.FGPIO.mcp23017_io.mcp23017_io-class.html#GPIO"><a title="FGPIO.FGPIO.mcp23017_io.mcp23017_io.GPIO" class="py-name" href="#" onclick="return doclink('link-8', 'GPIO', 'link-8');">GPIO</a></tt><tt class="py-op">.</tt><tt class="py-name">output</tt><tt class="py-op">(</tt><tt class="py-name">bcm_no_pin</tt><tt class="py-op">,</tt> <tt class="py-name">RPi</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="FGPIO.FGPIO.mcp23017_io.mcp23017_io.GPIO" class="py-name" href="#" onclick="return doclink('link-9', 'GPIO', 'link-8');">GPIO</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Variable FGPIO.FGPIO.SCT013_v_io.HIGH=FGPIO.FGPIO.SCT013_v_io-module.html#HIGH,Variable FGPIO.FGPIO.UltraSonic_io.HIGH=FGPIO.FGPIO.UltraSonic_io-module.html#HIGH,Variable FGPIO.FGPIO.bt_io.HIGH=FGPIO.FGPIO.bt_io-module.html#HIGH,Variable FGPIO.FGPIO.buzz_io.HIGH=FGPIO.FGPIO.buzz_io-module.html#HIGH,Variable FGPIO.FGPIO.dht11_io.HIGH=FGPIO.FGPIO.dht11_io-module.html#HIGH,Variable FGPIO.FGPIO.gaz_sensor_io.HIGH=FGPIO.FGPIO.gaz_sensor_io-module.html#HIGH,Variable FGPIO.FGPIO.hcsr501_io.HIGH=FGPIO.FGPIO.hcsr501_io-module.html#HIGH,Variable FGPIO.FGPIO.hrlv_max_sonar_io.HIGH=FGPIO.FGPIO.hrlv_max_sonar_io-module.html#HIGH,Variable FGPIO.FGPIO.i2c_device_io.HIGH=FGPIO.FGPIO.i2c_device_io-module.html#HIGH,Variable FGPIO.FGPIO.i2c_ext_io.HIGH=FGPIO.FGPIO.i2c_ext_io-module.html#HIGH,Variable FGPIO.FGPIO.i2c_grove_gesture_io.HIGH=FGPIO.FGPIO.i2c_grove_gesture_io-module.html#HIGH,Variable FGPIO.FGPIO.ir_detect_io.HIGH=FGPIO.FGPIO.ir_detect_io-module.html#HIGH,Variable FGPIO.FGPIO.lcd_12864.HIGH=FGPIO.FGPIO.lcd_12864-module.html#HIGH,Variable FGPIO.FGPIO.lcd_12864_hspi.HIGH=FGPIO.FGPIO.lcd_12864_hspi-module.html#HIGH,Variable FGPIO.FGPIO.lcd_i2c_io.HIGH=FGPIO.FGPIO.lcd_i2c_io-module.html#HIGH,Variable FGPIO.FGPIO.lcd_io.HIGH=FGPIO.FGPIO.lcd_io-module.html#HIGH,Variable FGPIO.FGPIO.lcd_lpt_io.HIGH=FGPIO.FGPIO.lcd_lpt_io-module.html#HIGH,Variable FGPIO.FGPIO.led_io.HIGH=FGPIO.FGPIO.led_io-module.html#HIGH,Variable FGPIO.FGPIO.lum_capteur_io.HIGH=FGPIO.FGPIO.lum_capteur_io-module.html#HIGH,Variable FGPIO.FGPIO.max7219_io.HIGH=FGPIO.FGPIO.max7219_io-module.html#HIGH,Variable FGPIO.FGPIO.mcp23017_io.HIGH=FGPIO.FGPIO.mcp23017_io-module.html#HIGH,Variable FGPIO.FGPIO.mcp300x_hspi_io.HIGH=FGPIO.FGPIO.mcp300x_hspi_io-module.html#HIGH,Variable FGPIO.FGPIO.mcp300x_io.HIGH=FGPIO.FGPIO.mcp300x_io-module.html#HIGH,Variable FGPIO.FGPIO.mcp3201_hspi_io.HIGH=FGPIO.FGPIO.mcp3201_hspi_io-module.html#HIGH,Variable FGPIO.FGPIO.mpu_6050_io.HIGH=FGPIO.FGPIO.mpu_6050_io-module.html#HIGH,Variable FGPIO.FGPIO.on_off_output_device_io.HIGH=FGPIO.FGPIO.on_off_output_device_io-module.html#HIGH,Variable FGPIO.FGPIO.pca9555_io.HIGH=FGPIO.FGPIO.pca9555_io-module.html#HIGH,Variable FGPIO.FGPIO.pin_ext_io.HIGH=FGPIO.FGPIO.pin_ext_io-module.html#HIGH,Variable FGPIO.FGPIO.pin_io.HIGH=FGPIO.FGPIO.pin_io-module.html#HIGH,Variable FGPIO.FGPIO.qrd1114_io.HIGH=FGPIO.FGPIO.qrd1114_io-module.html#HIGH,Variable FGPIO.FGPIO.rain_sensor_io.HIGH=FGPIO.FGPIO.rain_sensor_io-module.html#HIGH,Variable FGPIO.FGPIO.relay_io.HIGH=FGPIO.FGPIO.relay_io-module.html#HIGH,Variable FGPIO.FGPIO.rf_recept_io.HIGH=FGPIO.FGPIO.rf_recept_io-module.html#HIGH,Variable FGPIO.FGPIO.rotary_encoder_io.HIGH=FGPIO.FGPIO.rotary_encoder_io-module.html#HIGH,Variable FGPIO.FGPIO.rpiduino_io.HIGH=FGPIO.FGPIO.rpiduino_io-module.html#HIGH,Variable FGPIO.FGPIO.sen0018_io.HIGH=FGPIO.FGPIO.sen0018_io-module.html#HIGH,Variable FGPIO.FGPIO.servo_motor_io.HIGH=FGPIO.FGPIO.servo_motor_io-module.html#HIGH,Variable FGPIO.FGPIO.stepper_io.HIGH=FGPIO.FGPIO.stepper_io-module.html#HIGH"><a title="FGPIO.FGPIO.SCT013_v_io.HIGH
+FGPIO.FGPIO.UltraSonic_io.HIGH
+FGPIO.FGPIO.bt_io.HIGH
+FGPIO.FGPIO.buzz_io.HIGH
+FGPIO.FGPIO.dht11_io.HIGH
+FGPIO.FGPIO.gaz_sensor_io.HIGH
+FGPIO.FGPIO.hcsr501_io.HIGH
+FGPIO.FGPIO.hrlv_max_sonar_io.HIGH
+FGPIO.FGPIO.i2c_device_io.HIGH
+FGPIO.FGPIO.i2c_ext_io.HIGH
+FGPIO.FGPIO.i2c_grove_gesture_io.HIGH
+FGPIO.FGPIO.ir_detect_io.HIGH
+FGPIO.FGPIO.lcd_12864.HIGH
+FGPIO.FGPIO.lcd_12864_hspi.HIGH
+FGPIO.FGPIO.lcd_i2c_io.HIGH
+FGPIO.FGPIO.lcd_io.HIGH
+FGPIO.FGPIO.lcd_lpt_io.HIGH
+FGPIO.FGPIO.led_io.HIGH
+FGPIO.FGPIO.lum_capteur_io.HIGH
+FGPIO.FGPIO.max7219_io.HIGH
+FGPIO.FGPIO.mcp23017_io.HIGH
+FGPIO.FGPIO.mcp300x_hspi_io.HIGH
+FGPIO.FGPIO.mcp300x_io.HIGH
+FGPIO.FGPIO.mcp3201_hspi_io.HIGH
+FGPIO.FGPIO.mpu_6050_io.HIGH
+FGPIO.FGPIO.on_off_output_device_io.HIGH
+FGPIO.FGPIO.pca9555_io.HIGH
+FGPIO.FGPIO.pin_ext_io.HIGH
+FGPIO.FGPIO.pin_io.HIGH
+FGPIO.FGPIO.qrd1114_io.HIGH
+FGPIO.FGPIO.rain_sensor_io.HIGH
+FGPIO.FGPIO.relay_io.HIGH
+FGPIO.FGPIO.rf_recept_io.HIGH
+FGPIO.FGPIO.rotary_encoder_io.HIGH
+FGPIO.FGPIO.rpiduino_io.HIGH
+FGPIO.FGPIO.sen0018_io.HIGH
+FGPIO.FGPIO.servo_motor_io.HIGH
+FGPIO.FGPIO.stepper_io.HIGH" class="py-name" href="#" onclick="return doclink('link-10', 'HIGH', 'link-10');">HIGH</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">                <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">2</tt><tt class="py-op">*</tt><tt id="link-11" class="py-name" targets="Module FGPIO.FGPIO.dht11_io=FGPIO.FGPIO.dht11_io-module.html,Class FGPIO.FGPIO.dht11_io.dht11_io=FGPIO.FGPIO.dht11_io.dht11_io-class.html"><a title="FGPIO.FGPIO.dht11_io
+FGPIO.FGPIO.dht11_io.dht11_io" class="py-name" href="#" onclick="return doclink('link-11', 'dht11_io', 'link-11');">dht11_io</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="FGPIO.FGPIO.dht11_io.dht11_io.wake_up_delay" class="py-name" href="#" onclick="return doclink('link-12', 'wake_up_delay', 'link-1');">wake_up_delay</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">                <tt class="py-name">RPi</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="FGPIO.FGPIO.mcp23017_io.mcp23017_io.GPIO" class="py-name" href="#" onclick="return doclink('link-13', 'GPIO', 'link-8');">GPIO</a></tt><tt class="py-op">.</tt><tt class="py-name">output</tt><tt class="py-op">(</tt><tt class="py-name">bcm_no_pin</tt><tt class="py-op">,</tt> <tt class="py-name">RPi</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="FGPIO.FGPIO.mcp23017_io.mcp23017_io.GPIO" class="py-name" href="#" onclick="return doclink('link-14', 'GPIO', 'link-8');">GPIO</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Variable FGPIO.FGPIO.SCT013_v_io.LOW=FGPIO.FGPIO.SCT013_v_io-module.html#LOW,Variable FGPIO.FGPIO.UltraSonic_io.LOW=FGPIO.FGPIO.UltraSonic_io-module.html#LOW,Variable FGPIO.FGPIO.bt_io.LOW=FGPIO.FGPIO.bt_io-module.html#LOW,Variable FGPIO.FGPIO.buzz_io.LOW=FGPIO.FGPIO.buzz_io-module.html#LOW,Variable FGPIO.FGPIO.dht11_io.LOW=FGPIO.FGPIO.dht11_io-module.html#LOW,Variable FGPIO.FGPIO.gaz_sensor_io.LOW=FGPIO.FGPIO.gaz_sensor_io-module.html#LOW,Variable FGPIO.FGPIO.hcsr501_io.LOW=FGPIO.FGPIO.hcsr501_io-module.html#LOW,Variable FGPIO.FGPIO.hrlv_max_sonar_io.LOW=FGPIO.FGPIO.hrlv_max_sonar_io-module.html#LOW,Variable FGPIO.FGPIO.i2c_device_io.LOW=FGPIO.FGPIO.i2c_device_io-module.html#LOW,Variable FGPIO.FGPIO.i2c_ext_io.LOW=FGPIO.FGPIO.i2c_ext_io-module.html#LOW,Variable FGPIO.FGPIO.i2c_grove_gesture_io.LOW=FGPIO.FGPIO.i2c_grove_gesture_io-module.html#LOW,Variable FGPIO.FGPIO.ir_detect_io.LOW=FGPIO.FGPIO.ir_detect_io-module.html#LOW,Variable FGPIO.FGPIO.lcd_12864.LOW=FGPIO.FGPIO.lcd_12864-module.html#LOW,Variable FGPIO.FGPIO.lcd_12864_hspi.LOW=FGPIO.FGPIO.lcd_12864_hspi-module.html#LOW,Variable FGPIO.FGPIO.lcd_i2c_io.LOW=FGPIO.FGPIO.lcd_i2c_io-module.html#LOW,Variable FGPIO.FGPIO.lcd_io.LOW=FGPIO.FGPIO.lcd_io-module.html#LOW,Variable FGPIO.FGPIO.lcd_lpt_io.LOW=FGPIO.FGPIO.lcd_lpt_io-module.html#LOW,Variable FGPIO.FGPIO.led_io.LOW=FGPIO.FGPIO.led_io-module.html#LOW,Variable FGPIO.FGPIO.lum_capteur_io.LOW=FGPIO.FGPIO.lum_capteur_io-module.html#LOW,Variable FGPIO.FGPIO.max7219_io.LOW=FGPIO.FGPIO.max7219_io-module.html#LOW,Variable FGPIO.FGPIO.mcp23017_io.LOW=FGPIO.FGPIO.mcp23017_io-module.html#LOW,Variable FGPIO.FGPIO.mcp300x_hspi_io.LOW=FGPIO.FGPIO.mcp300x_hspi_io-module.html#LOW,Variable FGPIO.FGPIO.mcp300x_io.LOW=FGPIO.FGPIO.mcp300x_io-module.html#LOW,Variable FGPIO.FGPIO.mcp3201_hspi_io.LOW=FGPIO.FGPIO.mcp3201_hspi_io-module.html#LOW,Variable FGPIO.FGPIO.mpu_6050_io.LOW=FGPIO.FGPIO.mpu_6050_io-module.html#LOW,Variable FGPIO.FGPIO.on_off_output_device_io.LOW=FGPIO.FGPIO.on_off_output_device_io-module.html#LOW,Variable FGPIO.FGPIO.pca9555_io.LOW=FGPIO.FGPIO.pca9555_io-module.html#LOW,Variable FGPIO.FGPIO.pin_ext_io.LOW=FGPIO.FGPIO.pin_ext_io-module.html#LOW,Variable FGPIO.FGPIO.pin_io.LOW=FGPIO.FGPIO.pin_io-module.html#LOW,Variable FGPIO.FGPIO.qrd1114_io.LOW=FGPIO.FGPIO.qrd1114_io-module.html#LOW,Variable FGPIO.FGPIO.rain_sensor_io.LOW=FGPIO.FGPIO.rain_sensor_io-module.html#LOW,Variable FGPIO.FGPIO.relay_io.LOW=FGPIO.FGPIO.relay_io-module.html#LOW,Variable FGPIO.FGPIO.rf_recept_io.LOW=FGPIO.FGPIO.rf_recept_io-module.html#LOW,Variable FGPIO.FGPIO.rotary_encoder_io.LOW=FGPIO.FGPIO.rotary_encoder_io-module.html#LOW,Variable FGPIO.FGPIO.rpiduino_io.LOW=FGPIO.FGPIO.rpiduino_io-module.html#LOW,Variable FGPIO.FGPIO.sen0018_io.LOW=FGPIO.FGPIO.sen0018_io-module.html#LOW,Variable FGPIO.FGPIO.servo_motor_io.LOW=FGPIO.FGPIO.servo_motor_io-module.html#LOW,Variable FGPIO.FGPIO.stepper_io.LOW=FGPIO.FGPIO.stepper_io-module.html#LOW"><a title="FGPIO.FGPIO.SCT013_v_io.LOW
+FGPIO.FGPIO.UltraSonic_io.LOW
+FGPIO.FGPIO.bt_io.LOW
+FGPIO.FGPIO.buzz_io.LOW
+FGPIO.FGPIO.dht11_io.LOW
+FGPIO.FGPIO.gaz_sensor_io.LOW
+FGPIO.FGPIO.hcsr501_io.LOW
+FGPIO.FGPIO.hrlv_max_sonar_io.LOW
+FGPIO.FGPIO.i2c_device_io.LOW
+FGPIO.FGPIO.i2c_ext_io.LOW
+FGPIO.FGPIO.i2c_grove_gesture_io.LOW
+FGPIO.FGPIO.ir_detect_io.LOW
+FGPIO.FGPIO.lcd_12864.LOW
+FGPIO.FGPIO.lcd_12864_hspi.LOW
+FGPIO.FGPIO.lcd_i2c_io.LOW
+FGPIO.FGPIO.lcd_io.LOW
+FGPIO.FGPIO.lcd_lpt_io.LOW
+FGPIO.FGPIO.led_io.LOW
+FGPIO.FGPIO.lum_capteur_io.LOW
+FGPIO.FGPIO.max7219_io.LOW
+FGPIO.FGPIO.mcp23017_io.LOW
+FGPIO.FGPIO.mcp300x_hspi_io.LOW
+FGPIO.FGPIO.mcp300x_io.LOW
+FGPIO.FGPIO.mcp3201_hspi_io.LOW
+FGPIO.FGPIO.mpu_6050_io.LOW
+FGPIO.FGPIO.on_off_output_device_io.LOW
+FGPIO.FGPIO.pca9555_io.LOW
+FGPIO.FGPIO.pin_ext_io.LOW
+FGPIO.FGPIO.pin_io.LOW
+FGPIO.FGPIO.qrd1114_io.LOW
+FGPIO.FGPIO.rain_sensor_io.LOW
+FGPIO.FGPIO.relay_io.LOW
+FGPIO.FGPIO.rf_recept_io.LOW
+FGPIO.FGPIO.rotary_encoder_io.LOW
+FGPIO.FGPIO.rpiduino_io.LOW
+FGPIO.FGPIO.sen0018_io.LOW
+FGPIO.FGPIO.servo_motor_io.LOW
+FGPIO.FGPIO.stepper_io.LOW" class="py-name" href="#" onclick="return doclink('link-15', 'LOW', 'link-15');">LOW</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">                <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt id="link-16" class="py-name"><a title="FGPIO.FGPIO.dht11_io
+FGPIO.FGPIO.dht11_io.dht11_io" class="py-name" href="#" onclick="return doclink('link-16', 'dht11_io', 'link-11');">dht11_io</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="FGPIO.FGPIO.dht11_io.dht11_io.wake_up_delay" class="py-name" href="#" onclick="return doclink('link-17', 'wake_up_delay', 'link-1');">wake_up_delay</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">                 </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">                <tt class="py-comment"># Store the response of the device</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">                <tt class="py-name">RPi</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="FGPIO.FGPIO.mcp23017_io.mcp23017_io.GPIO" class="py-name" href="#" onclick="return doclink('link-18', 'GPIO', 'link-8');">GPIO</a></tt><tt class="py-op">.</tt><tt class="py-name">setup</tt><tt class="py-op">(</tt><tt class="py-name">bcm_no_pin</tt><tt class="py-op">,</tt> <tt class="py-name">RPi</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="FGPIO.FGPIO.mcp23017_io.mcp23017_io.GPIO" class="py-name" href="#" onclick="return doclink('link-19', 'GPIO', 'link-8');">GPIO</a></tt><tt class="py-op">.</tt><tt class="py-name">IN</tt><tt class="py-op">,</tt> <tt class="py-name">RPi</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="FGPIO.FGPIO.mcp23017_io.mcp23017_io.GPIO" class="py-name" href="#" onclick="return doclink('link-20', 'GPIO', 'link-8');">GPIO</a></tt><tt class="py-op">.</tt><tt class="py-name">PUD_UP</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                <tt class="py-name">i</tt><tt class="py-op">=</tt><tt class="py-number">0</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">                <tt class="py-keyword">while</tt> <tt class="py-name">i</tt><tt class="py-op">&lt;</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nbdatas</tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">                        <tt class="py-name">datas</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">RPi</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="FGPIO.FGPIO.mcp23017_io.mcp23017_io.GPIO" class="py-name" href="#" onclick="return doclink('link-21', 'GPIO', 'link-8');">GPIO</a></tt><tt class="py-op">.</tt><tt class="py-name">input</tt><tt class="py-op">(</tt><tt class="py-name">bcm_no_pin</tt><tt class="py-op">)</tt><tt class="py-op">)</tt>        <tt class="py-comment">#Direct usage of RPi.GPIO functions to increase speed of read</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">                        <tt class="py-name">i</tt><tt class="py-op">+=</tt><tt class="py-number">1</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">                 </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">                <tt class="py-comment">#Analyse the datas</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">                <tt class="py-name">count</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">                <tt class="py-name">tmp</tt> <tt class="py-op">=</tt> <tt class="py-name">datas</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">                <tt class="py-name">f_datas</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">data</tt> <tt class="py-keyword">in</tt> <tt class="py-name">datas</tt><tt class="py-op">:</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">data</tt> <tt class="py-op">==</tt> <tt class="py-name">tmp</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                                <tt class="py-name">count</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">                        <tt class="py-keyword">else</tt> <tt class="py-op">:</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">                                <tt class="py-name">f_datas</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">tmp</tt><tt class="py-op">,</tt> <tt class="py-name">count</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">                                <tt class="py-name">count</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">                                <tt class="py-name">tmp</tt> <tt class="py-op">=</tt> <tt class="py-name">data</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">                <tt class="py-name">f_datas</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">datas</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">count</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">f_datas</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> <tt class="py-comment"># two first 0 - 1  are not datas</tt> </tt>
+</div><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                 </tt>
+<a name="dht11_io._read"></a><div id="dht11_io._read-def"><a name="L89"></a><tt class="py-lineno"> 89</tt> <a class="py-toggle" href="#" id="dht11_io._read-toggle" onclick="return toggle('dht11_io._read');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.dht11_io.dht11_io-class.html#_read">_read</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="dht11_io._read-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="dht11_io._read-expanded"><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                <tt class="py-docstring">'''Lecture du capteur par</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">                                - Reveil du capteur : </tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">                                        - envoie de 18ms de LOW</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">                                        - envoie de 40&#181;s de HIGH</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">                                - Reponse au reiveil :</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">                                        - 80 &#181;s &#224; LOW</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">                                        - 80 &#181;s &#224; HIGH</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring">                                - lecture trame datas</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-docstring">                        Return a dictionary : {'T': Temperature as int ,'RH' : Humidity as int}</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                <tt class="py-name">f_datas</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="FGPIO.FGPIO.dht11_io.dht11_io._read_raw" class="py-name" href="#" onclick="return doclink('link-22', '_read_raw', 'link-3');">_read_raw</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">                <tt class="py-comment">#S'il n'y a pas assez de donn&#233;es, on en rajoute.</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">                <tt class="py-keyword">while</tt> <tt class="py-name">f_datas</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">100</tt><tt class="py-op">:</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nbdatas</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">nbdatas</tt> <tt class="py-op">*</tt> <tt class="py-number">1.1</tt><tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">                        <tt class="py-name">f_datas</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method FGPIO.FGPIO.dht11_io.dht11_io._read()=FGPIO.FGPIO.dht11_io.dht11_io-class.html#_read,Method FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io._read()=FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io-class.html#_read"><a title="FGPIO.FGPIO.dht11_io.dht11_io._read
+FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io._read" class="py-name" href="#" onclick="return doclink('link-23', '_read', 'link-23');">_read</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">                <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-name">f_datas</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">                <tt class="py-comment">#Calcul du 'temps' moyen des passages &#224; LOW</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">                <tt class="py-name">count</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">                <tt class="py-name">sum</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">f_data</tt> <tt class="py-keyword">in</tt> <tt class="py-name">f_datas</tt><tt class="py-op">:</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">f_data</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                                <tt class="py-name">count</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">                                <tt class="py-name">sum</tt> <tt class="py-op">+=</tt> <tt class="py-name">f_data</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">                <tt class="py-keyword">assert</tt> <tt class="py-name">count</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">'Sensor does not respond'</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">                <tt class="py-name">pulse</tt> <tt class="py-op">=</tt> <tt class="py-name">sum</tt> <tt class="py-op">/</tt> <tt class="py-name">count</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">                <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt class="py-string">"pulse = "</tt> <tt class="py-op">+</tt> <tt class="py-name">pulse</tt><tt class="py-op">)</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                <tt class="py-comment">#Extraction des donn&#233;es binaires</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">                <tt id="link-24" class="py-name" targets="Method FGPIO.FGPIO.font_io.font_io.bits()=FGPIO.FGPIO.font_io.font_io-class.html#bits"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-24', 'bits', 'link-24');">bits</a></tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">f_data</tt> <tt class="py-keyword">in</tt> <tt class="py-name">f_datas</tt><tt class="py-op">:</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">f_data</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">                                <tt class="py-keyword">if</tt> <tt class="py-name">f_data</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">pulse</tt><tt class="py-op">:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">                                        <tt id="link-25" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-25', 'bits', 'link-24');">bits</a></tt><tt class="py-op">+=</tt><tt class="py-string">"0"</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">                                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                                        <tt id="link-26" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-26', 'bits', 'link-24');">bits</a></tt><tt class="py-op">+=</tt><tt class="py-string">"1"</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                <tt id="link-27" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-27', 'bits', 'link-24');">bits</a></tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-28', 'bits', 'link-24');">bits</a></tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                <tt class="py-name">logging</tt><tt class="py-op">.</tt><tt class="py-name">debug</tt><tt class="py-op">(</tt><tt id="link-29" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-29', 'bits', 'link-24');">bits</a></tt> <tt class="py-op">+</tt> <tt class="py-string">" "</tt> <tt class="py-op">+</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt id="link-30" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-30', 'bits', 'link-24');">bits</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">                <tt class="py-comment"># Calcul des valeurs</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                <tt class="py-keyword">assert</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt id="link-31" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-31', 'bits', 'link-24');">bits</a></tt><tt class="py-op">)</tt><tt class="py-op">==</tt><tt class="py-number">40</tt><tt class="py-op">,</tt> <tt class="py-string">'Data Size error'</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                <tt class="py-name">RH</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt id="link-32" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-32', 'bits', 'link-24');">bits</a></tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-number">8</tt><tt class="py-op">]</tt><tt class="py-op">,</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                <tt class="py-name">T</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt id="link-33" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-33', 'bits', 'link-24');">bits</a></tt><tt class="py-op">[</tt><tt class="py-number">16</tt><tt class="py-op">:</tt><tt class="py-number">24</tt><tt class="py-op">]</tt><tt class="py-op">,</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">                <tt class="py-name">CRC</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt id="link-34" class="py-name"><a title="FGPIO.FGPIO.font_io.font_io.bits" class="py-name" href="#" onclick="return doclink('link-34', 'bits', 'link-24');">bits</a></tt><tt class="py-op">[</tt><tt class="py-number">32</tt><tt class="py-op">:</tt><tt class="py-number">40</tt><tt class="py-op">]</tt><tt class="py-op">,</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                <tt class="py-comment"># Make CRC test</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">                <tt class="py-keyword">assert</tt> <tt class="py-name">CRC</tt> <tt class="py-op">==</tt> <tt class="py-name">RH</tt> <tt class="py-op">+</tt> <tt class="py-name">T</tt><tt class="py-op">,</tt> <tt class="py-string">"CRC Error"</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">                 </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-op">{</tt><tt class="py-string">'T'</tt><tt class="py-op">:</tt> <tt class="py-name">T</tt><tt class="py-op">,</tt> <tt class="py-string">'RH'</tt><tt class="py-op">:</tt> <tt class="py-name">RH</tt><tt class="py-op">}</tt> </tt>
+</div><a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">         </tt>
+<a name="dht11_io.read"></a><div id="dht11_io.read-def"><a name="L136"></a><tt class="py-lineno">136</tt> <a class="py-toggle" href="#" id="dht11_io.read-toggle" onclick="return toggle('dht11_io.read');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.dht11_io.dht11_io-class.html#read">read</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="dht11_io.read-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="dht11_io.read-expanded"><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">                <tt class="py-docstring">'''read the sensor and</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"><tt class="py-docstring">                        Return a dictionary : {'T': Temperature as int ,'RH' : Humidity as int}</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">                <tt class="py-name">timeout</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">timeout_read</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">                <tt class="py-name">reponse</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">                <tt class="py-keyword">while</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">timeout</tt> <tt class="py-keyword">and</tt> <tt class="py-name">reponse</tt> <tt class="py-op">==</tt> <tt class="py-name">False</tt><tt class="py-op">:</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">                        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">                                <tt class="py-name">reponse</tt> <tt class="py-op">=</tt>  <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="FGPIO.FGPIO.dht11_io.dht11_io._read
+FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io._read" class="py-name" href="#" onclick="return doclink('link-35', '_read', 'link-23');">_read</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">                        <tt class="py-keyword">except</tt> <tt class="py-name">AssertionError</tt><tt class="py-op">:</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">                                <tt class="py-name">reponse</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">                                <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">reponse</tt> </tt>
+</div></div><a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="dht11Error"></a><div id="dht11Error-def"><a name="L150"></a><tt class="py-lineno">150</tt> <a class="py-toggle" href="#" id="dht11Error-toggle" onclick="return toggle('dht11Error');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="FGPIO.FGPIO.dht11_io.dht11Error-class.html">dht11Error</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="dht11Error-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="dht11Error-expanded"><a name="dht11Error.__init__"></a><div id="dht11Error.__init__-def"><a name="L151"></a><tt class="py-lineno">151</tt> <a class="py-toggle" href="#" id="dht11Error.__init__-toggle" onclick="return toggle('dht11Error.__init__');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.dht11_io.dht11Error-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">message</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="dht11Error.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="dht11Error.__init__-expanded"><a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Method FGPIO.FGPIO.lcd_io.lcd_io.message()=FGPIO.FGPIO.lcd_io.lcd_io-class.html#message,Method FGPIO.FGPIO.max7219_io.max7219_io.message()=FGPIO.FGPIO.max7219_io.max7219_io-class.html#message"><a title="FGPIO.FGPIO.lcd_io.lcd_io.message
+FGPIO.FGPIO.max7219_io.max7219_io.message" class="py-name" href="#" onclick="return doclink('link-36', 'message', 'link-36');">message</a></tt> <tt class="py-op">=</tt> <tt id="link-37" class="py-name"><a title="FGPIO.FGPIO.lcd_io.lcd_io.message
+FGPIO.FGPIO.max7219_io.max7219_io.message" class="py-name" href="#" onclick="return doclink('link-37', 'message', 'link-36');">message</a></tt> </tt>
+</div><a name="dht11Error.__str__"></a><div id="dht11Error.__str__-def"><a name="L153"></a><tt class="py-lineno">153</tt> <a class="py-toggle" href="#" id="dht11Error.__str__-toggle" onclick="return toggle('dht11Error.__str__');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.dht11_io.dht11Error-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="dht11Error.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="dht11Error.__str__-expanded"><a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="FGPIO.FGPIO.lcd_io.lcd_io.message
+FGPIO.FGPIO.max7219_io.max7219_io.message" class="py-name" href="#" onclick="return doclink('link-38', 'message', 'link-36');">message</a></tt>              </tt>
+</div></div><a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"><tt class="py-comment">#########################################################</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt class="py-comment">#                                                       #</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-comment">#               EXEMPLE                                         #</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-comment">#                                                       #</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt class="py-comment">#########################################################</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">'__main__'</tt><tt class="py-op">:</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">        <tt class="py-name">pc</tt> <tt class="py-op">=</tt> <tt id="link-39" class="py-name"><a title="FGPIO.FGPIO.rpiduino_io
+FGPIO.FGPIO.rpiduino_io.rpiduino_io" class="py-name" href="#" onclick="return doclink('link-39', 'rpiduino_io', 'link-0');">rpiduino_io</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-name">capteur</tt> <tt class="py-op">=</tt> <tt id="link-40" class="py-name"><a title="FGPIO.FGPIO.dht11_io
+FGPIO.FGPIO.dht11_io.dht11_io" class="py-name" href="#" onclick="return doclink('link-40', 'dht11_io', 'link-11');">dht11_io</a></tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">pc</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name" targets="Method FGPIO.FGPIO.rpiduino_io.rpi_io.bcm_pins()=FGPIO.FGPIO.rpiduino_io.rpi_io-class.html#bcm_pins"><a title="FGPIO.FGPIO.rpiduino_io.rpi_io.bcm_pins" class="py-name" href="#" onclick="return doclink('link-41', 'bcm_pins', 'link-41');">bcm_pins</a></tt><tt class="py-op">(</tt><tt class="py-number">23</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-name">reponse</tt> <tt class="py-op">=</tt> <tt class="py-name">capteur</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Method FGPIO.FGPIO.SCT013_v_io.SCT013_v_io.read()=FGPIO.FGPIO.SCT013_v_io.SCT013_v_io-class.html#read,Method FGPIO.FGPIO.UltraSonic_io.UltraSonic.read()=FGPIO.FGPIO.UltraSonic_io.UltraSonic-class.html#read,Method FGPIO.FGPIO.bt_io.bt_io.read()=FGPIO.FGPIO.bt_io.bt_io-class.html#read,Method FGPIO.FGPIO.device_io.device_io.read()=FGPIO.FGPIO.device_io.device_io-class.html#read,Method FGPIO.FGPIO.dht11_io.dht11_io.read()=FGPIO.FGPIO.dht11_io.dht11_io-class.html#read,Method FGPIO.FGPIO.f_spi.soft_spi_client.read()=FGPIO.FGPIO.f_spi.soft_spi_client-class.html#read,Method FGPIO.FGPIO.gaz_sensor_io.analog_gaz_sensor_MQ7_io.read()=FGPIO.FGPIO.gaz_sensor_io.analog_gaz_sensor_MQ7_io-class.html#read,Method FGPIO.FGPIO.gaz_sensor_io.digital_gaz_sensor_MQ7_io.read()=FGPIO.FGPIO.gaz_sensor_io.digital_gaz_sensor_MQ7_io-class.html#read,Method FGPIO.FGPIO.hcsr501_io.hcsr501_io.read()=FGPIO.FGPIO.hcsr501_io.hcsr501_io-class.html#read,Method FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_analog_io.read()=FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_analog_io-class.html#read,Method FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_pwo_io.read()=FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_pwo_io-class.html#read,Method FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io.read()=FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io-class.html#read,Method FGPIO.FGPIO.i2c_io.i2c_device.read()=FGPIO.FGPIO.i2c_io.i2c_device-class.html#read,Method FGPIO.FGPIO.ir_detect_io.ir_detect_io.read()=FGPIO.FGPIO.ir_detect_io.ir_detect_io-class.html#read,Method FGPIO.FGPIO.lum_capteur_io.lum_capteur_io.read()=FGPIO.FGPIO.lum_capteur_io.lum_capteur_io-class.html#read,Method FGPIO.FGPIO.pin_io.analog_pin_io.read()=FGPIO.FGPIO.pin_io.analog_pin_io-class.html#read,Method FGPIO.FGPIO.qrd1114_io.qrd1114_analog_io.read()=FGPIO.FGPIO.qrd1114_io.qrd1114_analog_io-class.html#read,Method FGPIO.FGPIO.qrd1114_io.qrd1114_digital_io.read()=FGPIO.FGPIO.qrd1114_io.qrd1114_digital_io-class.html#read,Method FGPIO.FGPIO.rain_sensor_io.rain_sensor_digital_io.read()=FGPIO.FGPIO.rain_sensor_io.rain_sensor_digital_io-class.html#read,Method FGPIO.FGPIO.rf_recept_io.temperature_rf_recept_io.read()=FGPIO.FGPIO.rf_recept_io.temperature_rf_recept_io-class.html#read,Method FGPIO.FGPIO.rotary_encoder_io.bt_pseudo_rotatif_io.read()=FGPIO.FGPIO.rotary_encoder_io.bt_pseudo_rotatif_io-class.html#read,Method FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io.read()=FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io-class.html#read,Method FGPIO.FGPIO.sen0018_io.sen0018_io.read()=FGPIO.FGPIO.sen0018_io.sen0018_io-class.html#read,Method FGPIO.FGPIO.stepper_io.stepper_io.read()=FGPIO.FGPIO.stepper_io.stepper_io-class.html#read,Method FGPIO.FGPIO.test.vehicule.read()=FGPIO.FGPIO.test.vehicule-class.html#read"><a title="FGPIO.FGPIO.SCT013_v_io.SCT013_v_io.read
+FGPIO.FGPIO.UltraSonic_io.UltraSonic.read
+FGPIO.FGPIO.bt_io.bt_io.read
+FGPIO.FGPIO.device_io.device_io.read
+FGPIO.FGPIO.dht11_io.dht11_io.read
+FGPIO.FGPIO.f_spi.soft_spi_client.read
+FGPIO.FGPIO.gaz_sensor_io.analog_gaz_sensor_MQ7_io.read
+FGPIO.FGPIO.gaz_sensor_io.digital_gaz_sensor_MQ7_io.read
+FGPIO.FGPIO.hcsr501_io.hcsr501_io.read
+FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_analog_io.read
+FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_pwo_io.read
+FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io.read
+FGPIO.FGPIO.i2c_io.i2c_device.read
+FGPIO.FGPIO.ir_detect_io.ir_detect_io.read
+FGPIO.FGPIO.lum_capteur_io.lum_capteur_io.read
+FGPIO.FGPIO.pin_io.analog_pin_io.read
+FGPIO.FGPIO.qrd1114_io.qrd1114_analog_io.read
+FGPIO.FGPIO.qrd1114_io.qrd1114_digital_io.read
+FGPIO.FGPIO.rain_sensor_io.rain_sensor_digital_io.read
+FGPIO.FGPIO.rf_recept_io.temperature_rf_recept_io.read
+FGPIO.FGPIO.rotary_encoder_io.bt_pseudo_rotatif_io.read
+FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io.read
+FGPIO.FGPIO.sen0018_io.sen0018_io.read
+FGPIO.FGPIO.stepper_io.stepper_io.read
+FGPIO.FGPIO.test.vehicule.read" class="py-name" href="#" onclick="return doclink('link-42', 'read', 'link-42');">read</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">reponse</tt><tt class="py-op">:</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">"La temp&#233;rature est de %s &#176;C. L'humidit&#233; est de %s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">reponse</tt><tt class="py-op">[</tt><tt class="py-string">'T'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">reponse</tt><tt class="py-op">[</tt><tt class="py-string">'RH'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">'%.'</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">"Sensor Error"</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-comment">#usage of thread</tt> </tt>
+<a name="action"></a><div id="action-def"><a name="L172"></a><tt class="py-lineno">172</tt> <a class="py-toggle" href="#" id="action-toggle" onclick="return toggle('action');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.dht11_io-module.html#action">action</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="action-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="action-expanded"><a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">capteur</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name" targets="Method FGPIO.FGPIO.device_io.input_device_io.th_readed()=FGPIO.FGPIO.device_io.input_device_io-class.html#th_readed"><a title="FGPIO.FGPIO.device_io.input_device_io.th_readed" class="py-name" href="#" onclick="return doclink('link-43', 'th_readed', 'link-43');">th_readed</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">                        <tt class="py-keyword">print</tt> <tt class="py-string">"La temp&#233;rature est de %s &#176;C. L'humidit&#233; est de %s"</tt> <tt class="py-op">%</tt> \ </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">                                <tt class="py-op">(</tt><tt class="py-name">capteur</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name" targets="Method FGPIO.FGPIO.device_io.multi_digital_input_device_io.th_readed_value()=FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html#th_readed_value"><a title="FGPIO.FGPIO.device_io.multi_digital_input_device_io.th_readed_value" class="py-name" href="#" onclick="return doclink('link-44', 'th_readed_value', 'link-44');">th_readed_value</a></tt><tt class="py-op">(</tt><tt class="py-string">'T'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">capteur</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="FGPIO.FGPIO.device_io.multi_digital_input_device_io.th_readed_value" class="py-name" href="#" onclick="return doclink('link-45', 'th_readed_value', 'link-44');">th_readed_value</a></tt><tt class="py-op">(</tt><tt class="py-string">'RH'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-string">'%.'</tt> </tt>
+</div><a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">         </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">        <tt class="py-name">capteur</tt> <tt class="py-op">=</tt> <tt id="link-46" class="py-name"><a title="FGPIO.FGPIO.dht11_io
+FGPIO.FGPIO.dht11_io.dht11_io" class="py-name" href="#" onclick="return doclink('link-46', 'dht11_io', 'link-11');">dht11_io</a></tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">pc</tt><tt class="py-op">.</tt><tt id="link-47" class="py-name"><a title="FGPIO.FGPIO.rpiduino_io.rpi_io.bcm_pins" class="py-name" href="#" onclick="return doclink('link-47', 'bcm_pins', 'link-41');">bcm_pins</a></tt><tt class="py-op">(</tt><tt class="py-number">23</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">thread</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">                                                <tt class="py-name">on_changed</tt> <tt class="py-op">=</tt> <tt id="link-48" class="py-name" targets="Method FGPIO.FGPIO.f_menu.f_interface.action()=FGPIO.FGPIO.f_menu.f_interface-class.html#action"><a title="FGPIO.FGPIO.f_menu.f_interface.action" class="py-name" href="#" onclick="return doclink('link-48', 'action', 'link-48');">action</a></tt><tt class="py-op">,</tt> <tt class="py-name">discard</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-string">'RH'</tt><tt class="py-op">:</tt><tt class="py-number">2</tt><tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">         </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> <tt class="py-comment">#Ca permet de pouvoir planter le thread avec un CTRL-C</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">                <tt class="py-keyword">while</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">                        <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line">        <tt class="py-keyword">except</tt> <tt class="py-name">KeyboardInterrupt</tt><tt class="py-op">:</tt> </tt>
+<a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">                <tt class="py-name">capteur</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Method FGPIO.FGPIO.device_io.input_device_io.stop()=FGPIO.FGPIO.device_io.input_device_io-class.html#stop,Method FGPIO.FGPIO.f_thread.f_thread.stop()=FGPIO.FGPIO.f_thread.f_thread-class.html#stop,Method FGPIO.FGPIO.lcd_io.lcd_io.stop()=FGPIO.FGPIO.lcd_io.lcd_io-class.html#stop,Method FGPIO.FGPIO.on_off_output_device_io.on_off_output_device_io.stop()=FGPIO.FGPIO.on_off_output_device_io.on_off_output_device_io-class.html#stop,Method FGPIO.FGPIO.rotary_encoder_io.bt_rot_io.stop()=FGPIO.FGPIO.rotary_encoder_io.bt_rot_io-class.html#stop,Method FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io.stop()=FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io-class.html#stop,Method FGPIO.FGPIO.stepper_io.stepper_io.stop()=FGPIO.FGPIO.stepper_io.stepper_io-class.html#stop"><a title="FGPIO.FGPIO.device_io.input_device_io.stop
+FGPIO.FGPIO.f_thread.f_thread.stop
+FGPIO.FGPIO.lcd_io.lcd_io.stop
+FGPIO.FGPIO.on_off_output_device_io.on_off_output_device_io.stop
+FGPIO.FGPIO.rotary_encoder_io.bt_rot_io.stop
+FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io.stop
+FGPIO.FGPIO.stepper_io.stepper_io.stop" class="py-name" href="#" onclick="return doclink('link-49', 'stop', 'link-49');">stop</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Sun Apr  1 08:22:47 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

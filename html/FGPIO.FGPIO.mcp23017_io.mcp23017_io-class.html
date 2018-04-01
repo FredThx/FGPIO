@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>FGPIO.FGPIO.mcp23017_io.mcp23017_io</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;FGPIO ::
+        <a href="FGPIO.FGPIO-module.html">Package&nbsp;FGPIO</a> ::
+        <a href="FGPIO.FGPIO.mcp23017_io-module.html">Module&nbsp;mcp23017_io</a> ::
+        Class&nbsp;mcp23017_io
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="FGPIO.FGPIO.mcp23017_io.mcp23017_io-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class mcp23017_io</h1><p class="nomargin-top"><span class="codelink"><a href="FGPIO.FGPIO.mcp23017_io-pysrc.html#mcp23017_io">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="class_hierarchy_for_mcp23017_i" name="class_hierarchy_for_mcp23017_i">
+<area shape="rect" id="node1" href="FGPIO.FGPIO.device_io.device_io-class.html" title="device_io.device_io" alt="" coords="31,5,175,31"/>
+<area shape="rect" id="node2" href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html" title="i2c_device_io.i2c_device_io" alt="" coords="5,60,200,85"/>
+<area shape="rect" id="node3" href="FGPIO.FGPIO.i2c_ext_io.i2c_ext_io-class.html" title="i2c_ext_io.i2c_ext_io" alt="" coords="27,115,179,140"/>
+<area shape="rect" id="node4" href="FGPIO.FGPIO.mcp23017_io.mcp23017_io-class.html" title="mcp23017_io" alt="" coords="49,169,157,195"/>
+</map>
+  <img src="class_hierarchy_for_mcp23017_i.gif" alt='' usemap="#class_hierarchy_for_mcp23017_i" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Classe d&#233;crivant un module MPC23017 pour expension des GPIO via 
+  i2c</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="FGPIO.FGPIO.mcp23017_io.mcp23017_io-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bus</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">addr</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">pc</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Initialisation bus : n&#176; du bus (defaut 1 pour RPi et 2 pour pcduino 
+      (mais il faut pr&#233;ciser pc)) addr = adresse i2c du module ( pour 
+      detecter : i2cdetect -y no_bus) pc : rpiduino_io</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.mcp23017_io-pysrc.html#mcp23017_io.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_pin"></a><span class="summary-sig-name">get_pin</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Renvoie la valeur de la pin</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.mcp23017_io-pysrc.html#mcp23017_io.get_pin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getmode_pin"></a><span class="summary-sig-name">getmode_pin</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Renvoie le mode d'une pin</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.mcp23017_io-pysrc.html#mcp23017_io.getmode_pin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_pin"></a><span class="summary-sig-name">set_pin</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Assigne la sortie id</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.mcp23017_io-pysrc.html#mcp23017_io.set_pin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="FGPIO.FGPIO.mcp23017_io.mcp23017_io-class.html#setmode_pin" class="summary-sig-name">setmode_pin</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Definit le mode d'une pin</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.mcp23017_io-pysrc.html#mcp23017_io.setmode_pin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.i2c_ext_io.i2c_ext_io-class.html">i2c_ext_io.i2c_ext_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.i2c_ext_io.i2c_ext_io-class.html#read_bit_register">read_bit_register</a></code>,
+      <code><a href="FGPIO.FGPIO.i2c_ext_io.i2c_ext_io-class.html#write_bit_register">write_bit_register</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html">i2c_device_io.i2c_device_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#i2c_update">i2c_update</a></code>,
+      <code><a href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#update">update</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.device_io.device_io-class.html">device_io.device_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.device_io.device_io-class.html#read">read</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html">i2c_device_io.i2c_device_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#unError">unError</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="DEFVAL"></a><span class="summary-name">DEFVAL</span> = <code title="[6, 7]"><code class="variable-group">[</code>6<code class="variable-op">, </code>7<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="GPINTEN"></a><span class="summary-name">GPINTEN</span> = <code title="[4, 5]"><code class="variable-group">[</code>4<code class="variable-op">, </code>5<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="GPIO"></a><span class="summary-name">GPIO</span> = <code title="[18, 19]"><code class="variable-group">[</code>18<code class="variable-op">, </code>19<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="GPPU"></a><span class="summary-name">GPPU</span> = <code title="[12, 13]"><code class="variable-group">[</code>12<code class="variable-op">, </code>13<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="INTCAPA"></a><span class="summary-name">INTCAPA</span> = <code title="[16, 17]"><code class="variable-group">[</code>16<code class="variable-op">, </code>17<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="INTCON"></a><span class="summary-name">INTCON</span> = <code title="[8, 9]"><code class="variable-group">[</code>8<code class="variable-op">, </code>9<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="INTF"></a><span class="summary-name">INTF</span> = <code title="[14, 15]"><code class="variable-group">[</code>14<code class="variable-op">, </code>15<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="IOCON"></a><span class="summary-name">IOCON</span> = <code title="[10, 11]"><code class="variable-group">[</code>10<code class="variable-op">, </code>11<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="IODIR"></a><span class="summary-name">IODIR</span> = <code title="[0, 1]"><code class="variable-group">[</code>0<code class="variable-op">, </code>1<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="IPOL"></a><span class="summary-name">IPOL</span> = <code title="[2, 3]"><code class="variable-group">[</code>2<code class="variable-op">, </code>3<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="OLAT"></a><span class="summary-name">OLAT</span> = <code title="[20, 21]"><code class="variable-group">[</code>20<code class="variable-op">, </code>21<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html">i2c_device_io.i2c_device_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#timeRetry">timeRetry</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">bus</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">addr</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">pc</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="FGPIO.FGPIO.mcp23017_io-pysrc.html#mcp23017_io.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Initialisation bus : n&#176; du bus (defaut 1 pour RPi et 2 pour pcduino 
+  (mais il faut pr&#233;ciser pc)) addr = adresse i2c du module ( pour detecter 
+  : i2cdetect -y no_bus) pc : rpiduino_io</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="setmode_pin"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setmode_pin</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="FGPIO.FGPIO.mcp23017_io-pysrc.html#mcp23017_io.setmode_pin">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Definit le mode d'une pin</p>
+  <ul>
+    <li>
+      INPUT
+    </li>
+    <li>
+      OUTPUT
+    </li>
+    <li>
+      PULLUP (INPUT with pullup resistor)
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Sun Apr  1 08:22:47 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

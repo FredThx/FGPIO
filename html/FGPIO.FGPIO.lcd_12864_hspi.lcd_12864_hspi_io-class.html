@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;FGPIO ::
+        <a href="FGPIO.FGPIO-module.html">Package&nbsp;FGPIO</a> ::
+        <a href="FGPIO.FGPIO.lcd_12864_hspi-module.html">Module&nbsp;lcd_12864_hspi</a> ::
+        Class&nbsp;lcd_12864_hspi_io
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class lcd_12864_hspi_io</h1><p class="nomargin-top"><span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="class_hierarchy_for_lcd_12864__2" name="class_hierarchy_for_lcd_12864__2">
+<area shape="rect" id="node1" href="javascript:void(0);" title="??.SpiDev" alt="" coords="5,5,91,31"/>
+<area shape="rect" id="node3" href="FGPIO.FGPIO.f_spi.hard_spi_client-class.html" title="f_spi.hard_spi_client" alt="" coords="97,60,247,85"/>
+<area shape="rect" id="node2" href="FGPIO.FGPIO.device_io.device_io-class.html" title="device_io.device_io" alt="" coords="253,5,397,31"/>
+<area shape="rect" id="node6" href="FGPIO.FGPIO.lcd_io.lcd_io-class.html" title="lcd_io.lcd_io" alt="" coords="273,60,372,85"/>
+<area shape="rect" id="node5" href="FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io-class.html" title="lcd_12864_hspi_io" alt="" coords="177,115,316,140"/>
+<area shape="rect" id="node4" href="FGPIO.FGPIO.f_spi.spi_client-class.html" title="f_spi.spi_client" alt="" coords="115,5,229,31"/>
+</map>
+  <img src="class_hierarchy_for_lcd_12864__2.gif" alt='' usemap="#class_hierarchy_for_lcd_12864__2" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Ecran graphique LCD 12864 branch&#233; en s&#233;rie SPI</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bus</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">device</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">width</span>=<span class="summary-sig-default">128</span>,
+        <span class="summary-sig-arg">lines</span>=<span class="summary-sig-default">64</span>)</span><br />
+      Initialisation bus             :       n&#176; bus spi device  :       n&#176; 
+      device spi width   :       largeur de l'&#233;cran en pixel lines   :
+      nb de lignes en pixel</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="ascii168"></a><span class="summary-sig-name">ascii168</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">xPos</span>,
+        <span class="summary-sig-arg">yPos</span>,
+        <span class="summary-sig-arg">char</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io.ascii168">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="ascii168_string"></a><span class="summary-sig-name">ascii168_string</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">xPos</span>,
+        <span class="summary-sig-arg">yPos</span>,
+        <span class="summary-sig-arg">string</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io.ascii168_string">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="byte"></a><span class="summary-sig-name">byte</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bits</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io.byte">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io-class.html#clear" class="summary-sig-name">clear</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Effacement de l'&#233;cran</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io.clear">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_page"></a><span class="summary-sig-name">set_page</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">page</span>,
+        <span class="summary-sig-arg">column</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io.set_page">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="tranfer_data"></a><span class="summary-sig-name">tranfer_data</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">SI</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io.tranfer_data">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html">lcd_io.lcd_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#__del__">__del__</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#add_scroll_thread">add_scroll_thread</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#backlight">backlight</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#message">message</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#scroll">scroll</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#stop">stop</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#string">string</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html">lcd_io.lcd_io</a></code></b> (private):
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#_message" onclick="show_private();">_message</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.device_io.device_io-class.html">device_io.device_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.device_io.device_io-class.html#read">read</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><i>unreachable</i>.SpiDev</code></b>:
+      <code>__new__</code>,
+      <code>close</code>,
+      <code>fileno</code>,
+      <code>open</code>,
+      <code>readbytes</code>,
+      <code>writebytes</code>,
+      <code>xfer</code>,
+      <code>xfer2</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io-class.html#ASCII168" class="summary-name">ASCII168</a> = <code title="((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+ (0, 0, 0, 248, 0, 0, 0, 0, 0, 0, 0, 51, 48, 0, 0, 0),
+ (0, 16, 12, 6, 16, 12, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+ (64, 192, 120, 64, 192, 120, 64, 0, 4, 63, 4, 4, 63, 4, 4, 0),
+ (0, 112, 136, 252, 8, 48, 0, 0, 0, 24, 32, 255, 33, 30, 0, 0),
+ (240, 8, 240, 0, 224, 24, 0, 0, 0, 33, 28, 3, 30, 33, 30, 0),
+ (0, 240, 8, 136, 112, 0, 0, 0, 30, 33, 35, 36, 25, 39, 33, 16),
+ (0, 0, 0, 0, 0, 0, 0, 0, 128, 176, 112, 0, 0, 0, 0, 0),
+..."><code class="variable-group">(</code><code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-group">)</code><code class="variable-op">, </code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html">lcd_io.lcd_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#adr_ligne">adr_ligne</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_1line">arg_1line</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_2line">arg_2line</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_4bit_mode">arg_4bit_mode</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_5x10_dots">arg_5x10_dots</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_5x8_dots">arg_5x8_dots</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_8bit_mode">arg_8bit_mode</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_backlight_off">arg_backlight_off</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_backlight_on">arg_backlight_on</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_blink_off">arg_blink_off</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_blink_on">arg_blink_on</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_cursor_move">arg_cursor_move</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_cursor_off">arg_cursor_off</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_cursor_on">arg_cursor_on</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_display_move">arg_display_move</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_display_off">arg_display_off</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_display_on">arg_display_on</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_entry_left">arg_entry_left</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_entry_right">arg_entry_right</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_entry_shift_decrement">arg_entry_shift_decrement</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_entry_shift_increment">arg_entry_shift_increment</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_move_left">arg_move_left</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_move_right">arg_move_right</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#c_delay">c_delay</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#chr">chr</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd">cmd</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_clear_display">cmd_clear_display</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_cursor_shift">cmd_cursor_shift</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_display_control">cmd_display_control</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_entry_model_set">cmd_entry_model_set</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_function_set">cmd_function_set</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_return_home">cmd_return_home</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_set_cgramaddr">cmd_set_cgramaddr</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_set_ddramaddr">cmd_set_ddramaddr</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#e_delay">e_delay</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#e_pulse">e_pulse</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><i>unreachable</i>.SpiDev</code></b>:
+      <code>bits_per_word</code>,
+      <code>cshigh</code>,
+      <code>loop</code>,
+      <code>lsbfirst</code>,
+      <code>max_speed_hz</code>,
+      <code>mode</code>,
+      <code>threewire</code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">bus</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">device</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">width</span>=<span class="sig-default">128</span>,
+        <span class="sig-arg">lines</span>=<span class="sig-default">64</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Initialisation bus             :       n&#176; bus spi device  :       n&#176; 
+  device spi width   :       largeur de l'&#233;cran en pixel lines   :       nb
+  de lignes en pixel</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="clear"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">clear</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="FGPIO.FGPIO.lcd_12864_hspi-pysrc.html#lcd_12864_hspi_io.clear">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Effacement de l'&#233;cran</p>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#clear">lcd_io.lcd_io.clear</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="ASCII168"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">ASCII168</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">(</code><code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-group">)</code><code class="variable-op">,</code>
+ <code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>248<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>51<code class="variable-op">, </code>48<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-group">)</code><code class="variable-op">,</code>
+ <code class="variable-group">(</code>0<code class="variable-op">, </code>16<code class="variable-op">, </code>12<code class="variable-op">, </code>6<code class="variable-op">, </code>16<code class="variable-op">, </code>12<code class="variable-op">, </code>6<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-group">)</code><code class="variable-op">,</code>
+ <code class="variable-group">(</code>64<code class="variable-op">, </code>192<code class="variable-op">, </code>120<code class="variable-op">, </code>64<code class="variable-op">, </code>192<code class="variable-op">, </code>120<code class="variable-op">, </code>64<code class="variable-op">, </code>0<code class="variable-op">, </code>4<code class="variable-op">, </code>63<code class="variable-op">, </code>4<code class="variable-op">, </code>4<code class="variable-op">, </code>63<code class="variable-op">, </code>4<code class="variable-op">, </code>4<code class="variable-op">, </code>0<code class="variable-group">)</code><code class="variable-op">,</code>
+ <code class="variable-group">(</code>0<code class="variable-op">, </code>112<code class="variable-op">, </code>136<code class="variable-op">, </code>252<code class="variable-op">, </code>8<code class="variable-op">, </code>48<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>24<code class="variable-op">, </code>32<code class="variable-op">, </code>255<code class="variable-op">, </code>33<code class="variable-op">, </code>30<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-group">)</code><code class="variable-op">,</code>
+ <code class="variable-group">(</code>240<code class="variable-op">, </code>8<code class="variable-op">, </code>240<code class="variable-op">, </code>0<code class="variable-op">, </code>224<code class="variable-op">, </code>24<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>33<code class="variable-op">, </code>28<code class="variable-op">, </code>3<code class="variable-op">, </code>30<code class="variable-op">, </code>33<code class="variable-op">, </code>30<code class="variable-op">, </code>0<code class="variable-group">)</code><code class="variable-op">,</code>
+ <code class="variable-group">(</code>0<code class="variable-op">, </code>240<code class="variable-op">, </code>8<code class="variable-op">, </code>136<code class="variable-op">, </code>112<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>30<code class="variable-op">, </code>33<code class="variable-op">, </code>35<code class="variable-op">, </code>36<code class="variable-op">, </code>25<code class="variable-op">, </code>39<code class="variable-op">, </code>33<code class="variable-op">, </code>16<code class="variable-group">)</code><code class="variable-op">,</code>
+ <code class="variable-group">(</code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>128<code class="variable-op">, </code>176<code class="variable-op">, </code>112<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-group">)</code><code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Sun Apr  1 08:22:47 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>FGPIO.FGPIO.mpu_6050_io</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;FGPIO ::
+        <a href="FGPIO.FGPIO-module.html">Package&nbsp;FGPIO</a> ::
+        Module&nbsp;mpu_6050_io
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="FGPIO.FGPIO.mpu_6050_io-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="FGPIO.FGPIO.mpu_6050_io-module.html">Module FGPIO.FGPIO.mpu_6050_io</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding:utf-8 -*</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">'''</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring"> Utilisation de MPU-6050 (Invensense )</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">        Gyroscope 3 axes</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">        Accelerom&#232;tre 3 axes</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring"> AUTEUR : FredThx</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring"> Projet : rpiduino_io</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">'''</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module FGPIO.FGPIO.i2c_device_io=FGPIO.FGPIO.i2c_device_io-module.html,Class FGPIO.FGPIO.i2c_device_io.i2c_device_io=FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html"><a title="FGPIO.FGPIO.i2c_device_io
+FGPIO.FGPIO.i2c_device_io.i2c_device_io" class="py-name" href="#" onclick="return doclink('link-0', 'i2c_device_io', 'link-0');">i2c_device_io</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">math</tt> </tt>
+<a name="mpu_6050_io"></a><div id="mpu_6050_io-def"><a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt> <a class="py-toggle" href="#" id="mpu_6050_io-toggle" onclick="return toggle('mpu_6050_io');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html">mpu_6050_io</a><tt class="py-op">(</tt><tt class="py-base-class">i2c_device_io</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="mpu_6050_io-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="mpu_6050_io-expanded"><a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">        <tt class="py-docstring">''' a MPU-6050 gyroscope and accelerometre</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">        '''</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">        <tt id="link-1" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.power_mgmt_1=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#power_mgmt_1"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.power_mgmt_1" class="py-name" href="#" onclick="return doclink('link-1', 'power_mgmt_1', 'link-1');">power_mgmt_1</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x6b</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt id="link-2" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.power_mgmt_2=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#power_mgmt_2"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.power_mgmt_2" class="py-name" href="#" onclick="return doclink('link-2', 'power_mgmt_2', 'link-2');">power_mgmt_2</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x6c</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt id="link-3" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_xout_adr=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#gyro_xout_adr"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_xout_adr" class="py-name" href="#" onclick="return doclink('link-3', 'gyro_xout_adr', 'link-3');">gyro_xout_adr</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x43</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt id="link-4" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_yout_adr=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#gyro_yout_adr"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_yout_adr" class="py-name" href="#" onclick="return doclink('link-4', 'gyro_yout_adr', 'link-4');">gyro_yout_adr</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x45</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt id="link-5" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_zout_adr=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#gyro_zout_adr"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_zout_adr" class="py-name" href="#" onclick="return doclink('link-5', 'gyro_zout_adr', 'link-5');">gyro_zout_adr</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x47</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">        <tt id="link-6" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_scale=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#gyro_scale"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_scale" class="py-name" href="#" onclick="return doclink('link-6', 'gyro_scale', 'link-6');">gyro_scale</a></tt> <tt class="py-op">=</tt> <tt class="py-number">131.0</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt id="link-7" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_xout_adr=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#accel_xout_adr"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_xout_adr" class="py-name" href="#" onclick="return doclink('link-7', 'accel_xout_adr', 'link-7');">accel_xout_adr</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x3b</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt id="link-8" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_yout_adr=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#accel_yout_adr"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_yout_adr" class="py-name" href="#" onclick="return doclink('link-8', 'accel_yout_adr', 'link-8');">accel_yout_adr</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x3d</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt id="link-9" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_zout_adr=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#accel_zout_adr"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_zout_adr" class="py-name" href="#" onclick="return doclink('link-9', 'accel_zout_adr', 'link-9');">accel_zout_adr</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0x3f</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt id="link-10" class="py-name" targets="Variable FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_scale=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#accel_scale"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_scale" class="py-name" href="#" onclick="return doclink('link-10', 'accel_scale', 'link-10');">accel_scale</a></tt> <tt class="py-op">=</tt> <tt class="py-number">16384.0</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">         </tt>
+<a name="mpu_6050_io.__init__"></a><div id="mpu_6050_io.__init__-def"><a name="L32"></a><tt class="py-lineno"> 32</tt> <a class="py-toggle" href="#" id="mpu_6050_io.__init__-toggle" onclick="return toggle('mpu_6050_io.__init__');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">bus</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">addr</tt><tt class="py-op">=</tt><tt class="py-number">0x68</tt><tt class="py-op">,</tt> <tt class="py-param">pc</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="mpu_6050_io.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="mpu_6050_io.__init__-expanded"><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">                <tt class="py-docstring">'''Initialisation</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">                        bus : n&#176; du bus (defaut 1 pour RPi et 2 pour pcduino (mais il faut pr&#233;ciser pc))</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">                        addr = adresse i2c de l'&#233;cran ( pour detecter : i2cdetect -y no_bus)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">                        pc : rpiduino_io</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">                <tt id="link-11" class="py-name"><a title="FGPIO.FGPIO.i2c_device_io
+FGPIO.FGPIO.i2c_device_io.i2c_device_io" class="py-name" href="#" onclick="return doclink('link-11', 'i2c_device_io', 'link-0');">i2c_device_io</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method FGPIO.FGPIO.SCT013_v_io.SCT013_v_io.__init__()=FGPIO.FGPIO.SCT013_v_io.SCT013_v_io-class.html#__init__,Method FGPIO.FGPIO.UltraSonic_io.UltraSonic.__init__()=FGPIO.FGPIO.UltraSonic_io.UltraSonic-class.html#__init__,Method FGPIO.FGPIO.bt_io.bt_io.__init__()=FGPIO.FGPIO.bt_io.bt_io-class.html#__init__,Method FGPIO.FGPIO.buzz_io.pwm_buzz_io.__init__()=FGPIO.FGPIO.buzz_io.pwm_buzz_io-class.html#__init__,Method FGPIO.FGPIO.device_io.analog_input_device_io.__init__()=FGPIO.FGPIO.device_io.analog_input_device_io-class.html#__init__,Method FGPIO.FGPIO.device_io.digital_input_device_io.__init__()=FGPIO.FGPIO.device_io.digital_input_device_io-class.html#__init__,Method FGPIO.FGPIO.device_io.input_device_io.__init__()=FGPIO.FGPIO.device_io.input_device_io-class.html#__init__,Method FGPIO.FGPIO.device_io.multi_digital_input_device_io.__init__()=FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html#__init__,Method FGPIO.FGPIO.dht11_io.dht11Error.__init__()=FGPIO.FGPIO.dht11_io.dht11Error-class.html#__init__,Method FGPIO.FGPIO.dht11_io.dht11_io.__init__()=FGPIO.FGPIO.dht11_io.dht11_io-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_cmd.__init__()=FGPIO.FGPIO.f_menu.f_cmd-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_interface.__init__()=FGPIO.FGPIO.f_menu.f_interface-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_item.__init__()=FGPIO.FGPIO.f_menu.f_item-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_menu.__init__()=FGPIO.FGPIO.f_menu.f_menu-class.html#__init__,Method FGPIO.FGPIO.f_menu.f_menu_dynamic.__init__()=FGPIO.FGPIO.f_menu.f_menu_dynamic-class.html#__init__,Method FGPIO.FGPIO.f_spi.hard_spi_client.__init__()=FGPIO.FGPIO.f_spi.hard_spi_client-class.html#__init__,Method FGPIO.FGPIO.f_spi.soft_spi_client.__init__()=FGPIO.FGPIO.f_spi.soft_spi_client-class.html#__init__,Method FGPIO.FGPIO.f_spi.spi_client.__init__()=FGPIO.FGPIO.f_spi.spi_client-class.html#__init__,Method FGPIO.FGPIO.f_thread.f_thread.__init__()=FGPIO.FGPIO.f_thread.f_thread-class.html#__init__,Method FGPIO.FGPIO.font_io.font_io.__init__()=FGPIO.FGPIO.font_io.font_io-class.html#__init__,Method FGPIO.FGPIO.gaz_sensor_io.analog_gaz_sensor_MQ7_io.__init__()=FGPIO.FGPIO.gaz_sensor_io.analog_gaz_sensor_MQ7_io-class.html#__init__,Method FGPIO.FGPIO.gaz_sensor_io.digital_gaz_sensor_MQ7_io.__init__()=FGPIO.FGPIO.gaz_sensor_io.digital_gaz_sensor_MQ7_io-class.html#__init__,Method FGPIO.FGPIO.gaz_sensor_io.gaz_sensor_MQ7.__init__()=FGPIO.FGPIO.gaz_sensor_io.gaz_sensor_MQ7-class.html#__init__,Method FGPIO.FGPIO.hcsr501_io.hcsr501_io.__init__()=FGPIO.FGPIO.hcsr501_io.hcsr501_io-class.html#__init__,Method FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_analog_io.__init__()=FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_analog_io-class.html#__init__,Method FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_pwo_io.__init__()=FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_pwo_io-class.html#__init__,Method FGPIO.FGPIO.i2c_device_io.i2c_device_io.__init__()=FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#__init__,Method FGPIO.FGPIO.i2c_ext_io.i2c_ext_io.__init__()=FGPIO.FGPIO.i2c_ext_io.i2c_ext_io-class.html#__init__,Method FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io.__init__()=FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io-class.html#__init__,Method FGPIO.FGPIO.i2c_io.i2c_bus.__init__()=FGPIO.FGPIO.i2c_io.i2c_bus-class.html#__init__,Method FGPIO.FGPIO.i2c_io.i2c_device.__init__()=FGPIO.FGPIO.i2c_io.i2c_device-class.html#__init__,Method FGPIO.FGPIO.i2c_io.i2c_error.__init__()=FGPIO.FGPIO.i2c_io.i2c_error-class.html#__init__,Method FGPIO.FGPIO.ir_detect_io.ir_detect_io.__init__()=FGPIO.FGPIO.ir_detect_io.ir_detect_io-class.html#__init__,Method FGPIO.FGPIO.lcd_12864.lcd_12864_io.__init__()=FGPIO.FGPIO.lcd_12864.lcd_12864_io-class.html#__init__,Method FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io.__init__()=FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io-class.html#__init__,Method FGPIO.FGPIO.lcd_i2c_io.lcd_i2c_io.__init__()=FGPIO.FGPIO.lcd_i2c_io.lcd_i2c_io-class.html#__init__,Method FGPIO.FGPIO.lcd_io.lcd_io.__init__()=FGPIO.FGPIO.lcd_io.lcd_io-class.html#__init__,Method FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io.__init__()=FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io-class.html#__init__,Method FGPIO.FGPIO.lum_capteur_io.lum_capteur_io.__init__()=FGPIO.FGPIO.lum_capteur_io.lum_capteur_io-class.html#__init__,Method FGPIO.FGPIO.max7219_io.max7219_io.__init__()=FGPIO.FGPIO.max7219_io.max7219_io-class.html#__init__,Method FGPIO.FGPIO.mcp23017_io.mcp23017_io.__init__()=FGPIO.FGPIO.mcp23017_io.mcp23017_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_hspi_io.mcp3004_hspi_io.__init__()=FGPIO.FGPIO.mcp300x_hspi_io.mcp3004_hspi_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_hspi_io.mcp3008_hspi_io.__init__()=FGPIO.FGPIO.mcp300x_hspi_io.mcp3008_hspi_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_io.__init__()=FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_pin.__init__()=FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_pin-class.html#__init__,Method FGPIO.FGPIO.mcp300x_io.mcp3004_io.__init__()=FGPIO.FGPIO.mcp300x_io.mcp3004_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_io.mcp3008_io.__init__()=FGPIO.FGPIO.mcp300x_io.mcp3008_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_io.mcp300x_io.__init__()=FGPIO.FGPIO.mcp300x_io.mcp300x_io-class.html#__init__,Method FGPIO.FGPIO.mcp300x_io.mcp300x_pin.__init__()=FGPIO.FGPIO.mcp300x_io.mcp300x_pin-class.html#__init__,Method FGPIO.FGPIO.mcp3201_hspi_io.mcp3201_hspi_io.__init__()=FGPIO.FGPIO.mcp3201_hspi_io.mcp3201_hspi_io-class.html#__init__,Method FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.__init__()=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#__init__,Method FGPIO.FGPIO.nrf24l01_io.nrf24l01_io.__init__()=FGPIO.FGPIO.nrf24l01_io.nrf24l01_io-class.html#__init__,Method FGPIO.FGPIO.on_off_output_device_io.on_off_output_device_io.__init__()=FGPIO.FGPIO.on_off_output_device_io.on_off_output_device_io-class.html#__init__,Method FGPIO.FGPIO.pca9555_io.pca9555_io.__init__()=FGPIO.FGPIO.pca9555_io.pca9555_io-class.html#__init__,Method FGPIO.FGPIO.pin_ext_io.pin_ext_io.__init__()=FGPIO.FGPIO.pin_ext_io.pin_ext_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.analog_pin_io.__init__()=FGPIO.FGPIO.pin_io.analog_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.analog_puino_pin_io.__init__()=FGPIO.FGPIO.pin_io.analog_puino_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.digital_pin_io.__init__()=FGPIO.FGPIO.pin_io.digital_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.digital_puino_pin_io.__init__()=FGPIO.FGPIO.pin_io.digital_puino_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.digital_rpi_pin_io.__init__()=FGPIO.FGPIO.pin_io.digital_rpi_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.duino_pin_io.__init__()=FGPIO.FGPIO.pin_io.duino_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.high_analog_puino_pin_io.__init__()=FGPIO.FGPIO.pin_io.high_analog_puino_pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.pin_io.__init__()=FGPIO.FGPIO.pin_io.pin_io-class.html#__init__,Method FGPIO.FGPIO.pin_io.rpiduino_io_error.__init__()=FGPIO.FGPIO.pin_io.rpiduino_io_error-class.html#__init__,Method FGPIO.FGPIO.pin_io.small_analog_puino_pin_io.__init__()=FGPIO.FGPIO.pin_io.small_analog_puino_pin_io-class.html#__init__,Method FGPIO.FGPIO.qrd1114_io.qrd1114_analog_io.__init__()=FGPIO.FGPIO.qrd1114_io.qrd1114_analog_io-class.html#__init__,Method FGPIO.FGPIO.qrd1114_io.qrd1114_digital_io.__init__()=FGPIO.FGPIO.qrd1114_io.qrd1114_digital_io-class.html#__init__,Method FGPIO.FGPIO.qrd1114_io.qrd1114_io.__init__()=FGPIO.FGPIO.qrd1114_io.qrd1114_io-class.html#__init__,Method FGPIO.FGPIO.rain_sensor_io.rain_sensor_digital_io.__init__()=FGPIO.FGPIO.rain_sensor_io.rain_sensor_digital_io-class.html#__init__,Method FGPIO.FGPIO.rf_recept_io.rf_recept_io.__init__()=FGPIO.FGPIO.rf_recept_io.rf_recept_io-class.html#__init__,Method FGPIO.FGPIO.rf_recept_io.temperature_rf_recept_io.__init__()=FGPIO.FGPIO.rf_recept_io.temperature_rf_recept_io-class.html#__init__,Method FGPIO.FGPIO.rotary_encoder_io.bt_pseudo_rotatif_io.__init__()=FGPIO.FGPIO.rotary_encoder_io.bt_pseudo_rotatif_io-class.html#__init__,Method FGPIO.FGPIO.rotary_encoder_io.bt_rot_io.__init__()=FGPIO.FGPIO.rotary_encoder_io.bt_rot_io-class.html#__init__,Method FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io.__init__()=FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io-class.html#__init__,Method FGPIO.FGPIO.rpiduino_io.pcduino_io.__init__()=FGPIO.FGPIO.rpiduino_io.pcduino_io-class.html#__init__,Method FGPIO.FGPIO.rpiduino_io.rpi_io.__init__()=FGPIO.FGPIO.rpiduino_io.rpi_io-class.html#__init__,Method FGPIO.FGPIO.rpiduino_io.rpiduino_io.__init__()=FGPIO.FGPIO.rpiduino_io.rpiduino_io-class.html#__init__,Method FGPIO.FGPIO.sen0018_io.sen0018_io.__init__()=FGPIO.FGPIO.sen0018_io.sen0018_io-class.html#__init__,Method FGPIO.FGPIO.servo_motor_io.S1123_servo_motor.__init__()=FGPIO.FGPIO.servo_motor_io.S1123_servo_motor-class.html#__init__,Method FGPIO.FGPIO.servo_motor_io.servo_motor.__init__()=FGPIO.FGPIO.servo_motor_io.servo_motor-class.html#__init__,Method FGPIO.FGPIO.stepper_io.stepper_io.__init__()=FGPIO.FGPIO.stepper_io.stepper_io-class.html#__init__,Method FGPIO.FGPIO.test.vehicule.__init__()=FGPIO.FGPIO.test.vehicule-class.html#__init__,Method FGPIO.FGPIO.test.voiture.__init__()=FGPIO.FGPIO.test.voiture-class.html#__init__"><a title="FGPIO.FGPIO.SCT013_v_io.SCT013_v_io.__init__
+FGPIO.FGPIO.UltraSonic_io.UltraSonic.__init__
+FGPIO.FGPIO.bt_io.bt_io.__init__
+FGPIO.FGPIO.buzz_io.pwm_buzz_io.__init__
+FGPIO.FGPIO.device_io.analog_input_device_io.__init__
+FGPIO.FGPIO.device_io.digital_input_device_io.__init__
+FGPIO.FGPIO.device_io.input_device_io.__init__
+FGPIO.FGPIO.device_io.multi_digital_input_device_io.__init__
+FGPIO.FGPIO.dht11_io.dht11Error.__init__
+FGPIO.FGPIO.dht11_io.dht11_io.__init__
+FGPIO.FGPIO.f_menu.f_cmd.__init__
+FGPIO.FGPIO.f_menu.f_interface.__init__
+FGPIO.FGPIO.f_menu.f_item.__init__
+FGPIO.FGPIO.f_menu.f_menu.__init__
+FGPIO.FGPIO.f_menu.f_menu_dynamic.__init__
+FGPIO.FGPIO.f_spi.hard_spi_client.__init__
+FGPIO.FGPIO.f_spi.soft_spi_client.__init__
+FGPIO.FGPIO.f_spi.spi_client.__init__
+FGPIO.FGPIO.f_thread.f_thread.__init__
+FGPIO.FGPIO.font_io.font_io.__init__
+FGPIO.FGPIO.gaz_sensor_io.analog_gaz_sensor_MQ7_io.__init__
+FGPIO.FGPIO.gaz_sensor_io.digital_gaz_sensor_MQ7_io.__init__
+FGPIO.FGPIO.gaz_sensor_io.gaz_sensor_MQ7.__init__
+FGPIO.FGPIO.hcsr501_io.hcsr501_io.__init__
+FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_analog_io.__init__
+FGPIO.FGPIO.hrlv_max_sonar_io.hrlv_max_sonar_pwo_io.__init__
+FGPIO.FGPIO.i2c_device_io.i2c_device_io.__init__
+FGPIO.FGPIO.i2c_ext_io.i2c_ext_io.__init__
+FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io.__init__
+FGPIO.FGPIO.i2c_io.i2c_bus.__init__
+FGPIO.FGPIO.i2c_io.i2c_device.__init__
+FGPIO.FGPIO.i2c_io.i2c_error.__init__
+FGPIO.FGPIO.ir_detect_io.ir_detect_io.__init__
+FGPIO.FGPIO.lcd_12864.lcd_12864_io.__init__
+FGPIO.FGPIO.lcd_12864_hspi.lcd_12864_hspi_io.__init__
+FGPIO.FGPIO.lcd_i2c_io.lcd_i2c_io.__init__
+FGPIO.FGPIO.lcd_io.lcd_io.__init__
+FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io.__init__
+FGPIO.FGPIO.lum_capteur_io.lum_capteur_io.__init__
+FGPIO.FGPIO.max7219_io.max7219_io.__init__
+FGPIO.FGPIO.mcp23017_io.mcp23017_io.__init__
+FGPIO.FGPIO.mcp300x_hspi_io.mcp3004_hspi_io.__init__
+FGPIO.FGPIO.mcp300x_hspi_io.mcp3008_hspi_io.__init__
+FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_io.__init__
+FGPIO.FGPIO.mcp300x_hspi_io.mcp300x_hspi_pin.__init__
+FGPIO.FGPIO.mcp300x_io.mcp3004_io.__init__
+FGPIO.FGPIO.mcp300x_io.mcp3008_io.__init__
+FGPIO.FGPIO.mcp300x_io.mcp300x_io.__init__
+FGPIO.FGPIO.mcp300x_io.mcp300x_pin.__init__
+FGPIO.FGPIO.mcp3201_hspi_io.mcp3201_hspi_io.__init__
+FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.__init__
+FGPIO.FGPIO.nrf24l01_io.nrf24l01_io.__init__
+FGPIO.FGPIO.on_off_output_device_io.on_off_output_device_io.__init__
+FGPIO.FGPIO.pca9555_io.pca9555_io.__init__
+FGPIO.FGPIO.pin_ext_io.pin_ext_io.__init__
+FGPIO.FGPIO.pin_io.analog_pin_io.__init__
+FGPIO.FGPIO.pin_io.analog_puino_pin_io.__init__
+FGPIO.FGPIO.pin_io.digital_pin_io.__init__
+FGPIO.FGPIO.pin_io.digital_puino_pin_io.__init__
+FGPIO.FGPIO.pin_io.digital_rpi_pin_io.__init__
+FGPIO.FGPIO.pin_io.duino_pin_io.__init__
+FGPIO.FGPIO.pin_io.high_analog_puino_pin_io.__init__
+FGPIO.FGPIO.pin_io.pin_io.__init__
+FGPIO.FGPIO.pin_io.rpiduino_io_error.__init__
+FGPIO.FGPIO.pin_io.small_analog_puino_pin_io.__init__
+FGPIO.FGPIO.qrd1114_io.qrd1114_analog_io.__init__
+FGPIO.FGPIO.qrd1114_io.qrd1114_digital_io.__init__
+FGPIO.FGPIO.qrd1114_io.qrd1114_io.__init__
+FGPIO.FGPIO.rain_sensor_io.rain_sensor_digital_io.__init__
+FGPIO.FGPIO.rf_recept_io.rf_recept_io.__init__
+FGPIO.FGPIO.rf_recept_io.temperature_rf_recept_io.__init__
+FGPIO.FGPIO.rotary_encoder_io.bt_pseudo_rotatif_io.__init__
+FGPIO.FGPIO.rotary_encoder_io.bt_rot_io.__init__
+FGPIO.FGPIO.rotary_encoder_io.bt_rotatif_io.__init__
+FGPIO.FGPIO.rpiduino_io.pcduino_io.__init__
+FGPIO.FGPIO.rpiduino_io.rpi_io.__init__
+FGPIO.FGPIO.rpiduino_io.rpiduino_io.__init__
+FGPIO.FGPIO.sen0018_io.sen0018_io.__init__
+FGPIO.FGPIO.servo_motor_io.S1123_servo_motor.__init__
+FGPIO.FGPIO.servo_motor_io.servo_motor.__init__
+FGPIO.FGPIO.stepper_io.stepper_io.__init__
+FGPIO.FGPIO.test.vehicule.__init__
+FGPIO.FGPIO.test.voiture.__init__" class="py-name" href="#" onclick="return doclink('link-12', '__init__', 'link-12');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">bus</tt><tt class="py-op">,</tt> <tt class="py-name">addr</tt><tt class="py-op">,</tt> <tt class="py-name">pc</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">device</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method FGPIO.FGPIO.i2c_io.i2c_device.write_cmd_arg()=FGPIO.FGPIO.i2c_io.i2c_device-class.html#write_cmd_arg"><a title="FGPIO.FGPIO.i2c_io.i2c_device.write_cmd_arg" class="py-name" href="#" onclick="return doclink('link-13', 'write_cmd_arg', 'link-13');">write_cmd_arg</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.power_mgmt_1" class="py-name" href="#" onclick="return doclink('link-14', 'power_mgmt_1', 'link-1');">power_mgmt_1</a></tt><tt class="py-op">,</tt><tt class="py-number">0</tt><tt class="py-op">)</tt>  <tt class="py-comment">#Wake up the device</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">         </tt>
+<a name="mpu_6050_io._read_word_2c"></a><div id="mpu_6050_io._read_word_2c-def"><a name="L41"></a><tt class="py-lineno"> 41</tt> <a class="py-toggle" href="#" id="mpu_6050_io._read_word_2c-toggle" onclick="return toggle('mpu_6050_io._read_word_2c');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#_read_word_2c">_read_word_2c</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">adr</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="mpu_6050_io._read_word_2c-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="mpu_6050_io._read_word_2c-expanded"><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">                <tt id="link-15" class="py-name" targets="Method FGPIO.FGPIO.device_io.analog_input_device_io.high()=FGPIO.FGPIO.device_io.analog_input_device_io-class.html#high"><a title="FGPIO.FGPIO.device_io.analog_input_device_io.high" class="py-name" href="#" onclick="return doclink('link-15', 'high', 'link-15');">high</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">device</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method FGPIO.FGPIO.i2c_io.i2c_device.read_data()=FGPIO.FGPIO.i2c_io.i2c_device-class.html#read_data"><a title="FGPIO.FGPIO.i2c_io.i2c_device.read_data" class="py-name" href="#" onclick="return doclink('link-16', 'read_data', 'link-16');">read_data</a></tt><tt class="py-op">(</tt><tt class="py-name">adr</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">                <tt id="link-17" class="py-name" targets="Method FGPIO.FGPIO.device_io.analog_input_device_io.low()=FGPIO.FGPIO.device_io.analog_input_device_io-class.html#low"><a title="FGPIO.FGPIO.device_io.analog_input_device_io.low" class="py-name" href="#" onclick="return doclink('link-17', 'low', 'link-17');">low</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">device</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="FGPIO.FGPIO.i2c_io.i2c_device.read_data" class="py-name" href="#" onclick="return doclink('link-18', 'read_data', 'link-16');">read_data</a></tt><tt class="py-op">(</tt><tt class="py-name">adr</tt><tt class="py-op">+</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">                <tt class="py-name">val</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt id="link-19" class="py-name"><a title="FGPIO.FGPIO.device_io.analog_input_device_io.high" class="py-name" href="#" onclick="return doclink('link-19', 'high', 'link-15');">high</a></tt> <tt class="py-op">&lt;&lt;</tt> <tt class="py-number">8</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt id="link-20" class="py-name"><a title="FGPIO.FGPIO.device_io.analog_input_device_io.low" class="py-name" href="#" onclick="return doclink('link-20', 'low', 'link-17');">low</a></tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">val</tt> <tt class="py-op">&gt;=</tt> <tt class="py-number">0x8000</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">                        <tt class="py-keyword">return</tt> <tt class="py-op">-</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-number">65535</tt> <tt class="py-op">-</tt> <tt class="py-name">val</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">                        <tt class="py-keyword">return</tt> <tt class="py-name">val</tt> </tt>
+</div><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">         </tt>
+<a name="mpu_6050_io.get_gyro"></a><div id="mpu_6050_io.get_gyro-def"><a name="L50"></a><tt class="py-lineno"> 50</tt> <a class="py-toggle" href="#" id="mpu_6050_io.get_gyro-toggle" onclick="return toggle('mpu_6050_io.get_gyro');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#get_gyro">get_gyro</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="mpu_6050_io.get_gyro-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="mpu_6050_io.get_gyro-expanded"><a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">                <tt class="py-docstring">'''Renvoie un tuple avec les 3 valeurs du gyroscope</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">                        (gyro_xout, gyro_yout, gyro_zout)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">                <tt class="py-name">gyro_xout</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._read_word_2c()=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#_read_word_2c"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._read_word_2c" class="py-name" href="#" onclick="return doclink('link-21', '_read_word_2c', 'link-21');">_read_word_2c</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_xout_adr" class="py-name" href="#" onclick="return doclink('link-22', 'gyro_xout_adr', 'link-3');">gyro_xout_adr</a></tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_scale" class="py-name" href="#" onclick="return doclink('link-23', 'gyro_scale', 'link-6');">gyro_scale</a></tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                <tt class="py-name">gyro_yout</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._read_word_2c" class="py-name" href="#" onclick="return doclink('link-24', '_read_word_2c', 'link-21');">_read_word_2c</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_yout_adr" class="py-name" href="#" onclick="return doclink('link-25', 'gyro_yout_adr', 'link-4');">gyro_yout_adr</a></tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_scale" class="py-name" href="#" onclick="return doclink('link-26', 'gyro_scale', 'link-6');">gyro_scale</a></tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">                <tt class="py-name">gyro_zout</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._read_word_2c" class="py-name" href="#" onclick="return doclink('link-27', '_read_word_2c', 'link-21');">_read_word_2c</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_zout_adr" class="py-name" href="#" onclick="return doclink('link-28', 'gyro_zout_adr', 'link-5');">gyro_zout_adr</a></tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.gyro_scale" class="py-name" href="#" onclick="return doclink('link-29', 'gyro_scale', 'link-6');">gyro_scale</a></tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">gyro_xout</tt><tt class="py-op">,</tt> <tt class="py-name">gyro_yout</tt><tt class="py-op">,</tt> <tt class="py-name">gyro_zout</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">         </tt>
+<a name="mpu_6050_io.get_accel"></a><div id="mpu_6050_io.get_accel-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="mpu_6050_io.get_accel-toggle" onclick="return toggle('mpu_6050_io.get_accel');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#get_accel">get_accel</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="mpu_6050_io.get_accel-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="mpu_6050_io.get_accel-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">                <tt class="py-docstring">'''Renvoie un tuple avec les 3 valeurs de l'accel&#233;rom&#232;tre</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">                        (accel_xout, accel_yout, accel_zout)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">                <tt class="py-name">accel_xout</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._read_word_2c" class="py-name" href="#" onclick="return doclink('link-30', '_read_word_2c', 'link-21');">_read_word_2c</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_xout_adr" class="py-name" href="#" onclick="return doclink('link-31', 'accel_xout_adr', 'link-7');">accel_xout_adr</a></tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_scale" class="py-name" href="#" onclick="return doclink('link-32', 'accel_scale', 'link-10');">accel_scale</a></tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">                <tt class="py-name">accel_yout</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._read_word_2c" class="py-name" href="#" onclick="return doclink('link-33', '_read_word_2c', 'link-21');">_read_word_2c</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_yout_adr" class="py-name" href="#" onclick="return doclink('link-34', 'accel_yout_adr', 'link-8');">accel_yout_adr</a></tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_scale" class="py-name" href="#" onclick="return doclink('link-35', 'accel_scale', 'link-10');">accel_scale</a></tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">                <tt class="py-name">accel_zout</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._read_word_2c" class="py-name" href="#" onclick="return doclink('link-36', '_read_word_2c', 'link-21');">_read_word_2c</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_zout_adr" class="py-name" href="#" onclick="return doclink('link-37', 'accel_zout_adr', 'link-9');">accel_zout_adr</a></tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.accel_scale" class="py-name" href="#" onclick="return doclink('link-38', 'accel_scale', 'link-10');">accel_scale</a></tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">accel_xout</tt><tt class="py-op">,</tt> <tt class="py-name">accel_yout</tt><tt class="py-op">,</tt> <tt class="py-name">accel_zout</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">         </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-decorator">@</tt><tt class="py-decorator">staticmethod</tt> </tt>
+<a name="mpu_6050_io._dist"></a><div id="mpu_6050_io._dist-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="mpu_6050_io._dist-toggle" onclick="return toggle('mpu_6050_io._dist');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#_dist">_dist</a><tt class="py-op">(</tt><tt class="py-param">a</tt><tt class="py-op">,</tt><tt class="py-param">b</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="mpu_6050_io._dist-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="mpu_6050_io._dist-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">sqrt</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">*</tt><tt class="py-name">a</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-op">(</tt><tt class="py-name">b</tt><tt class="py-op">*</tt><tt class="py-name">b</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">         </tt>
+<a name="mpu_6050_io.get_xy_rotation"></a><div id="mpu_6050_io.get_xy_rotation-def"><a name="L72"></a><tt class="py-lineno"> 72</tt> <a class="py-toggle" href="#" id="mpu_6050_io.get_xy_rotation-toggle" onclick="return toggle('mpu_6050_io.get_xy_rotation');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#get_xy_rotation">get_xy_rotation</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="mpu_6050_io.get_xy_rotation-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="mpu_6050_io.get_xy_rotation-expanded"><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">                <tt class="py-docstring">'''Renvoie les composantes x,y de la position angulaire</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">                <tt class="py-op">(</tt><tt class="py-name">accel_x</tt><tt class="py-op">,</tt> <tt class="py-name">accel_y</tt><tt class="py-op">,</tt> <tt class="py-name">accel_z</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Method FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.get_accel()=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#get_accel"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.get_accel" class="py-name" href="#" onclick="return doclink('link-39', 'get_accel', 'link-39');">get_accel</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">                <tt class="py-name">angle_x</tt> <tt class="py-op">=</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">atan2</tt><tt class="py-op">(</tt><tt class="py-name">accel_y</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Static Method FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._dist()=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#_dist"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._dist" class="py-name" href="#" onclick="return doclink('link-40', '_dist', 'link-40');">_dist</a></tt><tt class="py-op">(</tt><tt class="py-name">accel_x</tt><tt class="py-op">,</tt> <tt class="py-name">accel_z</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">                <tt class="py-name">angle_y</tt> <tt class="py-op">=</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">atan2</tt><tt class="py-op">(</tt><tt class="py-name">accel_x</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io._dist" class="py-name" href="#" onclick="return doclink('link-41', '_dist', 'link-40');">_dist</a></tt><tt class="py-op">(</tt><tt class="py-name">accel_y</tt><tt class="py-op">,</tt> <tt class="py-name">accel_z</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">degrees</tt><tt class="py-op">(</tt><tt class="py-name">angle_x</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">math</tt><tt class="py-op">.</tt><tt class="py-name">degrees</tt><tt class="py-op">(</tt><tt class="py-name">angle_y</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">         </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-comment">#########################################################</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-comment">#                                                       #</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-comment">#               EXEMPLE                                         #</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-comment">#                                                       #</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-comment">#########################################################</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">'__main__'</tt><tt class="py-op">:</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-keyword">from</tt> <tt id="link-42" class="py-name" targets="Module FGPIO.FGPIO.rpiduino_io=FGPIO.FGPIO.rpiduino_io-module.html,Class FGPIO.FGPIO.rpiduino_io.rpiduino_io=FGPIO.FGPIO.rpiduino_io.rpiduino_io-class.html"><a title="FGPIO.FGPIO.rpiduino_io
+FGPIO.FGPIO.rpiduino_io.rpiduino_io" class="py-name" href="#" onclick="return doclink('link-42', 'rpiduino_io', 'link-42');">rpiduino_io</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-name">pc</tt> <tt class="py-op">=</tt> <tt id="link-43" class="py-name"><a title="FGPIO.FGPIO.rpiduino_io
+FGPIO.FGPIO.rpiduino_io.rpiduino_io" class="py-name" href="#" onclick="return doclink('link-43', 'rpiduino_io', 'link-42');">rpiduino_io</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">mpu6050</tt> <tt class="py-op">=</tt> <tt id="link-44" class="py-name" targets="Module FGPIO.FGPIO.mpu_6050_io=FGPIO.FGPIO.mpu_6050_io-module.html,Class FGPIO.FGPIO.mpu_6050_io.mpu_6050_io=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html"><a title="FGPIO.FGPIO.mpu_6050_io
+FGPIO.FGPIO.mpu_6050_io.mpu_6050_io" class="py-name" href="#" onclick="return doclink('link-44', 'mpu_6050_io', 'link-44');">mpu_6050_io</a></tt><tt class="py-op">(</tt><tt class="py-name">pc</tt><tt class="py-op">=</tt><tt class="py-name">pc</tt><tt class="py-op">)</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                <tt class="py-op">(</tt><tt class="py-name">gyro_x</tt><tt class="py-op">,</tt> <tt class="py-name">gyro_y</tt><tt class="py-op">,</tt> <tt class="py-name">gyro_z</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">mpu6050</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name" targets="Method FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.get_gyro()=FGPIO.FGPIO.mpu_6050_io.mpu_6050_io-class.html#get_gyro"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.get_gyro" class="py-name" href="#" onclick="return doclink('link-45', 'get_gyro', 'link-45');">get_gyro</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">                <tt class="py-op">(</tt><tt class="py-name">accel_x</tt><tt class="py-op">,</tt> <tt class="py-name">accel_y</tt><tt class="py-op">,</tt> <tt class="py-name">accel_z</tt><tt class="py-op">)</tt> <tt class="py-op">=</tt> <tt class="py-name">mpu6050</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="FGPIO.FGPIO.mpu_6050_io.mpu_6050_io.get_accel" class="py-name" href="#" onclick="return doclink('link-46', 'get_accel', 'link-39');">get_accel</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">'Gyroscope :'</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">'     : x=%s'</tt> <tt class="py-op">%</tt> <tt class="py-name">gyro_x</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">'     : y=%s'</tt> <tt class="py-op">%</tt> <tt class="py-name">gyro_y</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">'     : z=%s'</tt> <tt class="py-op">%</tt> <tt class="py-name">gyro_z</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">'Accelerometre :'</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">'     : x=%s'</tt> <tt class="py-op">%</tt> <tt class="py-name">accel_x</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">'     : y=%s'</tt> <tt class="py-op">%</tt> <tt class="py-name">accel_y</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt> <tt class="py-string">'     : z=%s'</tt> <tt class="py-op">%</tt> <tt class="py-name">accel_z</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">                <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">sleep</tt><tt class="py-op">(</tt><tt class="py-number">0.1</tt><tt class="py-op">)</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Sun Apr  1 08:22:47 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

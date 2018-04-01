@@ -42,8 +42,8 @@ class mcp300x_hspi_io(device_io, hard_spi_client):
 	'''
 	def __init__(self, bus, device, vref = 3.3):
 		'''Initialisation
-			bus		:	spi bus
-			device	:	no spi client
+			bus		:	spi bus (0|1)
+			device	:	no spi client (0 : CS = CE0 = GPIO08 | 1 : CS = CE1 = GPIO07)
 			Vref	:	ref voltage
 		'''
 		hard_spi_client.__init__(self, bus, device)
@@ -55,7 +55,7 @@ class mcp3004_hspi_io(mcp300x_hspi_io):
 	'''
 	def __init__(self, bus=0, device=0, vref = 3.3):
 		'''Initialisation
-			bus		:	spi bus
+			bus		:	spi bus (0|1)
 			device	:	no spi client
 			Vref			:	ref voltage
 		'''

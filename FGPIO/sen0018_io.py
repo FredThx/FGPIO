@@ -1,26 +1,26 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*
 
-"""
- Un capteur de mouvements
+'''
+Un capteur de mouvements
 	SEN0018 de chez DF ROBOT
 	
 	Branchements/réglages
-		- GRN	sur	0V
-		- Vcc	sur 3.3V
-		- sortie sur un GPIO
-		
-		jumper sur H
-		potentiomètre à 0 (sinon, ça merde)
+	- GRN	sur	0V
+	- Vcc	sur 3.3V
+	- sortie sur un GPIO
+	
+	jumper sur H
+	potentiomètre à 0 (sinon, ça merde)
 	
 	Remarque : je ne suis pas sur que mon capteur fonctionne bien!
 				et trace d'oxydation sur des soudures
 	
- AUTEUR : FredThx
+AUTEUR : FredThx
 
- Projet : rpiduino_io
+Projet : rpiduino_io
 
-"""
+'''
 import time
 from device_io import *
 from pin_io import *

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>FGPIO.FGPIO.i2c_device_io</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;FGPIO ::
+        <a href="FGPIO.FGPIO-module.html">Package&nbsp;FGPIO</a> ::
+        Module&nbsp;i2c_device_io
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="FGPIO.FGPIO.i2c_device_io-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="FGPIO.FGPIO.i2c_device_io-module.html">Module FGPIO.FGPIO.i2c_device_io</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/env python</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding:utf-8 -*</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment">####################################</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-docstring">i2c device</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-docstring">classe m&#232;re pour composant i2c</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-docstring">        ex :    lcd_i2c_io</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-docstring">                        mcp23017_io</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-docstring">                        pca9555_io</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-docstring">                        </tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-docstring"> AUTEUR : FredThx</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-docstring"> Projet : rpiduino_io</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment">#################################### </tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">functools</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">time</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module FGPIO.FGPIO.rpiduino_io=FGPIO.FGPIO.rpiduino_io-module.html,Class FGPIO.FGPIO.rpiduino_io.rpiduino_io=FGPIO.FGPIO.rpiduino_io.rpiduino_io-class.html"><a title="FGPIO.FGPIO.rpiduino_io
+FGPIO.FGPIO.rpiduino_io.rpiduino_io" class="py-name" href="#" onclick="return doclink('link-0', 'rpiduino_io', 'link-0');">rpiduino_io</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name" targets="Module FGPIO.FGPIO.i2c_io=FGPIO.FGPIO.i2c_io-module.html"><a title="FGPIO.FGPIO.i2c_io" class="py-name" href="#" onclick="return doclink('link-1', 'i2c_io', 'link-1');">i2c_io</a></tt> <tt class="py-keyword">import</tt> <tt class="py-op">*</tt> </tt>
+<a name="i2c_device_io"></a><div id="i2c_device_io-def"><a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt> <a class="py-toggle" href="#" id="i2c_device_io-toggle" onclick="return toggle('i2c_device_io');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html">i2c_device_io</a><tt class="py-op">(</tt><tt class="py-base-class">device_io</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="i2c_device_io-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="i2c_device_io-expanded"><a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">        <tt class="py-docstring">""" Composant i2c</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">        <tt id="link-2" class="py-name" targets="Variable FGPIO.FGPIO.i2c_device_io.i2c_device_io.timeRetry=FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#timeRetry"><a title="FGPIO.FGPIO.i2c_device_io.i2c_device_io.timeRetry" class="py-name" href="#" onclick="return doclink('link-2', 'timeRetry', 'link-2');">timeRetry</a></tt> <tt class="py-op">=</tt> <tt class="py-number">3</tt>   <tt class="py-comment">#Temps en seconde pour r&#233;esssayer la connection i2c si rompue</tt> </tt>
+<a name="i2c_device_io.__init__"></a><div id="i2c_device_io.__init__-def"><a name="L31"></a><tt class="py-lineno">31</tt> <a class="py-toggle" href="#" id="i2c_device_io.__init__-toggle" onclick="return toggle('i2c_device_io.__init__');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">bus</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">addr</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">pc</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="i2c_device_io.__init__-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="i2c_device_io.__init__-expanded"><a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">                <tt class="py-docstring">"""Initialisation</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-docstring">                        bus : n&#176; du bus (defaut 1 pour RPi et 2 pour pcduino (mais il faut pr&#233;ciser pc))</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-docstring">                        addr = adresse i2c du module ( pour detecter : i2cdetect -y no_bus)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-docstring">                        pc : rpiduino_io</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">bus</tt><tt class="py-op">==</tt><tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">pc</tt><tt class="py-op">==</tt><tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">                                <tt class="py-keyword">raise</tt> <tt id="link-3" class="py-name" targets="Class FGPIO.FGPIO.pin_io.rpiduino_io_error=FGPIO.FGPIO.pin_io.rpiduino_io_error-class.html"><a title="FGPIO.FGPIO.pin_io.rpiduino_io_error" class="py-name" href="#" onclick="return doclink('link-3', 'rpiduino_io_error', 'link-3');">rpiduino_io_error</a></tt><tt class="py-op">(</tt><tt class="py-string">'i2c_device_io Error : bus ou pc requis.'</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">                        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">                                <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">pc</tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name" targets="Class FGPIO.FGPIO.rpiduino_io.rpi_io=FGPIO.FGPIO.rpiduino_io.rpi_io-class.html"><a title="FGPIO.FGPIO.rpiduino_io.rpi_io" class="py-name" href="#" onclick="return doclink('link-4', 'rpi_io', 'link-4');">rpi_io</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">                                        <tt class="py-keyword">if</tt> <tt class="py-name">pc</tt><tt class="py-op">.</tt><tt class="py-name">revision</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">                                                <tt class="py-name">bus</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> <tt class="py-comment"># Si RPi rev 1, le bus est 0</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">                                        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">                                                <tt class="py-name">bus</tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> <tt class="py-comment"># Si RPi rev 2 et +, le bus est le le 1</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">                                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">                                        <tt class="py-name">bus</tt> <tt class="py-op">=</tt> <tt class="py-number">2</tt> <tt class="py-comment"># Si pcduino, le bus est le 2</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">i2c_time_error</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt>       <tt class="py-comment"># heure de la derni&#232;re erreur</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Class FGPIO.FGPIO.i2c_io.i2c_error=FGPIO.FGPIO.i2c_io.i2c_error-class.html"><a title="FGPIO.FGPIO.i2c_io.i2c_error" class="py-name" href="#" onclick="return doclink('link-5', 'i2c_error', 'link-5');">i2c_error</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addr0</tt> <tt class="py-op">=</tt> <tt class="py-name">addr</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt> <tt class="py-op">=</tt> <tt class="py-name">bus</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">device</tt> <tt class="py-op">=</tt> <tt id="link-6" class="py-name" targets="Class FGPIO.FGPIO.i2c_io.i2c_device=FGPIO.FGPIO.i2c_io.i2c_device-class.html"><a title="FGPIO.FGPIO.i2c_io.i2c_device" class="py-name" href="#" onclick="return doclink('link-6', 'i2c_device', 'link-6');">i2c_device</a></tt><tt class="py-op">(</tt><tt class="py-name">addr</tt><tt class="py-op">,</tt> <tt class="py-name">bus</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">         </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">        <tt class="py-decorator">@</tt><tt class="py-decorator">staticmethod</tt> </tt>
+<a name="i2c_device_io.unError"></a><div id="i2c_device_io.unError-def"><a name="L55"></a><tt class="py-lineno">55</tt> <a class="py-toggle" href="#" id="i2c_device_io.unError-toggle" onclick="return toggle('i2c_device_io.unError');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#unError">unError</a><tt class="py-op">(</tt><tt class="py-param">fonction</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="i2c_device_io.unError-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="i2c_device_io.unError-expanded"><a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">                <tt class="py-docstring">'''Decorateur pour eviter les erreurs</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"><tt class="py-docstring">                Si erreur dans une des methodes, on essaye de reconnecter le device 1 fois</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line"><tt class="py-docstring">                Si ca ne passe toujours pas, on abandonne'''</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">                <tt class="py-decorator">@</tt><tt class="py-decorator">functools</tt><tt class="py-op">.</tt><tt class="py-name">wraps</tt><tt class="py-op">(</tt><tt class="py-name">fonction</tt><tt class="py-op">)</tt> <tt class="py-comment"># ca sert pour avoir un help(lcd_i2c_io) utile</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">                <tt class="py-keyword">def</tt> <tt class="py-def-name">lcd_i2c_UnErrorFonction</tt><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="FGPIO.FGPIO.i2c_io.i2c_error" class="py-name" href="#" onclick="return doclink('link-7', 'i2c_error', 'link-5');">i2c_error</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method FGPIO.FGPIO.i2c_device_io.i2c_device_io.i2c_update()=FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#i2c_update"><a title="FGPIO.FGPIO.i2c_device_io.i2c_device_io.i2c_update" class="py-name" href="#" onclick="return doclink('link-8', 'i2c_update', 'link-8');">i2c_update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">                        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">                                <tt class="py-keyword">return</tt> <tt class="py-name">fonction</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt><tt class="py-op">*</tt><tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">                        <tt class="py-keyword">except</tt> <tt class="py-name">IOError</tt><tt class="py-op">:</tt>  </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="FGPIO.FGPIO.i2c_device_io.i2c_device_io.i2c_update" class="py-name" href="#" onclick="return doclink('link-9', 'i2c_update', 'link-8');">i2c_update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">                                <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">                                        <tt class="py-keyword">return</tt> <tt class="py-name">fonction</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt><tt class="py-op">*</tt><tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">                                <tt class="py-keyword">except</tt> <tt class="py-name">IOError</tt><tt class="py-op">:</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">                                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="FGPIO.FGPIO.i2c_io.i2c_error" class="py-name" href="#" onclick="return doclink('link-10', 'i2c_error', 'link-5');">i2c_error</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">lcd_i2c_UnErrorFonction</tt>   </tt>
+</div><a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">         </tt>
+<a name="i2c_device_io.i2c_update"></a><div id="i2c_device_io.i2c_update-def"><a name="L73"></a><tt class="py-lineno">73</tt> <a class="py-toggle" href="#" id="i2c_device_io.i2c_update-toggle" onclick="return toggle('i2c_device_io.i2c_update');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#i2c_update">i2c_update</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="i2c_device_io.i2c_update-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="i2c_device_io.i2c_update-expanded"><a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">                <tt class="py-docstring">'''Fonction qui se lance quand la connection au device plante</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">&gt;</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">i2c_time_error</tt> <tt class="py-op">+</tt> <tt id="link-11" class="py-name" targets="Module FGPIO.FGPIO.i2c_device_io=FGPIO.FGPIO.i2c_device_io-module.html,Class FGPIO.FGPIO.i2c_device_io.i2c_device_io=FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html"><a title="FGPIO.FGPIO.i2c_device_io
+FGPIO.FGPIO.i2c_device_io.i2c_device_io" class="py-name" href="#" onclick="return doclink('link-11', 'i2c_device_io', 'link-11');">i2c_device_io</a></tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="FGPIO.FGPIO.i2c_device_io.i2c_device_io.timeRetry" class="py-name" href="#" onclick="return doclink('link-12', 'timeRetry', 'link-2');">timeRetry</a></tt><tt class="py-op">:</tt>   <tt class="py-comment">#On ne reconnecte pas si dernier essai trop rapproch&#233;</tt> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">i2c_time_error</tt> <tt class="py-op">=</tt> <tt class="py-name">time</tt><tt class="py-op">.</tt><tt class="py-name">time</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">                        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method FGPIO.FGPIO.i2c_device_io.i2c_device_io.update()=FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#update,Method FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io.update()=FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io-class.html#update,Method FGPIO.FGPIO.lcd_i2c_io.lcd_i2c_io.update()=FGPIO.FGPIO.lcd_i2c_io.lcd_i2c_io-class.html#update"><a title="FGPIO.FGPIO.i2c_device_io.i2c_device_io.update
+FGPIO.FGPIO.i2c_grove_gesture_io.i2c_grove_gesture_io.update
+FGPIO.FGPIO.lcd_i2c_io.lcd_i2c_io.update" class="py-name" href="#" onclick="return doclink('link-13', 'update', 'link-13');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="FGPIO.FGPIO.i2c_io.i2c_error" class="py-name" href="#" onclick="return doclink('link-14', 'i2c_error', 'link-5');">i2c_error</a></tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">                        <tt class="py-keyword">except</tt> <tt class="py-name">IOError</tt><tt class="py-op">:</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="FGPIO.FGPIO.i2c_io.i2c_error" class="py-name" href="#" onclick="return doclink('link-15', 'i2c_error', 'link-5');">i2c_error</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line">                                 </tt>
+<a name="i2c_device_io.update"></a><div id="i2c_device_io.update-def"><a name="L84"></a><tt class="py-lineno">84</tt> <a class="py-toggle" href="#" id="i2c_device_io.update-toggle" onclick="return toggle('i2c_device_io.update');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="FGPIO.FGPIO.i2c_device_io.i2c_device_io-class.html#update">update</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="i2c_device_io.update-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="i2c_device_io.update-expanded"><a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line">                <tt class="py-docstring">''' Fonction de mise &#224; jour de la connection</tt> </tt>
+<a name="L86"></a><tt class="py-lineno">86</tt>  <tt class="py-line"><tt class="py-docstring">                                peut &#234;tre surcharg&#233;e par h&#233;ritage</tt> </tt>
+<a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line"><tt class="py-docstring">                '''</tt> </tt>
+<a name="L88"></a><tt class="py-lineno">88</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">device</tt> <tt class="py-op">=</tt> <tt id="link-16" class="py-name"><a title="FGPIO.FGPIO.i2c_io.i2c_device" class="py-name" href="#" onclick="return doclink('link-16', 'i2c_device', 'link-6');">i2c_device</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">addr0</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">bus</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L89"></a><tt class="py-lineno">89</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Sun Apr  1 08:22:47 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

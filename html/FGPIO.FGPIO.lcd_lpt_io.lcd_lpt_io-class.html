@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;FGPIO ::
+        <a href="FGPIO.FGPIO-module.html">Package&nbsp;FGPIO</a> ::
+        <a href="FGPIO.FGPIO.lcd_lpt_io-module.html">Module&nbsp;lcd_lpt_io</a> ::
+        Class&nbsp;lcd_lpt_io
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class lcd_lpt_io</h1><p class="nomargin-top"><span class="codelink"><a href="FGPIO.FGPIO.lcd_lpt_io-pysrc.html#lcd_lpt_io">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="class_hierarchy_for_lcd_lpt_io" name="class_hierarchy_for_lcd_lpt_io">
+<area shape="rect" id="node1" href="FGPIO.FGPIO.device_io.device_io-class.html" title="device_io.device_io" alt="" coords="5,5,149,31"/>
+<area shape="rect" id="node2" href="FGPIO.FGPIO.lcd_io.lcd_io-class.html" title="lcd_io.lcd_io" alt="" coords="28,60,127,85"/>
+<area shape="rect" id="node3" href="FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io-class.html" title="lcd_lpt_io" alt="" coords="37,115,118,140"/>
+</map>
+  <img src="class_hierarchy_for_lcd_lpt_io.gif" alt='' usemap="#class_hierarchy_for_lcd_lpt_io" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<pre class="literalblock">
+Ecran LCD HD44780 branch&#233; en parall&#232;le
+Branchement :
+                1 : GND
+                2 : 5V
+                3 : Contrast (0-5V) (mettre pin centre potentiometre , les deux autres pins sur 0V et 5V)
+                4 : RS (Register Select)        (pin_rs)
+                5 : R/W (Read Write)       - mettre sur 0V
+                6 : Enable or Strobe            (pin_e)
+                7 : Data Bit 0             - NOT USED
+                8 : Data Bit 1             - NOT USED
+                9 : Data Bit 2             - NOT USED
+                10: Data Bit 3             - NOT USED
+                11: Data Bit 4                          (pin_d4)
+                12: Data Bit 5                          (pin_d5)
+                13: Data Bit 6                          (pin_d6)
+                14: Data Bit 7                          (pin_d7)
+                15: LCD Backlight +5V** ou      (pin_bl) si on veut piloter le retro &#233;clairage
+                16: LCD Backlight GND
+
+</pre>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pin_rs</span>,
+        <span class="summary-sig-arg">pin_e</span>,
+        <span class="summary-sig-arg">pin_d4</span>,
+        <span class="summary-sig-arg">pin_d5</span>,
+        <span class="summary-sig-arg">pin_d6</span>,
+        <span class="summary-sig-arg">pin_d7</span>,
+        <span class="summary-sig-arg">pin_bl</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">width</span>=<span class="summary-sig-default">16</span>,
+        <span class="summary-sig-arg">lines</span>=<span class="summary-sig-default">2</span>,
+        <span class="summary-sig-arg">auto_scroll</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Initialisation...</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_lpt_io-pysrc.html#lcd_lpt_io.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="FGPIO.FGPIO.lcd_lpt_io.lcd_lpt_io-class.html#send" class="summary-sig-name">send</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bits</span>,
+        <span class="summary-sig-arg">mode</span>,
+        <span class="summary-sig-arg">delay</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Envoie un octet ...</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_lpt_io-pysrc.html#lcd_lpt_io.send">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="send4bits"></a><span class="summary-sig-name">send4bits</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bits</span>)</span><br />
+      Envoie 4 bits au LCD</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.lcd_lpt_io-pysrc.html#lcd_lpt_io.send4bits">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html">lcd_io.lcd_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#__del__">__del__</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#add_scroll_thread">add_scroll_thread</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#backlight">backlight</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#clear">clear</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#message">message</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#scroll">scroll</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#stop">stop</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#string">string</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html">lcd_io.lcd_io</a></code></b> (private):
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#_message" onclick="show_private();">_message</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.device_io.device_io-class.html">device_io.device_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.device_io.device_io-class.html#read">read</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html">lcd_io.lcd_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#adr_ligne">adr_ligne</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_1line">arg_1line</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_2line">arg_2line</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_4bit_mode">arg_4bit_mode</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_5x10_dots">arg_5x10_dots</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_5x8_dots">arg_5x8_dots</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_8bit_mode">arg_8bit_mode</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_backlight_off">arg_backlight_off</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_backlight_on">arg_backlight_on</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_blink_off">arg_blink_off</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_blink_on">arg_blink_on</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_cursor_move">arg_cursor_move</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_cursor_off">arg_cursor_off</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_cursor_on">arg_cursor_on</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_display_move">arg_display_move</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_display_off">arg_display_off</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_display_on">arg_display_on</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_entry_left">arg_entry_left</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_entry_right">arg_entry_right</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_entry_shift_decrement">arg_entry_shift_decrement</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_entry_shift_increment">arg_entry_shift_increment</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_move_left">arg_move_left</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#arg_move_right">arg_move_right</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#c_delay">c_delay</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#chr">chr</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd">cmd</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_clear_display">cmd_clear_display</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_cursor_shift">cmd_cursor_shift</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_display_control">cmd_display_control</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_entry_model_set">cmd_entry_model_set</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_function_set">cmd_function_set</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_return_home">cmd_return_home</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_set_cgramaddr">cmd_set_cgramaddr</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#cmd_set_ddramaddr">cmd_set_ddramaddr</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#e_delay">e_delay</a></code>,
+      <code><a href="FGPIO.FGPIO.lcd_io.lcd_io-class.html#e_pulse">e_pulse</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">pin_rs</span>,
+        <span class="sig-arg">pin_e</span>,
+        <span class="sig-arg">pin_d4</span>,
+        <span class="sig-arg">pin_d5</span>,
+        <span class="sig-arg">pin_d6</span>,
+        <span class="sig-arg">pin_d7</span>,
+        <span class="sig-arg">pin_bl</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">width</span>=<span class="sig-default">16</span>,
+        <span class="sig-arg">lines</span>=<span class="sig-default">2</span>,
+        <span class="sig-arg">auto_scroll</span>=<span class="sig-default">False</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="FGPIO.FGPIO.lcd_lpt_io-pysrc.html#lcd_lpt_io.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Initialisation
+pin_rs : pin de la broche 4 du LCD
+pin_e  : pin de la broche 6 du LCD
+pin_d4 : pin de la broche 11 du LCD
+pin_d5 : pin de la broche 12 du LCD
+pin_d6 : pin de la broche 13 du LCD
+pin_d7 : pin de la broche 14 du LCD
+pin_bl : pin de la broche 15 du LCD (backlight)
+width  : max caract&#232;res par ligne
+lines  : nb de lignes
+- auto_scroll   :       True for auto_scroll by thread (default = False)
+
+</pre>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="send"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">send</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">bits</span>,
+        <span class="sig-arg">mode</span>,
+        <span class="sig-arg">delay</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="FGPIO.FGPIO.lcd_lpt_io-pysrc.html#lcd_lpt_io.send">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Envoie un octet 
+mode :  True pour les caractere
+                False pour une commande
+delay : temps d'attente en fin de send (pour clear())
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Sun Apr  1 08:22:47 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

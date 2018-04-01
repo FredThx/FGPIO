@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*
 
-####################################
 '''
 # Buzzer branchée sur un rpi_duino_io
 # 
@@ -13,7 +12,6 @@
 # Projet : rpiduino_io
 #
 '''
-#################################### 
 
 from on_off_output_device_io import *
 

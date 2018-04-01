@@ -4,18 +4,15 @@
 
 
 '''
- Gestion des nano ordi pcduino et RPi
+Gestion des nano ordi pcduino et RPi
 	
 		pour utilisation de pleins de composants
 
- AUTEUR : FredThx
+AUTEUR : FredThx
 
- Projet : rpiduino_io
+Projet : rpiduino_io
 
 '''
-
-
-
 
 
 from pin_io import *
@@ -39,16 +36,17 @@ LOW = 0
 
 
 class rpiduino_io:
-	""" Classe reprensentant soit
-			- pcduino_io	:	Une carte pcduino
-			- rpi_io		:	Une carte raspberry Pi
-	"""
+	'''
+	Classe reprensentant soit
+		pcduino_io	:	Une carte pcduino
+		rpi_io		:	Une carte raspberry Pi
+	'''
 	def __init__(self):
-		""" Initialisation du mini pc et de ces entrees-sortie
-			Detecte s'il faut créer un pcduino_io
-									ou un rpi_io
-			Selon l'existance de la lib. RPi.GPIO
-		"""
+		'''
+		Initialisation du mini pc et de ces entrees-sortie
+		Detecte s'il faut créer un pcduino_io ou un rpi_io
+		Selon l'existance de la lib. RPi.GPIO
+		'''
 		try:
 			RPi.GPIO # Test si la lib. GPIO est chargée (ie c'est un rpi)
 			classe = rpi_io
@@ -64,9 +62,9 @@ class rpiduino_io:
 			pcduino_io.__init__(self)
 	
 	def readall(self):
-		"""Affiche l'état de toutes les pins
+		'''Affiche l'état de toutes les pins
 			et renvoie un dico avec les valeurs de chaques pins
-		"""
+		'''
 		sortie = {}
 		for k in self.pin:
 			print self.pin[k]
@@ -74,15 +72,15 @@ class rpiduino_io:
 		return sortie
 	
 	def physical_pin(self, no_pin):
-		""" Renvoie la pin_io nommés par son n° logique
-		"""
+		''' Renvoie la pin_io nommés par son n° logique
+		'''
 		for pin in self.pin.values():
 			if pin.physical_id==no_pin:
 				return pin
 	
 	def physical_pins(self, *no_pins):
-		""" Renvoie la liste des pins nommés par les n° physique
-		"""
+		''' Renvoie la liste des pins nommés par les n° physique
+		'''
 		pins = []
 		for no_pin in no_pins:
 			for pin in self.pin.values():
@@ -91,15 +89,15 @@ class rpiduino_io:
 		return pins
 	
 	def logical_pin(self, no_pin):
-		""" Renvoie la pin_io nommés par son n° logique
-		"""
+		''' Renvoie la pin_io nommés par son n° logique
+		'''
 		for pin in self.pin.values():
 			if pin.logical_id==no_pin:
 				return pin
 	
 	def logical_pins(self, *no_pins):
-		""" Renvoie la liste des pins nommés par les n° logique
-		"""
+		''' Renvoie la liste des pins nommés par les n° logique
+		'''
 		pins = []
 		for no_pin in no_pins:
 			for pin in self.pin.values():
@@ -115,15 +113,15 @@ class rpiduino_io:
 		process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)	
 
 class pcduino_io(rpiduino_io):
-	""" Classe pcduino
-	"""
+	''' Classe pcduino
+	'''
 	def __init__(self):
-		""" Initialisation d'un pcduino
-			14 pins numériques
+		''' Initialisation d'un pcduino
+			14 pins numeriques
 			6 pins analogique dont
 				2 sur 6 bits
 				4 sur 12 bits
-		"""
+		'''
 		self.modele = 'Pcduino'
 		self.revision = None
 		self.pin = {}
@@ -138,11 +136,11 @@ class pcduino_io(rpiduino_io):
 
 
 class rpi_io(rpiduino_io):
-	""" Classe Raspberry PI
-	"""
+	''' Classe Raspberry PI
+	'''
 	def __init__(self):
-		""" Initialisation d'un RPI
-		"""
+		''' Initialisation d'un RPI
+		'''
 		RPi.GPIO.setmode(RPi.GPIO.BCM)		#	Rpi.GPIO.BOARD ne fonctionne pas avec Rpi2 (malgré RPi.GPIO 0.5.11
 		RPi.GPIO.setwarnings(False)
 		self.modele = 'RPi'
@@ -191,15 +189,15 @@ class rpi_io(rpiduino_io):
 		
 	
 	def bcm_pin(self, no_pin):
-		""" Renvoie la pin_io nommés par son n° BMC
-		"""
+		''' Renvoie la pin_io nommés par son n° BMC
+		'''
 		for pin in self.pin.values():
 			if pin.bcm_id==no_pin:
 				return pin
 	
 	def bcm_pins(self, *no_pins):
-		""" Renvoie la liste des pins nommés par les n° BCM
-		"""
+		''' Renvoie la liste des pins nommés par les n° BCM
+		'''
 		pins = []
 		for no_pin in no_pins:
 			for pin in self.pin.values():

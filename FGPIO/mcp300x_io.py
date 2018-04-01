@@ -35,8 +35,9 @@
 #	-	se poser la question de la fréquence (ici, pas de time.sleep) : fréquence non maitrisée
 
 from rpiduino_io import *
+from f_spi import *
 
-class mcp300x_io(device_io):
+class mcp300x_io(device_io, soft_spi_client):
 	'''Classe pour convertisseur analogique/numérique MCP3004/MCP3008
 	'''
 	def __init__(self, pin_clock, pin_miso, pin_mosi, pin_cs, vref = 3.3):
@@ -47,15 +48,7 @@ class mcp300x_io(device_io):
 			pin_cs			:	a digital_pin_io
 			Vref			:	ref voltage
 		'''
-		self.pin_clock = pin_clock
-		self.pin_mosi = pin_mosi
-		self.pin_miso = pin_miso
-		self.pin_cs = pin_cs
-		self.pin_clock.setmode(OUTPUT)
-		self.pin_mosi.setmode(OUTPUT)
-		self.pin_miso.setmode(INPUT)
-		self.pin_cs.setmode(OUTPUT)
-		self.pin = {}
+		soft_spi_client.__init__(self,pin_clock, pin_miso, pin_mosi, pin_cs)
 		self.vref = vref
 
 class mcp3004_io(mcp300x_io):
@@ -104,28 +97,29 @@ class mcp300x_pin(analog_pin_io):
 	def get(self):
 		''' get the raw value of the input chanel
 		'''
-		self.ship.pin_cs.set(HIGH)
-		self.ship.pin_clock.set(LOW)
-		self.ship.pin_cs.set(LOW)
+		# self.ship.pin_cs.set(HIGH)
+		# self.ship.pin_clock.set(LOW)
+		# self.ship.pin_cs.set(LOW)
 		command = self.chanel | 0x18
 		command <<= 3	#only 5 bits
-		for i in range(5):
-			if (command & 0x80):
-				self.ship.pin_mosi.set(HIGH)
-			else:
-				self.ship.pin_mosi.set(LOW)
-			command <<= 1
-			self.ship.pin_clock.set(HIGH)
-			self.ship.pin_clock.set(LOW)
-		result = 0
-		for i in range(12):
-			self.ship.pin_clock.set(HIGH)
-			self.ship.pin_clock.set(LOW)
-			result <<=1
-			if (self.ship.pin_miso.get()):
-				result |= 0x1
-		self.ship.pin_cs.set(HIGH)
-		return result / 2
+		return self.ship.read(command) / 2
+		# for i in range(5):
+			# if (command & 0x80):
+				# self.ship.pin_mosi.set(HIGH)
+			# else:
+				# self.ship.pin_mosi.set(LOW)
+			# command <<= 1
+			# self.ship.pin_clock.set(HIGH)
+			# self.ship.pin_clock.set(LOW)
+		# result = 0
+		# for i in range(12):
+			# self.ship.pin_clock.set(HIGH)
+			# self.ship.pin_clock.set(LOW)
+			# result <<=1
+			# if (self.ship.pin_miso.get()):
+				# result |= 0x1
+		# self.ship.pin_cs.set(HIGH)
+		# return result / 2
 	
 	def get_voltage(self):
 		''' get the voltage on the input chanel

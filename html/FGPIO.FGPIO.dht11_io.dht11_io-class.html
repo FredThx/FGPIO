@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>FGPIO.FGPIO.dht11_io.dht11_io</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;FGPIO ::
+        <a href="FGPIO.FGPIO-module.html">Package&nbsp;FGPIO</a> ::
+        <a href="FGPIO.FGPIO.dht11_io-module.html">Module&nbsp;dht11_io</a> ::
+        Class&nbsp;dht11_io
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="FGPIO.FGPIO.dht11_io.dht11_io-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class dht11_io</h1><p class="nomargin-top"><span class="codelink"><a href="FGPIO.FGPIO.dht11_io-pysrc.html#dht11_io">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="class_hierarchy_for_dht11_io" name="class_hierarchy_for_dht11_io">
+<area shape="rect" id="node1" href="FGPIO.FGPIO.device_io.device_io-class.html" title="device_io.device_io" alt="" coords="67,5,211,31"/>
+<area shape="rect" id="node2" href="FGPIO.FGPIO.device_io.input_device_io-class.html" title="device_io.input_device_io" alt="" coords="47,60,230,85"/>
+<area shape="rect" id="node3" href="FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html" title="device_io.multi_digital_input_device_io" alt="" coords="5,115,272,140"/>
+<area shape="rect" id="node4" href="FGPIO.FGPIO.dht11_io.dht11_io-class.html" title="dht11_io" alt="" coords="100,169,177,195"/>
+</map>
+  <img src="class_hierarchy_for_dht11_io.gif" alt='' usemap="#class_hierarchy_for_dht11_io" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>a DHT11 temperature and humiditu sensor</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="FGPIO.FGPIO.dht11_io.dht11_io-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pin_data</span>,
+        <span class="summary-sig-arg">timeout_read</span>=<span class="summary-sig-default">4</span>,
+        <span class="summary-sig-arg">thread</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">on_changed</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">discard</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">pause</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">30</span>)</span><br />
+      Initialisation</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.dht11_io-pysrc.html#dht11_io.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="FGPIO.FGPIO.dht11_io.dht11_io-class.html#_read" class="summary-sig-name" onclick="show_private();">_read</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Lecture du capteur par</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.dht11_io-pysrc.html#dht11_io._read">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_read_raw"></a><span class="summary-sig-name">_read_raw</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.dht11_io-pysrc.html#dht11_io._read_raw">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="FGPIO.FGPIO.dht11_io.dht11_io-class.html#read" class="summary-sig-name">read</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      read the sensor and Return a dictionary : {'T': Temperature as int 
+      ,'RH' : Humidity as int}</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="FGPIO.FGPIO.dht11_io-pysrc.html#dht11_io.read">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html">device_io.multi_digital_input_device_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html#add_thread">add_thread</a></code>,
+      <code><a href="FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html#read_thread">read_thread</a></code>,
+      <code><a href="FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html#read_value">read_value</a></code>,
+      <code><a href="FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html#th_readed_value">th_readed_value</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html">device_io.multi_digital_input_device_io</a></code></b> (private):
+      <code><a href="FGPIO.FGPIO.device_io.multi_digital_input_device_io-class.html#_value_changed" onclick="show_private();">_value_changed</a></code>
+      </p></div>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="FGPIO.FGPIO.device_io.input_device_io-class.html">device_io.input_device_io</a></code></b>:
+      <code><a href="FGPIO.FGPIO.device_io.input_device_io-class.html#__del__">__del__</a></code>,
+      <code><a href="FGPIO.FGPIO.device_io.input_device_io-class.html#changed">changed</a></code>,
+      <code><a href="FGPIO.FGPIO.device_io.input_device_io-class.html#start">start</a></code>,
+      <code><a href="FGPIO.FGPIO.device_io.input_device_io-class.html#stop">stop</a></code>,
+      <code><a href="FGPIO.FGPIO.device_io.input_device_io-class.html#th_readed">th_readed</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="wake_up_delay"></a><span class="summary-name">wake_up_delay</span> = <code title="0.014">0.014</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">pin_data</span>,
+        <span class="sig-arg">timeout_read</span>=<span class="sig-default">4</span>,
+        <span class="sig-arg">thread</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">on_changed</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">discard</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">pause</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">timeout</span>=<span class="sig-default">30</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="FGPIO.FGPIO.dht11_io-pysrc.html#dht11_io.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Initialisation</p>
+  <ul>
+    <li>
+      pin_data              :       digital_pin_io
+    </li>
+    <li>
+      timeout_read  :       timeout for reading sensor
+    </li>
+    <li>
+      thread                :       (facultatif) True si utilisation thread
+    </li>
+    <li>
+      on_changed    :       fonction ou string executable qui sera lanc&#233;e 
+      quand la valeur du capteur change
+    </li>
+    <li>
+      discard               :       ecart en dessous duquel une valeur est 
+      consid&#233;r&#233;e comme inchang&#233;e a tuple of values in the same order than 
+      mesures or a dict ex {'T': discard_for_T, 'RH': discard_for_RH}
+    </li>
+    <li>
+      pause                 :       pause entre chaque lecture du composant
+    </li>
+    <li>
+      timeout               :       dur&#233;e apr&#232;s laquelle une valeur lue est
+      obsol&#232;te
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_read"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_read</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="FGPIO.FGPIO.dht11_io-pysrc.html#dht11_io._read">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Lecture du capteur par</p>
+  <ul>
+    <li>
+      Reveil du capteur :
+      <ul>
+        <li>
+          envoie de 18ms de LOW
+        </li>
+        <li>
+          envoie de 40&#181;s de HIGH
+        </li>
+      </ul>
+    </li>
+    <li>
+      Reponse au reiveil :
+      <ul>
+        <li>
+          80 &#181;s &#224; LOW
+        </li>
+        <li>
+          80 &#181;s &#224; HIGH
+        </li>
+      </ul>
+    </li>
+    <li>
+      lecture trame datas
+    </li>
+  </ul>
+  <p>Return a dictionary : {'T': Temperature as int ,'RH' : Humidity as 
+  int}</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="read"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">read</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="FGPIO.FGPIO.dht11_io-pysrc.html#dht11_io.read">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>read the sensor and Return a dictionary : {'T': Temperature as int 
+  ,'RH' : Humidity as int}</p>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="FGPIO.FGPIO.device_io.device_io-class.html#read">device_io.device_io.read</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Sun Apr  1 08:22:47 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

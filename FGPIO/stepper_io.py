@@ -19,23 +19,22 @@ from f_thread import *
 
 class stepper_io(device_io):
 	''' Stepper motor like 28BYJ-48
-	
 		usage :
-				pc = rpiduino_io()
-				motor = stepper_io(pc.bcm_pins(12,16,20,21))
-				
-			simple :
-				motor.rotate(180)
-				motor.totate(180, speed = 5)
-				
-			with threading :
-				def myFunction(result):
-					if result:
-						print("Rotation donne.")
-					else:
-						print("Arrggg, something stop me!")
-				motor.rotate(360, thread = True, callback = myFunction)
-				
+			pc = rpiduino_io()
+			motor = stepper_io(pc.bcm_pins(12,16,20,21))
+			
+		simple :
+			motor.rotate(180)
+			motor.totate(180, speed = 5)
+			
+		with threading :
+			def myFunction(result):
+				if result:
+					print("Rotation donne.")
+				else:
+					print("Arrggg, something stop me!")
+			motor.rotate(360, thread = True, callback = myFunction)
+			
 	'''
 	seq = [[1,0,0,1],
        [1,0,0,0],

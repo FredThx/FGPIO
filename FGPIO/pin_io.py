@@ -23,6 +23,8 @@ try:
 	import RPi.GPIO
 except: # Si nous sommes sur un pcduino, ça ne marchera pas
 	pass
+
+from device_io import *
 	
 ################################
 #                              #
@@ -63,11 +65,16 @@ class digital_pin_io(pin_io):
 		
 
 
-class analog_pin_io(pin_io):
+class analog_pin_io(pin_io, analog_input_device_io):
 	'''Port analogique PRi ou Pcduino
 	'''
 	def __init__(self):
 		pass
+	
+	def read(self): 
+		''' For using the inheritance of analog_input_device_io
+		'''
+		return self.get()
 
 ################################
 #                              #

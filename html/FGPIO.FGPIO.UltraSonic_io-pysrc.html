@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>FGPIO.FGPIO.UltraSonic_io</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;FGPIO ::
+        <a href="FGPIO.FGPIO-module.html">Package&nbsp;FGPIO</a> ::
+        Module&nbsp;UltraSonic_io
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="FGPIO.FGPIO.UltraSonic_io-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="FGPIO.FGPIO.UltraSonic_io-module.html">Module FGPIO.FGPIO.UltraSonic_io</a></h1>
+<pre class="py-src">
+&#65279;#!/usr/bin/env python
+# -*- coding:utf-8 -*
+
+####################################
+#  Capteur de distance ultraSon
+#   HC SR04
+#
+# AUTEUR : FredThx
+#
+# Projet : rpiduino_io
+#
+#################################### 
+
+import time
+from rpiduino_io import *
+import numpy as np
+
+#TODO : utiliser une m&#233;thode pulse_in de pin_io (comme arduino)
+
+class UltraSonic(analog_input_device_io):
+        """ Un capteur ULTRA SON HC SR04
+        
+                Branchements :
+                        - Vcc sur 5V
+                        - Trig sur un portTrigger (exemple le 2)
+                        - Echo ____
+                                          |
+                                          [] R1
+                                          |_________ portEcho (exemple le 3)
+                                          |
+                                          [] R2
+                                          |
+                        - Ground___  sur 0V
+                        
+                        ou R1<R2<2*R1 (exemple R1=47k et R2=100k)
+                        
+                        C'est juste pour le pas envoyer 5V au port Echo qui n'en accepte que 3.3V.
+                        """
+        def __init__(self, pin_Trigger, pin_Echo, duration = 1, seuil = 50, thread = False, on_changed = None, discard = 15, pause = 0.1, timeout = 5):
+                """ Initialise le capteur
+                                - pin_Trigger   :       pin_io du trigger
+                                - pin_Echo              :       pin_io de Echo
+                                - duration              :       duree de la mesure
+                                - seuil                 :       seuil de d&#233;clenchement du deamon
+                                                                        soit un tuple (seuil_bas, seuil_haut)
+                                                                        soit une seule valeur                           
+                                - thread                :       (facultatif) True si utilisation thread
+                                - on_changed    :       fonction ou string executable
+                                                                        qui sera lanc&#233;e quand la valeur du capteur change
+                                - discard               :       ecart en dessous duquel une valeur est consid&#233;r&#233;e comme inchang&#233;e
+                                - pause                 :       pause entre chaque lecture du composant
+                                - timeout               :       dur&#233;e apr&#232;s laquelle une valeur lue est obsol&#232;te
+                """
+                self.pin_Trigger = pin_Trigger
+                self.pin_Echo = pin_Echo
+                self.pin_Trigger.setmode(OUTPUT)
+                self.pin_Echo.setmode(INPUT)
+                self.pin_Trigger.set(LOW) #Pour initialiser
+                time.sleep(0.2)         #Pour bien initialiser le capteur
+                self.duration = duration
+                analog_input_device_io.__init__(self, seuil, thread, on_changed, discard, pause, timeout)
+        
+        def read_raw(self, timeout = 0.1):
+                """ Renvoie la distance mesuree en cm
+                        timeout = 0.1 seconde par defaut """
+                #Pour d&#233;buter la mesure, on envoie une impulsion sur le portTrigger
+                self.pin_Trigger.set(HIGH)
+                init = time.time()
+                time.sleep(0.00001)
+                self.pin_Trigger.set(LOW)
+                #On attend que le portEcho s'allume
+                #Puis on mesure le temps que le portEcho reste allum&#233;
+                while self.pin_Echo.get()==LOW and time.time()-init < timeout:
+                        pass
+                start = time.time()
+                while self.pin_Echo.get()==HIGH and time.time()-init < timeout:
+                        pass
+                stop = time.time()
+                # Ensuite on applique la formule distance = temps x vitesse du son /2 (aller/retour)
+                # Ici, on neglige les variations de pression atmosph&#233;rique
+                mesure = (stop-start) * 34029 / 2
+                if mesure > 400:
+                        return 999
+                else :
+                        return np.rint(mesure)
+        
+        def read(self):
+                """ Renvoie une mesure sure de la distance calcul&#233;e en cm 
+                        duree : duree de la mesure
+                """
+                #TODO : calculer moyenne et ecart type de plusieurs mesure et en determiner l'impr&#233;cision.
+                mesures = []
+                start = time.time()
+                while time.time() < start + self.duration:
+                        mesures.append(self.read_raw())
+                        time.sleep(1.*self.duration/10) #Lib&#232;re le processeur
+                return np.rint(np.mean(mesures))
+        
+
+#########################################################
+#                                                       #
+#               EXEMPLE                                         #
+#                                                       #
+#########################################################
+
+if __name__ == '__main__':
+        from mcp23017_io import *
+        pc=rpiduino_io()
+        ext_io = mcp23017_io(addr=0x26, pc=pc) #branchement via module d'extention de GPIO en i2c
+        #c=UltraSonic(*ext_io.pin[0:2])         # syntaxe simplifi&#233;e, sans thread
+        #c=UltraSonic(*pc.logical_pins(2,3)) #branchement directement sur le pcduino/Rpi
+        
+        def action():
+                print 'distance modifiee'
+                if c.low():
+                        print "         trop proche"
+                elif c.high():
+                        print "         trop loin"
+                time.sleep(1)
+        
+        c=UltraSonic(*ext_io.pin[0:2], seuil = (30, 130), thread = True, on_changed = action)
+        
+        try: #Ca permet de pouvoir planter le thread avec un CTRL-C
+                while True:
+                        # Lecture en continue du capteur, pendant ce temps, le thread agit
+                        print c.read()
+        except KeyboardInterrupt:
+                c.stop()
+<script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="FGPIO.FGPIO-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/FredThx/FGPIO">FGPIO</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Sun Apr  1 08:22:47 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

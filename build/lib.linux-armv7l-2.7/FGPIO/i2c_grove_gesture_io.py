@@ -359,18 +359,21 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 			self.paj7620WriteReg(self.initRegisterArray[i][0],self.initRegisterArray[i][1])
 		self.paj7620SelectBank(self.BANK0)
 		logging.info("Paj7620 initialize register finished.")
-		
+	
+	@i2c_device_io.unError	
 	def paj7620WriteReg(self,addr,cmd):
 		'''Write a byte to a register on the Gesture sensor
 		'''
 		self.device.write_word_data(addr, cmd)
-		
+	
+	@i2c_device_io.unError	
 	def paj7620SelectBank(self,bank):
 		'''Select a register bank on the Gesture Sensor
 		'''
 		if bank==self.BANK0:
 			self.paj7620WriteReg(self.PAJ7620_REGITER_BANK_SEL, self.PAJ7620_BANK0)
-			
+	
+	@i2c_device_io.unError		
 	def paj7620ReadReg(self,addr,qty):
 		'''Read a block of bytes of length "qty" starting at address "addr" from the Gesture sensor
 		'''

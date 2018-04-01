@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+ï»¿#!/usr/bin/env python
 # -*- coding:utf-8 -*
 
 ####################################
@@ -15,7 +15,7 @@ import time
 from rpiduino_io import *
 import numpy as np
 
-#TODO : utiliser une méthode pulse_in de pin_io (comme arduino)
+#TODO : utiliser une mÃ©thode pulse_in de pin_io (comme arduino)
 
 class UltraSonic(analog_input_device_io):
 	""" Un capteur ULTRA SON HC SR04
@@ -41,15 +41,15 @@ class UltraSonic(analog_input_device_io):
 				- pin_Trigger	:	pin_io du trigger
 				- pin_Echo		:	pin_io de Echo
 				- duration		:	duree de la mesure
-				- seuil			:	seuil de déclenchement du deamon
+				- seuil			:	seuil de dÃ©clenchement du deamon
 									soit un tuple (seuil_bas, seuil_haut)
 									soit une seule valeur				
 				- thread		:	(facultatif) True si utilisation thread
 				- on_changed	:	fonction ou string executable
-									qui sera lancée quand la valeur du capteur change
-				- discard		:	ecart en dessous duquel une valeur est considérée comme inchangée
+									qui sera lancÃ©e quand la valeur du capteur change
+				- discard		:	ecart en dessous duquel une valeur est considÃ©rÃ©e comme inchangÃ©e
 				- pause 		:	pause entre chaque lecture du composant
-				- timeout		:	durée après laquelle une valeur lue est obsolète
+				- timeout		:	durÃ©e aprÃ¨s laquelle une valeur lue est obsolÃ¨te
 		"""
 		self.pin_Trigger = pin_Trigger
 		self.pin_Echo = pin_Echo
@@ -63,21 +63,21 @@ class UltraSonic(analog_input_device_io):
 	def read_raw(self, timeout = 0.1):
 		""" Renvoie la distance mesuree en cm
 			timeout = 0.1 seconde par defaut """
-		#Pour débuter la mesure, on envoie une impulsion sur le portTrigger
+		#Pour dÃ©buter la mesure, on envoie une impulsion sur le portTrigger
 		self.pin_Trigger.set(HIGH)
 		init = time.time()
 		time.sleep(0.00001)
 		self.pin_Trigger.set(LOW)
 		#On attend que le portEcho s'allume
-		#Puis on mesure le temps que le portEcho reste allumé
+		#Puis on mesure le temps que le portEcho reste allumÃ©
 		while self.pin_Echo.get()==LOW and time.time()-init < timeout:
 			pass
 		start = time.time()
 		while self.pin_Echo.get()==HIGH and time.time()-init < timeout:
 			pass
 		stop = time.time()
-		# Ensuite on applique la formule distance = temps * vitesse du son /2 (aller/retour)
-		# Ici, on neglige les variations de pression atmosphérique
+		# Ensuite on applique la formule distance = temps x vitesse du son /2 (aller/retour)
+		# Ici, on neglige les variations de pression atmosphÃ©rique
 		mesure = (stop-start) * 34029 / 2
 		if mesure > 400:
 			return 999
@@ -85,15 +85,15 @@ class UltraSonic(analog_input_device_io):
 			return np.rint(mesure)
 	
 	def read(self):
-		""" Renvoie une mesure sure de la distance calculée en cm 
+		""" Renvoie une mesure sure de la distance calculÃ©e en cm 
 			duree : duree de la mesure
 		"""
-		#TODO : calculer moyenne et ecart type de plusieurs mesure et en determiner l'imprécision.
+		#TODO : calculer moyenne et ecart type de plusieurs mesure et en determiner l'imprÃ©cision.
 		mesures = []
 		start = time.time()
 		while time.time() < start + self.duration:
 			mesures.append(self.read_raw())
-			time.sleep(1.*self.duration/10)	#Libère le processeur
+			time.sleep(1.*self.duration/10)	#LibÃ¨re le processeur
 		return np.rint(np.mean(mesures))
 	
 
@@ -107,7 +107,7 @@ if __name__ == '__main__':
 	from mcp23017_io import *
 	pc=rpiduino_io()
 	ext_io = mcp23017_io(addr=0x26, pc=pc) #branchement via module d'extention de GPIO en i2c
-	#c=UltraSonic(*ext_io.pin[0:2])		# syntaxe simplifiée, sans thread
+	#c=UltraSonic(*ext_io.pin[0:2])		# syntaxe simplifiÃ©e, sans thread
 	#c=UltraSonic(*pc.logical_pins(2,3)) #branchement directement sur le pcduino/Rpi
 	
 	def action():
