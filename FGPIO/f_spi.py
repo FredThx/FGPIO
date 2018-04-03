@@ -55,6 +55,7 @@ class hard_spi_client(spi_client, spidev.SpiDev):
 		try:
 			spidev.SpiDev.__init__(self)
 			self.open(bus, device)
+			self.max_speed_hz = 976000
 		except IOError:
 			logging.error('Error openning spi bus %s'%(bus))
 

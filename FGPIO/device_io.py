@@ -82,10 +82,7 @@ class input_device_io(device_io):
 		'''
 		value = self.read()
 		self.last_time_read = time.time()
-		if self.last_read == None:
-			self.last_read = value
-			self.changed()
-		elif self._value_changed(value):
+		if self.last_read == None or self._value_changed(value):
 			self.last_read = value
 			self.changed()
 		time.sleep(self.pause)
