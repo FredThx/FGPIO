@@ -35,6 +35,17 @@ class led_io (on_off_output_device_io):
 				return fonction(self, *args, **kwargs)
 		return none_none_fonction
 
+	def pwm(self, duty = None, freq = None):
+		'''Set the pwm mode
+			-	duty	:	%duration high Si None ou omis : stop pwm
+			-	freq	:	frequency. Si None ou omis : comme avant
+		'''
+		if freq:
+			self.pin.set_pwm(freq)
+		if duty:
+			self.pin.start_pwm(duty)
+		else:
+			self.pin.stop_pwm()
 # class pwm_led_io(device_io):
 	# '''Une class pour piloter une led en PWM (Pulse Width Modulation
 	# '''
