@@ -6,9 +6,9 @@
 	sur un rpiduino_io
 		- Rpi
 		- pcduino
-	
+
 	Gestion du protocole SPI : hardware spi
-		
+
 	Wiring :
 		        _ _
 			   | U |						sur Rpi (SPI0):
@@ -24,7 +24,7 @@
 
  Dependances :
 	spidev
- 
+
 '''
 from rpiduino_io import *
 from f_spi import *
@@ -44,26 +44,26 @@ class mcp3201_hspi_io(analog_pin_io, hard_spi_client):
 		hard_spi_client.__init__(self, bus, device)
 		analog_pin_io.__init__(self)
 		self.vref = vref
-	
+
 	def get(self):
 		'''
 		Get the raw value of the input voltage
 		'''
 		#TODO : read all the bytes, check if null bit = 0, check if reverse data is correct...
 		result = self.xfer2([0,0]) # read the two first bytes
-		# result : 
+		# result :
 		#	[???,???,000,B11,B10,B09,B08,B07],[B06,B05,B04,B03,B02,B01,B00,B01]
 		# => mask unused bits
 		result = ((result[0] & 0b00011111) << 7) + ( result[1] >> 1)
 		return result
-		
+
 	def get_voltage(self):
 		''' get the voltage
 		'''
 		return self.to_voltage(self.get())
-	
+
 	def to_voltage(self, value):
-		''' 
+		'''
 		Return the voltage
 			- value		:	raw value (from self.get())
 		'''
@@ -79,15 +79,14 @@ if __name__ == '__main__':
 	#pc = rpiduino_io()
 	mcp3201 = mcp3201_hspi_io()
 	#Utilisation simple
-	print 'Voltage : %.2f Volts' % mcp3201.get_voltage()
+	print('Voltage : %.2f Volts' % mcp3201.get_voltage())
 	#Utilisation avec thread
 	def on_changed(value):
 		print("Voltage : %s"%(value))
 	mcp3201.add_thread(on_changed)
-	
+
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C
 		while True:
 			pass
 	except KeyboardInterrupt:
-		c.stop()	
-	
+		c.stop()

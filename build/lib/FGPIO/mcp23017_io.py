@@ -46,7 +46,7 @@ class mcp23017_io(i2c_ext_io):
 	INTCAPA = [0x10, 0x11]	# INTERRUPT CAPTURE REGISTER
 	GPIO = [0x12, 0x13]		# PORT REGISTER (lecture ou ecriture de l'état du GPIO)
 	OLAT = [0x14, 0x15]		# OUTPUT LATCH REGISTER (OLAT)
-	
+
 	def __init__(self, bus=None, addr=None, pc = None):
 		"""Initialisation
 			bus : n° du bus (defaut 1 pour RPi et 2 pour pcduino (mais il faut préciser pc))
@@ -54,7 +54,7 @@ class mcp23017_io(i2c_ext_io):
 			pc : rpiduino_io
 		"""
 		i2c_ext_io.__init__(self, bus, addr, pc, 16)	#16bits
-	
+
 	@i2c_device_io.unError
 	def setmode_pin(self, id, mode):
 		"""Definit le mode d'une pin
@@ -74,8 +74,8 @@ class mcp23017_io(i2c_ext_io):
 				self.write_bit_register(reg_gppu, id, HIGH)
 			else:
 				self.write_bit_register(reg_gppu, id, LOW)
-	
-	@i2c_device_io.unError	
+
+	@i2c_device_io.unError
 	def getmode_pin(self, id):
 		""" Renvoie le mode d'une pin
 		"""
@@ -89,21 +89,21 @@ class mcp23017_io(i2c_ext_io):
 				return PULLUP
 			else:
 				return OUTPUT
-	
+
 	@i2c_device_io.unError
 	def set_pin(self, id, val):
 		"""Assigne la sortie id
 		"""
 		assert (self.getmode_pin(id) == OUTPUT), "Erreur, la pin doit être OUTPUT."
 		self.write_bit_register(mcp23017_io.GPIO[int(id/8)], id % 8, val)
-	
+
 	@i2c_device_io.unError
 	def get_pin(self,id):
 		"""Renvoie la valeur de la pin
 		"""
 		return self.read_bit_register(mcp23017_io.GPIO[int(id/8)], id % 8)
-		
-		
+
+
 
 #########################################################
 #                                                       #
@@ -118,10 +118,9 @@ if __name__ == '__main__':
 	pc = rpiduino_io()
 	mcp = mcp23017_io(addr=0x23, pc=pc)	# Si le mcp est seul sur le bus, sinon mettre l'addresse
 	led = led_io(mcp.pin[0])
-	print mcp.pin[0]
+	print(mcp.pin[0])
 	bt = bt_io(mcp.pin[8])
 	while not bt.is_pressed:
 		led.invert()
 		time.sleep(0.5)
-	print "ok"
-		
+	print("ok")

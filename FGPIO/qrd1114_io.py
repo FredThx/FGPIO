@@ -5,29 +5,29 @@
  Gestion du capteur de présence optique QRD1114
 	composé d'un émetteur IR (led)
 	et d'un recepteur phototransistor
-		
+
 	Dans l'absolu, on peut l'utiliser comme capteur de distance (mais la plage de detection
 	est comprise entre 0 et 1 cm.
 	=> On l'utilise ici comme detecteur de présence, donc comme capteur digital.
-	
+
 	Wiring :
 						 __
 					0V--|  |---[200ohms]--5V
 		analog_pin_io --|__|---0V		|
 					   |				|
 					   |----[10kohms]--|
-			
+
 	(-- : petite patte)
 	(--- : grande patte)
-		
+
 	Quand un objet (pas noir) s'approche, la lumière IR est réfléchie
 	et la tension sur la pin de sortie baisse vers 0V
 	(pas d'objet : 2.9 volts)
-	
+
 	Pour raspberry pi : utilisation d'un module mcp300x pour entrée analogique.
-	
+
 	Utilisation avec Thread : bien sur!
-	
+
  AUTEUR : FredThx
 
  Projet : rpiduino_io
@@ -53,10 +53,10 @@ class qrd1114_digital_io(qrd1114_io, digital_input_device_io):
 		self.seuil = seuil
 		self.last_state= False
 		digital_input_device_io.__init__(self, thread, on_changed, pause)
-	
+
 	def read(self):
 		return self.pin.get_voltage()<self.seuil
-		
+
 	def is_detected(self):
 		''' renvoie true si le capteur passe de rien à quelque chose
 			(une fois la detection faite, renvoie False, même si l'objet est encore là)
@@ -76,7 +76,7 @@ class qrd1114_analog_io(qrd1114_io, analog_input_device_io):
 			- pin			:	a analog_pin_io
 			- seuil			:	seuil de déclenchement du deamon
 								soit un tuple (seuil_bas, seuil_haut)
-								soit une seule valeur				
+								soit une seule valeur
 			- thread		:	(facultatif) True si utilisation thread
 			- on_changed	:	fonction ou string executable
 								qui sera lancée quand la valeur du capteur change
@@ -86,16 +86,16 @@ class qrd1114_analog_io(qrd1114_io, analog_input_device_io):
 		'''
 		qrd1114_io.__init__(self, pin)
 		analog_input_device_io.__init__(self, seuil, thread, on_changed, discard, pause, timeout)
-		
+
 	def read(self):
 		'''Renvoie le voltage mesuré par le capteur
 		'''
 		return self.pin.get_voltage()
-		
-		
-		
-			
-			
+
+
+
+
+
 #########################################################
 #                                                       #
 #		EXEMPLE                                         #
@@ -105,7 +105,7 @@ class qrd1114_analog_io(qrd1114_io, analog_input_device_io):
 if __name__ == '__main__':
 	from mcp300x_hspi_io import *
 	from led_io import *
-	
+
 	pc = rpiduino_io()
 	mcp3008 = mcp3008_hspi_io()	#Pour lecture analogique sur Rpi
 	led = led_io(pc.bcm_pin(16))
@@ -115,4 +115,4 @@ if __name__ == '__main__':
 		if capteur.is_detected():
 			compteur +=1
 			led.blink(0.1,0.001,0.1)
-			print compteur
+			print(compteur)

@@ -7,9 +7,9 @@
 	sur un rpiduino_io
 		- Rpi
 		- pcduino
-	
+
 	Gestion du protocole SPI : logitiel (100% python)
-		
+
 	Wiring :
 		        _ _
 			   | U |
@@ -22,9 +22,9 @@
 		CH6 ---|   |--- CS : pin_cs
 		CH7 ---|   |--- 0V (circuit digital)
 		       |___|
-			   
+
 	CH0-CH7 : analog inputs
-	
+
  AUTEUR : FredThx
 
  Projet : rpiduino_io
@@ -65,9 +65,9 @@ class mcp3004_io(mcp300x_io):
 		mcp300x_io.__init__(self, pin_clock, pin_mosi, pin_miso, pin_cs, vref)
 		for i in range(4):
 			self.pin[i] = mcp300x_pin(self, i)
-		
-	
-	
+
+
+
 class mcp3008_io(mcp300x_io):
 	'''Classe pour convertisseur analogique/numérique MCP3008
 	'''
@@ -93,7 +93,7 @@ class mcp300x_pin(analog_pin_io):
 		'''
 		self.ship = mcp300x_ship
 		self.chanel = chanel
-	
+
 	def get(self):
 		''' get the raw value of the input chanel
 		'''
@@ -120,12 +120,12 @@ class mcp300x_pin(analog_pin_io):
 				# result |= 0x1
 		# self.ship.pin_cs.set(HIGH)
 		# return result / 2
-	
+
 	def get_voltage(self):
 		''' get the voltage on the input chanel
 		'''
 		return self.get() * self.ship.vref / 1024.
-	
+
 
 #########################################################
 #                                                       #
@@ -139,5 +139,5 @@ if __name__ == '__main__':
 	mcp3008 = mcp3008_io(*pc.bcm_pins(18,23,24,25), vref=5)
 	ch0 = mcp3008.pin[7]
 	while True:
-		print 'Voltage : %.2f Volts' % ch0.get_voltage()
+		print('Voltage : %.2f Volts' % ch0.get_voltage())
 		time.sleep(0.5)

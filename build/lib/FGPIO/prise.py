@@ -6,8 +6,10 @@
 """
 
 
+
 from rcSwitch_io import *
 import time
+from FUTIL.my_logging import *
 
 class prise:
 	"""prise radio commandée
@@ -33,11 +35,15 @@ class prise:
 		'''
 		self.rcSwitch.sendOrder(self.code, self.prise_id, 1)
 		self.state = True
+		logging.debug("%s setON" % self)
+	
 	def setOFF(self):
 		'''Set Off the rcSwitch
 		'''
 		self.rcSwitch.sendOrder(self.code, self.prise_id, 0)
-		self.state = false
+		self.state = False
+		logging.debug("%s setOFF" % self)
+	
 	def switch(self):
 		''' Switch the rcSwitch
 			(only if the rcSwitch is only command by this)
@@ -46,6 +52,13 @@ class prise:
 			self.setOFF()
 		else:
 			self.setON()
+	
+	def get(self):
+		'''Return the status of the switch (True / False)
+			if switch not initialised by set order, return None
+		'''
+		return self.state
+	
 	def set(self, on_off):
 		'''Set the rcSwitch on or off
 			- on_off	True or False
@@ -57,6 +70,8 @@ class prise:
 # Exemple		
 
 if __name__ == '__main__':
+	from rpiduino_io import *
+	
 	pc = rpiduino_io()
 	rcSwitch = rcSwitch_io(*pc.logical_pins(2))
 	A = prise(rcSwitch,'00010', '10000')

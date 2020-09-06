@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*
 
-####################################
 '''
 # Buzzer branchée sur un rpi_duino_io
 # 
@@ -13,7 +12,6 @@
 # Projet : rpiduino_io
 #
 '''
-#################################### 
 
 from on_off_output_device_io import *
 
@@ -128,7 +126,7 @@ class pwm_buzz_io(buzz_io):
 	
 	def hoot(self, period = 1, time_end = None):
 		''' Create a thread for send a hooter sound
-			- period	:	period of the whoot
+			- period	:	period of the hoot
 			- time_end	:	stop the thread after time_end seconds
 							if time_end = None (default) the thread do not stop itself
 		'''
@@ -157,21 +155,11 @@ class pwm_buzz_io(buzz_io):
 if __name__ == '__main__':
 	import time
 	pc = rpiduino_io()
-	pin = pc.pin[40]
-	LED = led_io(pin)
-	none_led = led_io()
-	LED.on()
-	none_led.on() # Do nothing!
-	time.sleep(1)
-	LED.off()
-	time.sleep(1)
-	for i in range(0,5):
-		LED.invert()
-		print "le buzzer est " + str(LED.get())
-		time.sleep(1)
-	LED.blink()		# blink 1 second / 1 second
+	buzzer = pwm_buzz_io(pc.bcm_pin(25))
+	buzzer.bip()
 	time.sleep(5)
-	LED.blink(0.1,0.2)	# Accelerate the blinking
-	time.sleep(5)
-	LED.stop()		# Stop the blinking
+	buzzer.bip_bip(time_end = 10)
+	
+
+	
 	

@@ -7,6 +7,9 @@ from lcd_io import *
 from i2c_device_io import *
 
 #TODO : peut-être est-il possible de piloter le Backlight via i2c, mais n'ayant pas trouvé, pilotage via sortie digitale
+# C'est possible en lua donc en python aussi !!!(voir https://github.com/dvv/nodemcu-thingies/blob/master/lcd1602.lua)
+
+
 
 class lcd_i2c_io(lcd_io, i2c_device_io):
 	""" Ecran LCD branché en série i2C

@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*
 
 '''
- Sous classe de pin_io
+Sous classe de pin_io
 	pour utilisation des GPIO étendues
 	à l'aide d'un module i2c (MPC23017, PCA9555, ...)
 
@@ -10,9 +10,9 @@
 		- Rpi
 		- pcduino
 
- AUTEUR : FredThx
+AUTEUR : FredThx
 
- Projet : rpiduino_io
+Projet : rpiduino_io
 
 '''
 

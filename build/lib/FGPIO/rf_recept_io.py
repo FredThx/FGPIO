@@ -4,7 +4,7 @@
 ####################################
 '''
 # Recepteur Radio Fréquence (433Mhz)
-# lié à un emetteur RF géré par arduino 
+# lié à un emetteur RF géré par arduino
 # (ou directement ATMEGA328)
 #
 # AUTEUR : FredThx
@@ -12,7 +12,7 @@
 # Projet : rpiduino_io
 #
 '''
-#################################### 
+####################################
 
 import time
 from collections import Counter
@@ -27,7 +27,7 @@ class rf_recept_io:
 	'''
 	low_pulse = 1000	# Duration (ms) of a low pulse
 	high_pulse = 2500	# Duration (ms) of a high pulse
-	
+
 	def __init__(self, pin):
 		'''Initialisation
 			-pin		pin_io	pin data du recepteur RF
@@ -35,7 +35,7 @@ class rf_recept_io:
 		self.pin = pin
 		self.pin.setmode(INPUT)
 		logging.info('re_recept_io created attached on %s' % self.pin)
-	
+
 	def pulseIn(self, timeout = 1):
 		'''Lecture d'une pulsation
 			Renvoie la durée de la pulsation (temps à LOW)
@@ -50,7 +50,7 @@ class rf_recept_io:
 				return None
 		duree = time.time()-now
 		return int(duree*1000000)
-			
+
 	def _get_one_bit(self):
 		'''Lecture d'une pulsation sous forme de bit.
 		'''
@@ -64,7 +64,7 @@ class rf_recept_io:
 				return None
 		else:
 			return None
-		
+
 	def get_bit(self):
 		'''Renvoie un bit de données
 			Décodage pulsations par code Manchester
@@ -77,7 +77,7 @@ class rf_recept_io:
 			return 1
 		else:
 			return None
-	
+
 	@staticmethod
 	def decode_manchester(datas, partial = False):
 		'''Decode the Manchester code
@@ -98,7 +98,7 @@ class rf_recept_io:
 			return result
 		else:
 			return None
-			
+
 class temperature_rf_recept_io(rf_recept_io, multi_digital_input_device_io):
 	'''Recepteur de températures RF
 		Les sondes sont gérées par ATMEGA328 (programme maison)
@@ -117,7 +117,7 @@ class temperature_rf_recept_io(rf_recept_io, multi_digital_input_device_io):
 		self.nb_bits_device = nb_bits_device
 		self.sensors = {}
 		multi_digital_input_device_io.__init__(self, (), thread, on_changed, discard, pause, timeout)
-	
+
 	def add_sensor(self, id_sensor, name= None):
 		'''Add a sensor in the sensors dict
 			- id_sensor		code identification (ex : '1001')
@@ -129,10 +129,10 @@ class temperature_rf_recept_io(rf_recept_io, multi_digital_input_device_io):
 		assert [k for k,v in Counter(self.sensors.values()).items() if v>1]==[], \
 			'temperature_rf_recept_io : sensor name must be unique'
 		self.mesures = tuple(self.sensors.values())
-		
+
 	def wait_for_init(self):
 		'''Wait for the init signal:
-			             __               _      
+			             __               _
 			               |_____________| |_______|
 		duration (ms)	 275   9900      275  2675
 		'''
@@ -142,7 +142,7 @@ class temperature_rf_recept_io(rf_recept_io, multi_digital_input_device_io):
 			time.sleep(0.0002)
 		while t < 2300 or t > 3000:
 			t = self.pulseIn()
-		
+
 	def read_one(self):
 		'''Lecture de la mesure
 			- signal de début
@@ -168,7 +168,7 @@ class temperature_rf_recept_io(rf_recept_io, multi_digital_input_device_io):
 			return result_dec, capteur
 		else:
 			return None
-	
+
 	def populate(self, timeout = 30):
 		'''Scan les capteurs RF et alimente self.sensors
 		'''
@@ -181,7 +181,7 @@ class temperature_rf_recept_io(rf_recept_io, multi_digital_input_device_io):
 			except TypeError:
 				pass
 		return self.sensors
-	
+
 	def read(self, name = None, timeout = 30):
 		''' Read all the sensors listed in self.sensors
 			- name		(optionnal) name of the sensor
@@ -211,7 +211,7 @@ class temperature_rf_recept_io(rf_recept_io, multi_digital_input_device_io):
 				if value_readed != None and value_readed[1] == id_name:
 					value = value_readed[0]
 			return value
-	
+
 	@staticmethod
 	def _list_to_int(bin_result):
 		'''Transforme les données binaires sous forme de liste en entier
@@ -223,7 +223,7 @@ class temperature_rf_recept_io(rf_recept_io, multi_digital_input_device_io):
 			result += val*2**(n-i)
 		if bin_result[-1]==0:
 			result = - result
-		return result		
+		return result
 
 
 
@@ -232,22 +232,22 @@ class temperature_rf_recept_io(rf_recept_io, multi_digital_input_device_io):
 #		EXEMPLE                                         #
 #                                                       #
 #########################################################
-			
+
 if __name__ == '__main__':
 	pc = rpiduino_io()
 	rf = temperature_rf_recept_io(pc.pin[40])
 	#rf.populate(10)
-	#print "Sensors found : ", rf.sensors
-	#print rf.read()
+	#print("Sensors found : ", rf.sensors)
+	#print(rf.read())
 	rf.add_sensor('0011', 'Bureau')
 	rf.add_sensor('0010', 'Salon')
-	print rf.read()
-	print 'La température du Salon est de %s °C' % rf.read('Salon')
+	print(rf.read())
+	print('La température du Salon est de %s °C' % rf.read('Salon'))
 	def action():
 		if rf.th_readed():
-			print "Changement de température!!!"
-			print "La température du Salon est de %s °C. Celle du bureau est de %s °C." % \
-				(rf.th_readed_value('Salon'), rf.th_readed_value('Bureau'))
+			print("Changement de température!!!")
+			print("La température du Salon est de %s °C. Celle du bureau est de %s °C." % \
+				(rf.th_readed_value('Salon'), rf.th_readed_value('Bureau')))
 	rf.add_thread(action, discard = 0.2)
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C
 		while True:

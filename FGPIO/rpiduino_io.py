@@ -5,7 +5,7 @@
 
 '''
 Gestion des nano ordi pcduino et RPi
-	
+
 		pour utilisation de pleins de composants
 
 AUTEUR : FredThx
@@ -24,7 +24,7 @@ try:
 except: # Si nous sommes sur un pcduino, ça ne marchera pas
 	pass
 
-	
+
 INPUT = 0
 OUTPUT = 1
 PULLUP = 8
@@ -52,7 +52,7 @@ class rpiduino_io:
 			classe = rpi_io
 		except NameError:
 			classe = pcduino_io
-		if classe == rpi_io: 
+		if classe == rpi_io:
 			# On instancie un rpi_io
 			self.__class__= rpi_io
 			rpi_io.__init__(self)
@@ -60,24 +60,24 @@ class rpiduino_io:
 			# On instancie un pcduino_io
 			self.__class__= pcduino_io
 			pcduino_io.__init__(self)
-	
+
 	def readall(self):
 		'''Affiche l'état de toutes les pins
 			et renvoie un dico avec les valeurs de chaques pins
 		'''
 		sortie = {}
 		for k in self.pin:
-			print self.pin[k]
+			print(self.pin[k])
 			sortie[k]=self.pin[k].get()
 		return sortie
-	
+
 	def physical_pin(self, no_pin):
 		''' Renvoie la pin_io nommés par son n° logique
 		'''
 		for pin in self.pin.values():
 			if pin.physical_id==no_pin:
 				return pin
-	
+
 	def physical_pins(self, *no_pins):
 		''' Renvoie la liste des pins nommés par les n° physique
 		'''
@@ -87,14 +87,14 @@ class rpiduino_io:
 				if no_pin == pin.physical_id:
 					pins.append(pin)
 		return pins
-	
+
 	def logical_pin(self, no_pin):
 		''' Renvoie la pin_io nommés par son n° logique
 		'''
 		for pin in self.pin.values():
 			if pin.logical_id==no_pin:
 				return pin
-	
+
 	def logical_pins(self, *no_pins):
 		''' Renvoie la liste des pins nommés par les n° logique
 		'''
@@ -104,13 +104,13 @@ class rpiduino_io:
 				if no_pin == pin.logical_id:
 					pins.append(pin)
 		return pins
-	
+
 	def shutdown(self):
 		'''Restart the system
 		'''
 		command = "/usr/bin/sudo /sbin/shutdown -r now"
 		import subprocess
-		process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)	
+		process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
 
 class pcduino_io(rpiduino_io):
 	''' Classe pcduino
@@ -172,7 +172,7 @@ class rpi_io(rpiduino_io):
 		self.pin[23]=digital_rpi_pin_io(23,14,11)		# GPIO.11	SPI0_SCLK
 		self.pin[24]=digital_rpi_pin_io(24,10,8)		# GPIO.8	SPI0_CEO_N
 		self.pin[26]=digital_rpi_pin_io(26,11,7)		# GPIO.7	SPI0_CE1_N
-		
+
 		if self.revision == 3:	#Raspberry 2 and B+
 			self.pin[27]=digital_rpi_pin_io(27,30,0)	# SDA.0
 			self.pin[28]=digital_rpi_pin_io(28,31,1)	# SCL.0
@@ -186,15 +186,15 @@ class rpi_io(rpiduino_io):
 			self.pin[38]=digital_rpi_pin_io(38,28,20)	# GPIO.20
 			self.pin[40]=digital_rpi_pin_io(40,29,21)	# GPIO.21
 
-		
-	
+
+
 	def bcm_pin(self, no_pin):
 		''' Renvoie la pin_io nommés par son n° BMC
 		'''
 		for pin in self.pin.values():
 			if pin.bcm_id==no_pin:
 				return pin
-	
+
 	def bcm_pins(self, *no_pins):
 		''' Renvoie la liste des pins nommés par les n° BCM
 		'''

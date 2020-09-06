@@ -65,11 +65,11 @@ class font_io:
 								où les valeurs décrivent les caracteres sur 8 bits
 		"""
 		if data_font:
-			print"toto"
+			print("toto")
 			self.data_font = data_font
 		else:
 			self.data_font = font_io.defaut_data_font
-	
+
 	def rotate(self, nb_quart_tour):
 		""" Tourne les caractères
 				nb_quart_tour	:		2=> 180°
@@ -86,7 +86,7 @@ class font_io:
 						for j in range(0,8):
 							result[7-j] += (2**i)*(car[i]&2**j)/(2**j)
 				self.data_font[n_car] = result
-	
+
 	def bits(self, texte):
 		""" Renvoie une liste de bits correspondant au texte
 		"""
@@ -356,4 +356,4 @@ cp437_FONT = [
   [ 0x00, 0x19, 0x1D, 0x17, 0x12, 0x00, 0x00, 0x00 ], # 0xFD
   [ 0x00, 0x00, 0x3C, 0x3C, 0x3C, 0x3C, 0x00, 0x00 ], # 0xFE
   [ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 ], # 0xFF
-];  #  end of cp437_FONT		
+];  #  end of cp437_FONT

@@ -4,18 +4,18 @@
 '''
 Un capteur de mouvements
 	SEN0018 de chez DF ROBOT
-	
+
 	Branchements/réglages
 	- GRN	sur	0V
 	- Vcc	sur 3.3V
 	- sortie sur un GPIO
-	
+
 	jumper sur H
 	potentiomètre à 0 (sinon, ça merde)
-	
+
 	Remarque : je ne suis pas sur que mon capteur fonctionne bien!
 				et trace d'oxydation sur des soudures
-	
+
 AUTEUR : FredThx
 
 Projet : rpiduino_io
@@ -46,12 +46,12 @@ class sen0018_io (digital_input_device_io):
 		self.pin.setmode(INPUT)
 		self.duration = duration
 		digital_input_device_io.__init__(self, thread, on_changed, 1.*self.duration/25, timeout)
-	
+
 	def read(self):
 		'''renvoie la lecture brute de la sortie du capteur
 		'''
 		return self.pin.get()
-	
+
 	def is_detect(self):
 		'''Renvoie True si le capteur detecte un mouvement pendant le temps de mesure
 		'''
@@ -61,8 +61,8 @@ class sen0018_io (digital_input_device_io):
 			if self.read():
 				return True
 		return False
-	
-	
+
+
 
 
 
@@ -74,7 +74,7 @@ class sen0018_io (digital_input_device_io):
 
 if __name__ == '__main__':
 	from led_io import *
-	pc = rpiduino_io()		
+	pc = rpiduino_io()
 	led = led_io(pc.pin[2])
 	led.on()
 	# sensor = sen0018_io(pc.pin[11])
@@ -87,9 +87,9 @@ if __name__ == '__main__':
 	def print_alerte():
 		if time.time()>start + 5:	# Pour laisser du temps au capteur de s'initialiser
 			if sensor.th_readed():
-				print 'Alerte %s ' % time.time()
+				print('Alerte %s ' % time.time())
 				time.sleep(3)
-	
+
 	sensor = sen0018_io(pc.pin[11], thread = True, on_changed = print_alerte, timeout=5)
 	try:
 		while True:
@@ -100,4 +100,3 @@ if __name__ == '__main__':
 			time.sleep(1)	#on a le temps
 	except KeyboardInterrupt:
 		sensor.stop()
-	

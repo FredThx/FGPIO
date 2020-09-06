@@ -11,7 +11,7 @@
 # Projet : rpiduino_io
 #
 '''
-#################################### 
+####################################
 
 
 from rpiduino_io import *
@@ -53,20 +53,20 @@ class lum_capteur_io(analog_input_device_io):
 			analog_input_device_io.__init__(self, seuil, thread, on_changed, discard, pause, timeout)
 		else:
 			raise rpiduino_io_error('argument erreur : n''est pas du type analogique')
-	
+
 	@property
 	def R(self):
 		""" Renvoie la résistance mesurée
 		"""
 		V = self.pin.get_voltage()
 		return V/(self.V0 - V)
-	
+
 	def read(self):
 		""" renvoie un pourcentage de luminosité
 		"""
 		return int(self.pin.get_voltage()/self.V0*100)/100.
-	
-		
+
+
 
 
 #########################################################
@@ -83,21 +83,20 @@ if __name__ == '__main__':
 	#########################
 	capteur = lum_capteur_io(pin,0.95)
 	while not capteur.high:
-		print capteur.read()
+		print(capteur.read())
 	#########################
 	# Solution avec Thread	#
 	#########################
 	def action():
 		if capteur.low():
-			print "pas assez de lumière"
+			print("pas assez de lumière")
 		if capteur.high():
-			print "trop de lumière"
+			print("trop de lumière")
 		time.sleep(2)
 	capteur = lum_capteur_io(pin, seuil = (0.2, 0.9), thread = True, on_changed = action)
-	
+
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C
 		while True:
 			time.sleep(1)
 	except KeyboardInterrupt:
 		capteur.stop()
-	

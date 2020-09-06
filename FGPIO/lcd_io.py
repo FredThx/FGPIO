@@ -11,9 +11,9 @@
 # Projet : rpiduino_io
 #
 """
-#################################### 
+####################################
 
- 
+
 import time
 from textwrap import wrap
 from rpiduino_io import *
@@ -69,10 +69,10 @@ class lcd_io(device_io):
 	# arguments pour controle backlight
 	arg_backlight_on = 0x08
 	arg_backlight_off = 0x00
-	
-	
-	
-	
+
+
+
+
 	def __init__(self, width=16, lines = 2, auto_scroll = False):
 		"""Initialisation
 			- width			:	number of columns (default = 16)
@@ -104,24 +104,24 @@ class lcd_io(device_io):
 			self.thread_auto_scroll.start()
 		else:
 			self.thread_auto_scroll = False
-	
+
 	def __del__(self):
 		'''Destructor for lcd_io
 		'''
-		print 'destruction de %s' % self
+		print('destruction de %s' % self)
 		self.stop()
-	
+
 	def add_scroll_thread(self):
 		''' Create a thread for automatique scrolling
 		'''
 		if not self.thread_auto_scroll:
 			self.thread_auto_scroll = f_thread(self.scroll)
 			self.thread_auto_scroll.start()
-	
+
 	def stop(self):
 		if self.thread_auto_scroll:
-			self.thread_auto_scroll.stop()		
-	
+			self.thread_auto_scroll.stop()
+
 	def message(self, texte, ligne = None, defilement = False):
 		"""Affiche le texte sur le LCD
 			si ligne est omis : sur toutes les lignes
@@ -142,7 +142,7 @@ class lcd_io(device_io):
 				# S'il faut utiliser le scrolling
 				if len(texte) > self.width and defilement:
 					self.scroll_texte[ligne] = texte
-		
+
 		else:#On va ecrire sur toutes les lignes
 			for i in range(0, self.lines):
 				self.txt_message[i+1]=''
@@ -166,7 +166,7 @@ class lcd_io(device_io):
 					# S'il faut utiliser le scrolling
 					if ((len(texte)>self.lines*self.width) and defilement):
 						self.scroll_texte[0] = texte
-	
+
 	def _message(self, texte, ligne = None):
 		if ligne:
 			self.send(lcd_io.adr_ligne[ligne], lcd_io.cmd)
@@ -186,7 +186,7 @@ class lcd_io(device_io):
 				for i in range(0, self.lines):
 					self.message(texte[i*self.width:(i+1)*self.width-1], i+1)
 
-						
+
 	def scroll(self, delay=1):
 		""" Fait défiler le ou les textes d'un caractere
 			A utiliser "de temps en temps"
@@ -205,14 +205,14 @@ class lcd_io(device_io):
 				else:
 					self._message(texte,i)
 				self.scroll_texte[i] = texte
-	
+
 	def string(self, message):
 		""" Envoie le texte au lcd
 		"""
 		message = message.ljust(self.width," ") #A juste au nombre de caractere par ligne
 		for i in range(self.width):
 			self.send(ord(message[i]),self.chr)
-	
+
 	def clear(self):
 		''' Effacement de l'écran
 		'''
@@ -220,7 +220,7 @@ class lcd_io(device_io):
 			self.scroll_texte[i] = False
 			self.txt_message[i] = ''
 		self.send(lcd_io.cmd_clear_display, lcd_io.cmd, lcd_io.c_delay)
-	
+
 	def backlight(self, mode):
 		""" Eteint le retro eclairage
 				mode : True (allumé)/ False(éteint)
@@ -250,4 +250,3 @@ if __name__ == '__main__':
 	lcd2 = lcd_i2c_io(1,0x27)
 	lcd1.message('Hello, je suis un ' + str(pc.modele))
 	lcd2.message('Hello, je suis en i2c')
-	

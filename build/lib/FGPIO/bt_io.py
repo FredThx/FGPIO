@@ -4,7 +4,7 @@
 
 """
 # Button plug on a rpi_duino_io
-# 
+#
 #	wiring :	a pin on 0V
 #				a pin on a digital io
 #
@@ -36,18 +36,18 @@ class bt_io(digital_input_device_io):
 		self.last_state= False
 		digital_input_device_io.__init__(self, thread, on_changed, pause)
 		logging.info("%s is created on pin %s. " % (self, self.pin))
-	
+
 	def get(self):
 		''' Récupère l'état du bouton sous la forme LOW/HIGH
 		'''
 		return self.pin.get()
-	
+
 	@property
 	def is_pressed(self):
 		''' renvoie True si le bouton est pressé. False sinon
 		'''
 		return (self.pin.get()==LOW)
-	
+
 	def is_pushed(self):
 		''' renvoie true si le bouton devient appuyé
 			(s'il reste appuyé, renvoie False)
@@ -58,12 +58,12 @@ class bt_io(digital_input_device_io):
 		else:
 			self.last_state = value
 			return value
-	
+
 	def read(self):
 		''' Lecture, pour le thread, du bouton
 		'''
 		return self.is_pressed
-		
+
 #########################################################
 #                                                       #
 #		EXEMPLE                                         #
@@ -76,16 +76,16 @@ if __name__ == '__main__':
 	bt = bt_io(pc.logical_pin(8))
 	def action_bt_change():
 		if bt2.th_readed():
-			print "bt2 Pushed."
+			print("bt2 Pushed.")
 		else:
-			print "bt2 Released."
+			print("bt2 Released.")
 	bt2 = bt_io(pc.logical_pin(10), True, action_bt_change)
-	
+
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C
-		print "Appuyer sur les boutons"
+		print("Appuyer sur les boutons")
 		while True:
 			if bt.is_pushed():
-				print "Bt est appuyé"
+				print("Bt est appuyé")
 			time.sleep(0.1)
 	except KeyboardInterrupt:
 		bt2.stop()

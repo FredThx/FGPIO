@@ -2,7 +2,6 @@
 README.md
 setup.cfg
 setup.py
-FGPIO/RFtest.py
 FGPIO/SCT013_v_io.py
 FGPIO/UltraSonic_io.py
 FGPIO/__init__.py
@@ -33,6 +32,7 @@ FGPIO/max7219_io.py
 FGPIO/mcp23017_io.py
 FGPIO/mcp300x_hspi_io.py
 FGPIO/mcp300x_io.py
+FGPIO/mcp3201_hspi_io.py
 FGPIO/mpu_6050_io.py
 FGPIO/nrf24l01_io.py
 FGPIO/on_off_output_device_io.py
@@ -50,5 +50,4 @@ FGPIO/rpiduino_io.py
 FGPIO/sen0018_io.py
 FGPIO/servo_motor_io.py
 FGPIO/stepper_io.py
-FGPIO/test_dht11.py
-FGPIO/test_gyro.py
+test/test_dht11.py

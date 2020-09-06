@@ -12,7 +12,7 @@ Gestionnaire de menus
  Projet : rpiduino_io
 
 """
-#################################### 
+####################################
 import time
 
 class f_interface(object):
@@ -33,7 +33,7 @@ class f_interface(object):
 		self.pause = pause
 		self.end_time = 0
 		self.menu.addReturns() # ajout automatique des retours en bas des sous-menus
-	
+
 	def start_once(self):
 		'''Execute l'interface une seule boucle
 		'''
@@ -52,17 +52,15 @@ class f_interface(object):
 		while self.menu != None and not self.is_timeout():
 			self.start_once()
 			time.sleep(self.pause) # pour économiser de la CPU
-		
+
 	def show(self):
 		"""Affiche les elements du menu sur le lcd
 		"""
-		#print self.menu.items
 		if self.menu != None:
 			self.init_end_time()
 			i_menus = self.menu.current_top_index
 			i_lcd = 0
 			while i_menus < len(self.menu.items) and i_lcd<self.lcd.lines:
-				#print "i_menus = " + str(i_menus) + " / " + " i_lcd = " + str(i_lcd) + " / " + self.menu.items[i_menus].label
 				if i_menus==self.menu.current_index:
 					self.lcd.message(">" + self.menu.items[i_menus].label, i_lcd+1)
 				else:
@@ -74,9 +72,9 @@ class f_interface(object):
 				i_lcd+=1
 		else:
 			self.lcd.clear()
-	
+
 	def move(self, delta):
-		""" Déplace le curseur 
+		""" Déplace le curseur
 				si delta == 1, vers le bas
 				si delta == -1, vers le haut
 		"""
@@ -92,7 +90,7 @@ class f_interface(object):
 			if self.menu.current_index <= self.menu.current_top_index: #Si on est sur la premiere ligne de l'écran ou plus haut
 				if self.menu.current_top_index + delta >= 0: # Si on peut monter l'affichage
 					self.menu.current_top_index+=delta
-	
+
 	def init_end_time(self):
 		""" Initialise le timeout
 		"""
@@ -100,12 +98,12 @@ class f_interface(object):
 			self.end_time = time.time() + self.timeout
 		else :
 			self.end_time = time.time() + 31104000 #1an : 360*24*-60*60
-			
+
 	def is_timeout(self):
 		""" Renvoie True si le timeout est dépassé
 		"""
 		return time.time() > self.end_time
-	
+
 	def action(self):
 		""" Réalise l'action du menu
 				soit sous menu
@@ -128,8 +126,8 @@ class f_interface(object):
 			menu.append(f_item("Retour", self.menu, retour=True))
 			self.menu = f_menu(*menu)
 
-			
-			
+
+
 
 class f_menu(object):
 	''' menu pour f_interface
@@ -140,34 +138,34 @@ class f_menu(object):
 		'''
 		self.items = list(items)
 		self.init()
-	
+
 	def init(self):
-		self.current_index = 0 # Index du curseur 
+		self.current_index = 0 # Index du curseur
 		self.current_top_index = 0 # Index de la première ligne	sur l'afficheur
-	
+
 	def add(self, *items):
 		''' Ajoute un ou plusieurs items
 		'''
 		self.items.extend(list(items))
-		
+
 	def current_item(self):
 		return self.items[self.current_index]
 
 	def current_link(self):
 		return self.items[self.current_index].link
-	
+
 	def run_current_action(self):
 		return self.items[self.current_index].link.run()
-		
+
 	def addReturns(self, top_menu=None):
 		for item in self.items:
 			if type(item.link)==f_menu:
 				item.link.addReturns(self)
 		if top_menu!=None:
 			self.add(f_item("Retour", top_menu, retour=True))
-	
-		
-		
+
+
+
 class f_item(object):
 	""" element d'un menu
 	"""
@@ -177,7 +175,7 @@ class f_item(object):
 		self.label = label
 		self.link = link
 		self.retour = retour
-	
+
 	def is_retour(self):
 		return self.retour==True
 
@@ -192,15 +190,15 @@ class f_cmd(object):
 		self.cmd=cmd
 		self.args = args
 		self.kwargs = kwargs
-	
+
 	def run(self):
 		"""Execute la commande
 		"""
 		if type(self.cmd) is str:
-			exec self.cmd
+			exec(self.cmd)
 		else:
 			self.cmd(*self.args, **self.kwargs)
-		
+
 class f_menu_dynamic(f_menu):
 	""" Menu ou la liste des items est calculée dynamiquement
 	"""
@@ -213,7 +211,7 @@ class f_menu_dynamic(f_menu):
 		self.cmd = cmd
 		self.args = args
 		self.kwargs = kwargs
-	
+
 	def run(self):
 		"""Execute le code de cmd et renvoie la liste des f_item
 		"""
@@ -221,7 +219,7 @@ class f_menu_dynamic(f_menu):
 			return eval(self.cmd)
 		else:
 			return self.cmd(*self.args, **self.kwargs)
-	
+
 
 #########################################################
 #                                                       #
@@ -237,7 +235,7 @@ if __name__ == '__main__':
 	lcd = lcd_i2c_io(pc=pc)
 	bt = bt_rotatif_io(*pc.logical_pins(9,10,8))
 	menu = f_menu( \
-			f_item("Lecture aleatoire", f_cmd('print "lecture aléatoire"')), \
+			f_item("Lecture aleatoire", f_cmd('print("lecture aléatoire")')), \
 			f_item("Ma musique", f_menu( \
 				f_item("Artist", f_menu_dynamic('artist()')), \
 				f_item("Album", f_menu_dynamic('todo')), \
@@ -251,8 +249,8 @@ if __name__ == '__main__':
 			f_item("Volume", f_cmd('todo')), \
 			f_item("Exit", None))
 	def artist():
-		return [f_item("Beatles", f_cmd('print "Beatles"')), \
-				f_item(time.strftime("%H:%M:%S"), f_cmd('print "Beatles"')), \
-				f_item("Clash", f_cmd('print "Clash"'))]
+		return [f_item("Beatles", f_cmd('print("Beatles")')), \
+				f_item(time.strftime("%H:%M:%S"), f_cmd('print("Beatles")')), \
+				f_item("Clash", f_cmd('print("Clash")'))]
 	interface = f_interface(lcd, bt, menu)
 	interface.start()

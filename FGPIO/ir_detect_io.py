@@ -4,7 +4,7 @@
 
 """
 # Digital Infra Red motion sensor as UI.R. SEN0018 of DFROBOT
-# 
+#
 #	wiring :	a pin on 0V
 #				a pin on 3.3V
 #				a pin on a digital io
@@ -43,12 +43,12 @@ class ir_detect_io(digital_input_device_io):
 		self.detected = False
 		self.time_last_detection = None
 		logging.info("%s is created on pin %s. " % (self, self.pin))
-	
+
 	def get(self):
 		''' Récupère l'état du capteur sous la forme LOW/HIGH
 		'''
 		return self.pin.get()
-		
+
 	@property
 	def is_detected(self):
 		''' Renvoie True s'il y a une detection, False sinon
@@ -62,13 +62,13 @@ class ir_detect_io(digital_input_device_io):
 			else:
 				self.detected = False
 		return self.detected
-	
+
 	def read(self):
 		''' Lecture, pour le thread, du bouton
 		'''
 		return self.is_detected
-		
-		
+
+
 #########################################################
 #                                                       #
 #		EXEMPLE                                         #
@@ -81,9 +81,9 @@ if __name__ == '__main__':
 	d = ir_detect_io(pc.bcm_pin(21))
 	def action_detector_change():
 		if d.th_readed():
-			print "Detection!!."
+			print("Detection!!.")
 		else:
-			print "no detection."
+			print("no detection.")
 	d.add_thread(action_detector_change)
 
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C

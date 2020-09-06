@@ -9,7 +9,7 @@
 #
 # Projet : rpiduino_io
 #
-#################################### 
+####################################
 
 import time
 from rpiduino_io import *
@@ -19,7 +19,7 @@ import numpy as np
 
 class UltraSonic(analog_input_device_io):
 	""" Un capteur ULTRA SON HC SR04
-	
+
 		Branchements :
 			- Vcc sur 5V
 			- Trig sur un portTrigger (exemple le 2)
@@ -31,9 +31,9 @@ class UltraSonic(analog_input_device_io):
 					  [] R2
 					  |
 			- Ground___  sur 0V
-			
+
 			ou R1<R2<2*R1 (exemple R1=47k et R2=100k)
-			
+
 			C'est juste pour le pas envoyer 5V au port Echo qui n'en accepte que 3.3V.
 			"""
 	def __init__(self, pin_Trigger, pin_Echo, duration = 1, seuil = 50, thread = False, on_changed = None, discard = 15, pause = 0.1, timeout = 5):
@@ -43,7 +43,7 @@ class UltraSonic(analog_input_device_io):
 				- duration		:	duree de la mesure
 				- seuil			:	seuil de déclenchement du deamon
 									soit un tuple (seuil_bas, seuil_haut)
-									soit une seule valeur				
+									soit une seule valeur
 				- thread		:	(facultatif) True si utilisation thread
 				- on_changed	:	fonction ou string executable
 									qui sera lancée quand la valeur du capteur change
@@ -59,7 +59,7 @@ class UltraSonic(analog_input_device_io):
 		time.sleep(0.2) 	#Pour bien initialiser le capteur
 		self.duration = duration
 		analog_input_device_io.__init__(self, seuil, thread, on_changed, discard, pause, timeout)
-	
+
 	def read_raw(self, timeout = 0.1):
 		""" Renvoie la distance mesuree en cm
 			timeout = 0.1 seconde par defaut """
@@ -83,9 +83,9 @@ class UltraSonic(analog_input_device_io):
 			return 999
 		else :
 			return np.rint(mesure)
-	
+
 	def read(self):
-		""" Renvoie une mesure sure de la distance calculée en cm 
+		""" Renvoie une mesure sure de la distance calculée en cm
 			duree : duree de la mesure
 		"""
 		#TODO : calculer moyenne et ecart type de plusieurs mesure et en determiner l'imprécision.
@@ -95,7 +95,7 @@ class UltraSonic(analog_input_device_io):
 			mesures.append(self.read_raw())
 			time.sleep(1.*self.duration/10)	#Libère le processeur
 		return np.rint(np.mean(mesures))
-	
+
 
 #########################################################
 #                                                       #
@@ -109,23 +109,23 @@ if __name__ == '__main__':
 	ext_io = mcp23017_io(addr=0x26, pc=pc) #branchement via module d'extention de GPIO en i2c
 	#c=UltraSonic(*ext_io.pin[0:2])		# syntaxe simplifiée, sans thread
 	#c=UltraSonic(*pc.logical_pins(2,3)) #branchement directement sur le pcduino/Rpi
-	
+
 	def action():
-		print 'distance modifiee'
+		print('distance modifiee')
 		if c.low():
-			print "		trop proche"
+			print("		trop proche")
 		elif c.high():
-			print "		trop loin"
+			print("		trop loin")
 		time.sleep(1)
-	
+
 	c=UltraSonic(*ext_io.pin[0:2], seuil = (30, 130), thread = True, on_changed = action)
-	
+
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C
 		while True:
 			# Lecture en continue du capteur, pendant ce temps, le thread agit
-			print c.read()
+			print(c.read())
 	except KeyboardInterrupt:
 		c.stop()
-		
-		
+
+
 		

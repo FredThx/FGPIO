@@ -7,11 +7,11 @@
 
 	Classe : 	- bt_rotatif_io			:	vrai bouton rotatif
 				- bt_pseudo_rotatif_io	:	simulation avec 3 boutons poussoirs
-	
+
  AUTEUR : FredThx
 
  Projet : rpiduino_io
- 
+
 '''
 
 
@@ -50,14 +50,14 @@ class bt_rot_io(digital_input_device_io):
 			digital_input_device_io.__init__(self, True, self.auto_on_rot_changed, rot_pause)
 		else:
 			digital_input_device_io.__init__(self, rot_thread, on_rot_changed, rot_pause)
-	
+
 	def read_value(self):	#Obsolete
 		""" renvoie la valeur cumulée
 				pour initialiser : self.value = 0
 		"""
 		self.value += self.read()
 		return self.value
-	
+
 	def set_value(self, value):
 		self.value = value
 		if self.min_value!=None:
@@ -66,7 +66,7 @@ class bt_rot_io(digital_input_device_io):
 		if self.max_value!=None:
 			if self.value > self.max_value:
 				self.value = self.max_value
-	
+
 	def auto_on_rot_changed(self):
 		''' Deamon pour lecture automatique de la rotation
 			et incrémentation/decrémentation value
@@ -75,23 +75,23 @@ class bt_rot_io(digital_input_device_io):
 			self.set_value(self.value + self.th_readed())
 			if self.on_rot_changed:
 				self.on_rot_changed()
-	
+
 	@property
 	def is_pressed(self):
 		''' renvoie True si le bouton est pressé. False sinon
 		'''
 		return self.sw.is_pressed
-	
+
 	def is_pushed(self):
 		''' renvoie true si le bouton devient appuyé
 			(s'il reste appuyé, renvoie False)
 		'''
 		return self.sw.is_pushed()
-	
+
 	def stop(self):
 		self.sw.stop()
 		input_device_io.stop(self)
-	
+
 	def add_thread(self, on_sw_changed = None, sw_pause = 0.1, \
 						rot_thread = True, on_rot_changed = None, rot_pause = 0.1):
 		'''Ajoute le mécanisme de thread a un composant qui n'en a pas
@@ -112,7 +112,7 @@ class bt_rot_io(digital_input_device_io):
 		else:
 			assert (not self.thread), 'bt_rot_io has already a thread on rotary'
 			input_device_io.__init__(self, True, on_rot_changed, None, rot_pause)
-	
+
 class bt_rotatif_io(bt_rot_io):
 	''' Bouton rotatif à 5 pins
 		Branchements :
@@ -129,8 +129,8 @@ class bt_rotatif_io(bt_rot_io):
 				rot_thread = False, on_rot_changed = None, rot_pause = 0.1, \
 				auto = False):
 		'''Initialisation
-			- pin_a			:	pin pour rotation 
-			- pin_b			:	pin pour rotation 
+			- pin_a			:	pin pour rotation
+			- pin_b			:	pin pour rotation
 			- pin_sw		:	pin pour intérupteur (facultatif)
 			- value	 		:	valeur initiale (pour comptage)
 			- min_value		:	valeur minimum
@@ -157,12 +157,12 @@ class bt_rotatif_io(bt_rot_io):
 			self.auto_thread.start()
 		else:
 			self.lasts_read = [0,0,0,0]
-		
+
 		bt_rot_io.__init__(self, pin_sw, value, min_value, max_value, \
 							sw_thread, on_sw_changed, sw_pause, \
 							rot_thread, on_rot_changed, rot_pause)
-	
-	# Quand on tourne d'un cran, 
+
+	# Quand on tourne d'un cran,
 	#	Clockwise :	pin_a	pin_b	value
 	#				1		0		0b10 (environ 0.015 secondes)
 	#				0		0		0b00 (environ 0.005 secondes)
@@ -174,10 +174,10 @@ class bt_rotatif_io(bt_rot_io):
 	#				1		0		0b10(environ 0.005 secondes)
 	#				1		1		0b11 (attente)
 	# sauf que le bouton peut rester coincer sur autre chose de 0b11!!!
-	
+
 	def _read(self):
 		return self.pin_a.get() | self.pin_b.get()<<1
-	
+
 	def _basic_read(self):
 		value = self._read()
 		if self.lasts_read[3]==value:
@@ -191,9 +191,9 @@ class bt_rotatif_io(bt_rot_io):
 				return 1
 			else:
 				return 0
-	
+
 	def read(self):
-		''' Renvoie 
+		''' Renvoie
 			+1 si le bouton est tourné à droite
 			-1 si le bouton est tourné à gauche
 			0 sinon
@@ -202,7 +202,7 @@ class bt_rotatif_io(bt_rot_io):
 			return self._read_auto_read()
 		else:
 			return self._basic_read()
-	
+
 	def _read_auto_read(self):
 		# Renvoie la première valeur dans auto_reads et la supprime
 		if self.auto_reads:
@@ -211,9 +211,9 @@ class bt_rotatif_io(bt_rot_io):
 			return value
 		else:
 			return 0
-	
+
 	def _auto_read(self):
-		#Lecture en continue des pins 
+		#Lecture en continue des pins
 		#et remplissage de self.auto_reads
 		value = self._read()
 		if self._read()!=0b11:
@@ -227,7 +227,7 @@ class bt_rotatif_io(bt_rot_io):
 			time.sleep(0.002)
 		else:
 			time.sleep(0.015)
-	
+
 	def stop(self):
 		if self.auto:
 			self.auto_thread.stop()
@@ -250,9 +250,9 @@ class bt_pseudo_rotatif_io(bt_rot_io):
 		bt_rot_io.__init__(self, pin_sw, value, min_value, max_value, \
 							sw_thread, on_sw_changed, sw_pause, \
 							rot_thread, on_rot_changed, rot_pause)
-		
+
 	def read(self):
-		""" Renvoie 
+		""" Renvoie
 			+1 si le bouton plus est appuyé
 			-1 si le bouton moins est appuyé
 			0 si aucun ou les deux sont appuyés
@@ -263,10 +263,10 @@ class bt_pseudo_rotatif_io(bt_rot_io):
 		if self.bt_moins.is_pushed():
 			value-=1
 		return value
-		
-				
-				
-		
+
+
+
+
 #########################################################
 #                                                       #
 #		EXEMPLEs                                        #
@@ -276,110 +276,110 @@ class bt_pseudo_rotatif_io(bt_rot_io):
 if __name__ == '__main__':
 	import time
 	pc = rpiduino_io()
-	
+
 	#################################
 	#								#
 	#	Exemple Idéal				#
 	#								#
 	#################################
-	
+
 	bt = bt_rotatif_io(*pc.logical_pins(9,10,8), auto=True)
-	print "Appuyer sur le bouton"
+	print("Appuyer sur le bouton")
 	while not bt.is_pushed():
 		time.sleep(0.1)
-	print "Tourner maintenant"
+	print("Tourner maintenant")
 	while not bt.is_pushed():
 		value = bt.read()
 		if value==1:
-			print 'up'
+			print('up')
 		elif value==-1:
-			print 'down'
+			print('down')
 		time.sleep(0.1)
-	print "Ok."
-	
+	print("Ok.")
+
 	bt.stop()
 	raise ValueError
-	
+
 	#################################
 	#								#
 	#	Exemple Basique				#
 	#								#
 	#################################
-	
+
 	bt = bt_rotatif_io(*pc.logical_pins(9,10,8))
 	#bt = bt_pseudo_rotatif_io(*pc.logical_pins(9,10,8))
-	print "Appuyer sur le bouton"
+	print("Appuyer sur le bouton")
 	while not bt.is_pushed():
 		pass
-	print "Tourner maintenant"
+	print("Tourner maintenant")
 	while not bt.is_pushed():
-		print bt.read_value()
-	print "Ok."
-	
+		print(bt.read_value())
+	print("Ok.")
+
 	#################################
 	#								#
 	#	Exemple avec deux threads	#
 	#								#
 	#################################
-	
+
 	def on_push_action():
 		if bt.sw.th_readed():
-			print 'pushed'
+			print('pushed')
 			bt.stop()
 	def on_rot_action():
 		if bt.th_readed() == 1:
-			print 'up'
+			print('up')
 		if bt.th_readed() == -1:
-			print 'down'
-	print 'Utilisation de deux thread (push pour stopper)'
+			print('down')
+	print('Utilisation de deux thread (push pour stopper)')
 	bt = bt_rotatif_io(*pc.logical_pins(9,10,8), \
 				sw_thread = True, on_sw_changed = on_push_action, \
 				rot_thread = True, on_rot_changed = on_rot_action )
-	
+
 	while not bt.thread.terminated:
 		time.sleep(1)
-	
+
 	#################################
 	#								#
 	#	Exemple mode auto			#
 	#								#
 	#################################
-	
-	print 'Utilisation du bouton en automatique'
-	print 'A 5, on stoppe'
+
+	print('Utilisation du bouton en automatique')
+	print('A 5, on stoppe')
 	def on_push_action2():
 		if bt.sw.th_readed():
-			print bt.value
+			print(bt.value)
 		if bt.value>5:
 			bt.stop()
-	
-	
+
+
 	bt = bt_rotatif_io(*pc.logical_pins(9,10,8), \
 				sw_thread = True, on_sw_changed = on_push_action2, \
 				rot_thread = 'auto', on_rot_changed = None )
-	
+
 	while not bt.thread.terminated:
 		time.sleep(1)
-	
+
 	#################################
 	#								#
 	#	Exemple mode auto + deamon	#
 	#								#
 	#################################
-	
-	print 'Utilisation du bouton en mode auto + deamon'
-	
+
+	print('Utilisation du bouton en mode auto + deamon')
+
 	from lcd_i2c_io import *
 	lcd = lcd_i2c_io(pc=pc)
 	lcd.message('X',1)
 	lcd.message('push pour quitter',2)
-	
+
 	def on_value_change():
 		lcd.message('X'.rjust(bt.value),1)
-	
+
 	def on_push_action3():
 		bt.stop()
-	
+
 	bt = bt_rotatif_io(*pc.logical_pins(9,10,8), \
 				sw_thread = True, on_sw_changed = on_push_action3, \
 				rot_thread = 'auto', on_rot_changed = on_value_change, \

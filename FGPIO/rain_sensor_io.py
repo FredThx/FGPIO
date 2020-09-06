@@ -4,7 +4,7 @@
 
 """
 # Humidity Detection Sensor Module Rain Detection for Arduino
-# 
+#
 #	wiring :
 #		- Vcc	:	3.3V (if 5V, add a voltage divider to protect IO)
 #		- GRND	:	0V
@@ -41,24 +41,24 @@ class rain_sensor_digital_io(digital_input_device_io):
 		self.last_state= False
 		digital_input_device_io.__init__(self, thread, on_changed, pause)
 		logging.info("%s is created on pin %s. " % (self, self.pin))
-	
+
 	def get(self):
 		''' Récupère l'état du capteur sous la forme LOW/HIGH
 		'''
 		return self.pin.get()
-	
+
 	def is_raining(self):
 		''' renvoie True si le capteur détecte de la pluie
 		'''
 		return (self.pin.get()==LOW)
-	
+
 	def read(self):
 		''' Lecture, pour le thread, du capteur
 		'''
 		return self.is_raining()
 
 
-		
+
 #########################################################
 #                                                       #
 #		EXEMPLE                                         #
@@ -72,12 +72,12 @@ if __name__ == '__main__':
 	def action_bt_change():
 		global sensor
 		if sensor.th_readed():
-			print "It is raining!"
+			print("It is raining!")
 		else:
-			print "Ok, no rain."
-	
+			print("Ok, no rain.")
+
 	sensor.add_thread(action_bt_change)
-	
+
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C
 		while True:
 			time.sleep(0.1)

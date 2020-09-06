@@ -3,8 +3,8 @@
 
 """
 # Ultrasonic sensor for mesuring distance
-# 
-#	wiring :	
+#
+#	wiring :
 #		- pin n°3 on a analogue_pin
 			(hrlv_max_sonar_analog_io)
 #	OR
@@ -27,7 +27,7 @@ class hrlv_max_sonar_io(analog_input_device_io):
 	'''a HRLV MAX SONAR sensor
 	'''
 	pass
-	
+
 class hrlv_max_sonar_analog_io(hrlv_max_sonar_io):
 	''' a HRLV MAX SONAR sensor readed by a analogue input pin
 	'''
@@ -38,7 +38,7 @@ class hrlv_max_sonar_analog_io(hrlv_max_sonar_io):
 				-vcc			:	voltage on pin 6
 				- seuil			:	seuil de déclenchement du deamon
 									soit un tuple (seuil_bas, seuil_haut)
-									soit une seule valeur				
+									soit une seule valeur
 				- thread		:	(facultatif) True si utilisation thread
 				- on_changed	:	fonction ou string executable
 									qui sera lancée quand la valeur du capteur change
@@ -54,7 +54,7 @@ class hrlv_max_sonar_analog_io(hrlv_max_sonar_io):
 			self.vcc = vcc
 		analog_input_device_io.__init__(self, seuil, thread, on_changed, discard, pause, timeout)
 		logging.info("hrlv_max_sonar_analog_io created on pin %s." % self.pin)
-	
+
 	def read(self):
 		''' Return the distance en mm
 		'''
@@ -70,7 +70,7 @@ class hrlv_max_sonar_pwo_io(hrlv_max_sonar_io):
 				-pin			:	a analog_pin_io
 				- seuil			:	seuil de déclenchement du deamon
 									soit un tuple (seuil_bas, seuil_haut)
-									soit une seule valeur				
+									soit une seule valeur
 				- thread		:	(facultatif) True si utilisation thread
 				- on_changed	:	fonction ou string executable
 									qui sera lancée quand la valeur du capteur change
@@ -83,7 +83,7 @@ class hrlv_max_sonar_pwo_io(hrlv_max_sonar_io):
 		self.pin.setmode(INPUT)
 		analog_input_device_io.__init__(self, seuil, thread, on_changed, discard, pause, timeout)
 		logging.info("hrlv_max_sonar_pwo_io created on pin %s." % self.pin)
-	
+
 	def read(self):
 		''' Return the distance in mm
 		'''
@@ -97,8 +97,8 @@ class hrlv_max_sonar_pwo_io(hrlv_max_sonar_io):
 			return (time.time()-debut)*self.scale
 		else:
 			logging.warning("Timeout on %s.read()." % self)
-		
-	
+
+
 #########################################################
 #                                                       #
 #		EXEMPLE                                         #
@@ -108,7 +108,7 @@ class hrlv_max_sonar_pwo_io(hrlv_max_sonar_io):
 if __name__ == '__main__':
 	from rpiduino_io import *
 	pc = rpiduino_io()
-	
+
 	if isinstance(pc, pcduino_io):
 	# Avec le pcduino, on utilisera plutot le mode analogique
 		pin = pc.pin['A5']
@@ -118,7 +118,6 @@ if __name__ == '__main__':
 		#mcp3008 = mcp3008_hspi_io() (aussi possible en mode analogique avec un module mcp3008)
 		pin = pc.pin[7]
 		sonar = hrlv_max_sonar_pwo_io(pin)
-	
+
 	while True:
-		print sonar.read()
-	
+		print(sonar.read())

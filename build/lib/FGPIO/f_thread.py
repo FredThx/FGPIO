@@ -6,13 +6,14 @@
 	Une petite classe de Thread
 		basée sur threading
 		ou l'on passe une fonction en arguments
-		
+
 		usage : mon_thread = f_thread(ma_fonction, arg1, arg2, ..., nom_arg = arg, ...)
 				mon_thread.start()
 """
 
 import threading
 import logging
+import sys
 
 
 class f_thread(threading.Thread):
@@ -28,17 +29,21 @@ class f_thread(threading.Thread):
 		self.args = args
 		self.kwargs = kwargs
 		self.terminated = False
-		
+
 	def run(self):
 		'''Running the fonction of the thread
 		'''
 		logging.info('f_thread ' + self.fonction.__name__ + ' started.')
 		loops = 0
 		while not self.terminated:
-			self.fonction(*self.args, **self.kwargs)
-			loops += 1
+			try:
+				self.fonction(*self.args, **self.kwargs)
+				loops += 1
+			except:
+				sys.excepthook(*sys.exc_info()) #Pour que les exceptions soient bien gérées par le module my_logging
+				raise
 		logging.info(self.fonction.__name__ + ' stopped after %s loops' % loops)
-	
+
 	def stop(self):
 		'''Stop the thread at the next loop of the thread fonction.
 		'''
@@ -57,7 +62,7 @@ class f_thread_noerror(f_thread):
 			try:
 				self.fonction(*self.args, **self.kwargs)
 				loops += 1
-			except Exception, e:
+			except Exception as e:
 				logging.error("Unexpected error in thread %s : %s"% (self.fonction, e))
 		logging.info(self.fonction.__name__ + ' stopped after %s loops' % loops)
 
@@ -72,12 +77,12 @@ class f_thread_noerror(f_thread):
 if __name__ == '__main__':
 	import time
 	def f1(a):
-		print a
+		print(a)
 	def f2():
-		print 'f2'
+		print('f2')
 	def f3():
-		print 'f3'
-		
+		print('f3')
+
 	th_f1 = f_thread(f1,"f1")
 	th_f2 = f_thread(f2)
 	th_f3 = f_thread(f3)

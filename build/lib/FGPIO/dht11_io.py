@@ -3,15 +3,15 @@
 
 '''
 DHT11 temperature and humidity sensor
- 
+
 	wiring :	pin 1	:	3.3V (or 5V)
 				pin 2	:	data : a digital pin
 				pin 3	:	n/ab
 				pin 4	:	0V
-				
+
 	Note : 	Can only be used on RPi.
 			pcduino GPIO usage is too slow
-				
+
  AUTHOR : FredThx
 
  Project : rpiduino_io
@@ -27,7 +27,7 @@ class dht11_io(multi_digital_input_device_io):
 	''' a DHT11 temperature and humiditu sensor
 	'''
 	wake_up_delay = 0.014
-	
+
 	def __init__(self, pin_data, timeout_read = 4, thread = False, on_changed = None, discard = None, pause = 1, timeout = 30):
 		'''Initialisation
 				- pin_data		:	digital_pin_io
@@ -53,25 +53,25 @@ class dht11_io(multi_digital_input_device_io):
 				assert cle in ('T', 'RH'), 'discard error : bad key'
 		multi_digital_input_device_io.__init__(self, ('T', 'RH'), thread, on_changed, discard, pause, timeout)
 		logging.info("dht11_io id created on pin %s." % self.pin_data)
-	
+
 	def _read_raw(self):
 		datas = []
 		bcm_no_pin = self.pin_data.bcm_id
-		
+
 		# Wake up the device
 		self.pin_data.setmode(OUTPUT)
 		RPi.GPIO.output(bcm_no_pin, RPi.GPIO.HIGH)
 		time.sleep(2*dht11_io.wake_up_delay)
 		RPi.GPIO.output(bcm_no_pin, RPi.GPIO.LOW)
 		time.sleep(dht11_io.wake_up_delay)
-		
+
 		# Store the response of the device
 		RPi.GPIO.setup(bcm_no_pin, RPi.GPIO.IN, RPi.GPIO.PUD_UP)
 		i=0
 		while i<self.nbdatas:
 			datas.append(RPi.GPIO.input(bcm_no_pin))	#Direct usage of RPi.GPIO functions to increase speed of read
 			i+=1
-		
+
 		#Analyse the datas
 		count = 0
 		tmp = datas[0]
@@ -85,10 +85,10 @@ class dht11_io(multi_digital_input_device_io):
 				tmp = data
 		f_datas.append((datas[-1], count))
 		return f_datas[2:] # two first 0 - 1  are not datas
-		
+
 	def _read(self):
 		'''Lecture du capteur par
-				- Reveil du capteur : 
+				- Reveil du capteur :
 					- envoie de 18ms de LOW
 					- envoie de 40µs de HIGH
 				- Reponse au reiveil :
@@ -130,9 +130,9 @@ class dht11_io(multi_digital_input_device_io):
 		CRC = int(bits[32:40],2)
 		# Make CRC test
 		assert CRC == RH + T, "CRC Error"
-		
+
 		return {'T': T, 'RH': RH}
-	
+
 	def read(self):
 		'''read the sensor and
 			Return a dictionary : {'T': Temperature as int ,'RH' : Humidity as int}
@@ -151,7 +151,7 @@ class dht11Error(Exception):
 	def __init__(self, message):
 		self.message = message
 	def __str__(self):
-		return self.message		
+		return self.message
 
 
 #########################################################
@@ -165,18 +165,18 @@ if __name__ == '__main__':
 	capteur = dht11_io(*pc.bcm_pins(23))
 	reponse = capteur.read()
 	if reponse:
-		print "La température est de %s °C. L'humidité est de %s" % (reponse['T'], reponse['RH']), '%.'
+		print("La température est de %s °C. L'humidité est de %s%%" % (reponse['T'], reponse['RH']))
 	else:
-		print "Sensor Error"
+		print("Sensor Error")
 	#usage of thread
 	def action():
 		if capteur.th_readed():
-			print "La température est de %s °C. L'humidité est de %s" % \
-				(capteur.th_readed_value('T'), capteur.th_readed_value('RH')), '%.'
-	
+			print("La température est de %s °C. L'humidité est de %s%%" % \
+				(capteur.th_readed_value('T'), capteur.th_readed_value('RH')))
+
 	capteur = dht11_io(*pc.bcm_pins(23), thread = True, \
 						on_changed = action, discard = {'RH':2})
-	
+
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C
 		while True:
 			time.sleep(1)

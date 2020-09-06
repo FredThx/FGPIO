@@ -4,15 +4,15 @@
 ####################################
 '''
 # LED branchée sur un rpi_duino_io
-# 
-#    
+#
+#
 #
 # AUTEUR : FredThx
 #
 # Projet : rpiduino_io
 #
 '''
-#################################### 
+####################################
 
 from on_off_output_device_io import *
 
@@ -35,6 +35,17 @@ class led_io (on_off_output_device_io):
 				return fonction(self, *args, **kwargs)
 		return none_none_fonction
 
+	def pwm(self, duty = None, freq = None):
+		'''Set the pwm mode
+			-	duty	:	%duration high Si None ou omis : stop pwm
+			-	freq	:	frequency. Si None ou omis : comme avant
+		'''
+		if freq:
+			self.pin.set_pwm(freq)
+		if duty:
+			self.pin.start_pwm(duty)
+		else:
+			self.pin.stop_pwm()
 # class pwm_led_io(device_io):
 	# '''Une class pour piloter une led en PWM (Pulse Width Modulation
 	# '''
@@ -50,7 +61,7 @@ class led_io (on_off_output_device_io):
 			# assert isinstance(pin, digital_pin_io), 'pin must be a digital_pin_io'
 			# self.pin = pin
 			# self.pin.setmode(PWM)
-			
+
 #########################################################
 #                                                       #
 #		EXEMPLE                                         #
@@ -70,11 +81,10 @@ if __name__ == '__main__':
 	time.sleep(1)
 	for i in range(0,5):
 		LED.invert()
-		print "la LED est " + str(LED.get())
+		print("la LED est " + str(LED.get()))
 		time.sleep(1)
 	LED.blink()		# blink 1 second / 1 second
 	time.sleep(5)
 	LED.blink(0.1,0.2)	# Accelerate the blinking
 	time.sleep(5)
 	LED.stop()		# Stop the blinking
-	

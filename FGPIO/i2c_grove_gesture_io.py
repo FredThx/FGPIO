@@ -39,7 +39,7 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 	PAJ7620_ADDR_PS_LOW_THRESHOLD	=(PAJ7620_ADDR_BASE + 0x6A)	#RW
 	PAJ7620_ADDR_PS_APPROACH_STATE	=(PAJ7620_ADDR_BASE + 0x6B)	#R
 	PAJ7620_ADDR_PS_RAW_DATA		=(PAJ7620_ADDR_BASE + 0x6C)	#R
-	#REGISTER BANK 1                
+	#REGISTER BANK 1
 	PAJ7620_ADDR_PS_GAIN			=(PAJ7620_ADDR_BASE + 0x44)	#RW
 	PAJ7620_ADDR_IDLE_S1_STEP_0		=(PAJ7620_ADDR_BASE + 0x67)	#RW
 	PAJ7620_ADDR_IDLE_S1_STEP_1		=(PAJ7620_ADDR_BASE + 0x68)	#RW
@@ -78,7 +78,7 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 	GES_CLOCKWISE_FLAG			=1<<6
 	GES_COUNT_CLOCKWISE_FLAG	=1<<7
 	GES_WAVE_FLAG				=1<<0
-	
+
 	#Gesture output
 	FORWARD 		= 16
 	BACKWARD 		= 32
@@ -320,7 +320,7 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 						[0x7D,0x03],
 						[0x7E,0x01])
 
-	
+
 	def __init__(self, bus=None, addr=0x73, pc = None, reaction_time = 0.5, entry_time = 0.5, quit_time = 1, thread = False, on_changed = None, pause = 0.1, timeout = 10):
 		'''Initialisation
 			- bus				:		n° du bus (defaut 1 pour RPi et 2 pour pcduino (mais il faut préciser pc))
@@ -348,7 +348,7 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 		time.sleep(.001)
 		self.paj7620SelectBank(self.BANK0)
 		self.paj7620SelectBank(self.BANK0)
-		
+
 		data0 = self.paj7620ReadReg(0, 1)[0]
 		data1 = self.paj7620ReadReg(1, 1)[0]
 		if data0 != 0x20  :#or data1 <> 0x76:
@@ -359,26 +359,26 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 			self.paj7620WriteReg(self.initRegisterArray[i][0],self.initRegisterArray[i][1])
 		self.paj7620SelectBank(self.BANK0)
 		logging.info("Paj7620 initialize register finished.")
-	
-	@i2c_device_io.unError	
+
+	@i2c_device_io.unError
 	def paj7620WriteReg(self,addr,cmd):
 		'''Write a byte to a register on the Gesture sensor
 		'''
 		self.device.write_word_data(addr, cmd)
-	
-	@i2c_device_io.unError	
+
+	@i2c_device_io.unError
 	def paj7620SelectBank(self,bank):
 		'''Select a register bank on the Gesture Sensor
 		'''
 		if bank==self.BANK0:
 			self.paj7620WriteReg(self.PAJ7620_REGITER_BANK_SEL, self.PAJ7620_BANK0)
-	
-	@i2c_device_io.unError		
+
+	@i2c_device_io.unError
 	def paj7620ReadReg(self,addr,qty):
 		'''Read a block of bytes of length "qty" starting at address "addr" from the Gesture sensor
 		'''
 		return self.device.read_i2c_block_data(addr,qty)
-	
+
 	def read(self):
 		''' Read the gesture sensor :
 			UP				= 1
@@ -405,7 +405,7 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 				logging.error("Unexpected Geste detect : %s"%(data))
 			time.sleep(self.GES_QUIT_TIME)
 		return data
-	
+
 	def print_gesture(self):
 		'''Print de textual gesture (and return the geste)
 		'''
@@ -413,7 +413,7 @@ class i2c_grove_gesture_io(i2c_device_io, digital_input_device_io):
 		if geste:
 			print(self.TEXTES[geste])
 		return geste
-	
+
 	def texte(self, geste):
 		'''Return the texte of the geste number
 		'''
@@ -430,16 +430,16 @@ if __name__ == '__main__':
 	capteur = i2c_grove_gesture_io(pc=pc)
 	print("Utilisation simple. Wave pour passer à l'utilisation par Thread.")
 	geste = 0
-	while geste <> capteur.WAVE:
+	while geste != capteur.WAVE:
 		geste = capteur.print_gesture()
 	print("lancement du Thread.")
 	def MyFunction():
 		if capteur.th_readed():
 			print(capteur.texte(capteur.th_readed()))
-	
+
 	capteur.add_thread(MyFunction)
-	
-	
+
+
 	try: #Ca permet de pouvoir planter le thread avec un CTRL-C
 		while True:
 			time.sleep(1)
